@@ -1,9 +1,0 @@
-[40m[1m[33mwarn[39m[22m[49m: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
-      No XML encryptor configured. Key {3b054573-5aa1-47c2-a752-98b982087216} may be persisted to storage in unencrypted form.
-[40m[1m[33mwarn[39m[22m[49m: Microsoft.AspNetCore.Server.Kestrel[0]
-      Unable to bind to http://localhost:5000 on the IPv6 loopback interface: 'Error -99 EADDRNOTAVAIL address not available'.
-Hosting environment: Production
-Content root path: /home/langdexuming/projects/UpwardWebApp
-Now listening on: http://localhost:5000
-Application started. Press Ctrl+C to shut down.
-Application is shutting down...
