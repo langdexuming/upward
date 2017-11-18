@@ -1,0 +1,294 @@
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[41m[1m[37mcrit[39m[22m[49m: Microsoft.AspNetCore.Server.Kestrel[0]
+      Unable to start Kestrel.
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5001: address already in use. ---> Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.Internal.AddressInUseException: Error -98 EADDRINUSE address already in use ---> Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.UvException: Error -98 EADDRINUSE address already in use
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.LibuvFunctions.ThrowError(Int32 statusCode)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.LibuvFunctions.tcp_getsockname(UvTcpHandle handle, SockAddr& addr, Int32& namelen)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.UvTcpHandle.GetSockIPEndPoint()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Listener.ListenTcp(Boolean useFileHandle)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Listener.CreateListenSocket()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Listener.<>c.<StartAsync>b__8_0(Listener listener)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.LibuvThread.CallbackAdapter`1.<>c.<.cctor>b__3_1(Object callback, Object state)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.LibuvThread.DoPostWork()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.LibuvTransport.<BindAsync>d__20.MoveNext()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.LibuvTransport.<BindAsync>d__20.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer.<>c__DisplayClass21_0`1.<<StartAsync>g__OnBind0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindEndpointAsync>d__5.MoveNext()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindEndpointAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindLocalhostAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindAddressAsync>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.<BindAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer.<StartAsync>d__21`1.MoveNext()
+
+Unhandled Exception: System.IO.IOException: Failed to bind to address http://127.0.0.1:5001: address already in use. ---> Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.Internal.AddressInUseException: Error -98 EADDRINUSE address already in use ---> Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.UvException: Error -98 EADDRINUSE address already in use
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.LibuvFunctions.ThrowError(Int32 statusCode)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.LibuvFunctions.tcp_getsockname(UvTcpHandle handle, SockAddr& addr, Int32& namelen)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Networking.UvTcpHandle.GetSockIPEndPoint()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Listener.ListenTcp(Boolean useFileHandle)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Listener.CreateListenSocket()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.Listener.<>c.<StartAsync>b__8_0(Listener listener)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.LibuvThread.CallbackAdapter`1.<>c.<.cctor>b__3_1(Object callback, Object state)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.Internal.LibuvThread.DoPostWork()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.LibuvTransport.<BindAsync>d__20.MoveNext()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.LibuvTransport.<BindAsync>d__20.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer.<>c__DisplayClass21_0`1.<<StartAsync>g__OnBind0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindEndpointAsync>d__5.MoveNext()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindEndpointAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindLocalhostAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindAddressAsync>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.<BindAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.<BindAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer.<StartAsync>d__21`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.<StartAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.<RunAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.<RunAsync>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.Run(IWebHost host)
+   at UpwardApi.Program.Main(String[] args) in d:\langdexuming\gittest\UpwardApi\Program.cs:line 17
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[40m[1m[33mwarn[39m[22m[49m: Microsoft.AspNetCore.Server.Kestrel[0]
+      Unable to bind to http://localhost:5001 on the IPv6 loopback interface: 'Error -99 EADDRNOTAVAIL address not available'.
+Hosting environment: Production
+Content root path: /home/langdexuming/projects/gittest/UpwardApi/bin/Debug/netcoreapp2.0
+Now listening on: http://localhost:5001
+Application started. Press Ctrl+C to shut down.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/apiapi/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 56.9007ms 404 
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/apivalues  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.5212ms 404 
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/apiapi/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.158ms 404 
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/apivalues  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.1531ms 404 
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 45.7844ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 68.5754ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.8817ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 1.4375ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2796ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.5126ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.3667ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.5674ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2671ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4535ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2404ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4376ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2399ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4462ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2578ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4842ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2543ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4569ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2215ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4145ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.3297ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.534ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2204ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.3993ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.3313ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.517ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.2589ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.4733ms 200 application/json; charset=utf-8
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/home/langdexuming/projects/gittest/  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.117ms 404 
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/home/langdexuming/projects/gittest/  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.1422ms 404 
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://120.79.0.192/api/values  
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method UpwardApi.Controllers.ValuesController.Get (UpwardApi) with arguments ((null)) - ModelState is Valid
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action UpwardApi.Controllers.ValuesController.Get (UpwardApi) in 0.3237ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 0.5175ms 200 application/json; charset=utf-8
