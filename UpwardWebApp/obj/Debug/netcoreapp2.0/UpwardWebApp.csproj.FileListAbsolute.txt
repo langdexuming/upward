@@ -8,3 +8,13 @@
 /home/langdexuming/projects/UpwardWebApp/obj/Debug/netcoreapp2.0/UpwardWebApp.AssemblyInfo.cs
 /home/langdexuming/projects/UpwardWebApp/obj/Debug/netcoreapp2.0/UpwardWebApp.dll
 /home/langdexuming/projects/UpwardWebApp/obj/Debug/netcoreapp2.0/UpwardWebApp.pdb
+d:\langdexuming\gittest\UpwardWebApp\bin\Debug\netcoreapp2.0\UpwardWebApp.deps.json
+d:\langdexuming\gittest\UpwardWebApp\bin\Debug\netcoreapp2.0\UpwardWebApp.runtimeconfig.json
+d:\langdexuming\gittest\UpwardWebApp\bin\Debug\netcoreapp2.0\UpwardWebApp.runtimeconfig.dev.json
+d:\langdexuming\gittest\UpwardWebApp\bin\Debug\netcoreapp2.0\UpwardWebApp.dll
+d:\langdexuming\gittest\UpwardWebApp\bin\Debug\netcoreapp2.0\UpwardWebApp.pdb
+d:\langdexuming\gittest\UpwardWebApp\obj\Debug\netcoreapp2.0\UpwardWebApp.csproj.CoreCompileInputs.cache
+d:\langdexuming\gittest\UpwardWebApp\obj\Debug\netcoreapp2.0\UpwardWebApp.AssemblyInfoInputs.cache
+d:\langdexuming\gittest\UpwardWebApp\obj\Debug\netcoreapp2.0\UpwardWebApp.AssemblyInfo.cs
+d:\langdexuming\gittest\UpwardWebApp\obj\Debug\netcoreapp2.0\UpwardWebApp.dll
+d:\langdexuming\gittest\UpwardWebApp\obj\Debug\netcoreapp2.0\UpwardWebApp.pdb
