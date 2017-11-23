@@ -2,3 +2,5 @@ UpwardWebApp/.vscode/*
 UpwardWebApp/.vscode
 UpwardWebApp/bin/*
 UpwardWebApp/obj/*
+UpwardApi/bin/*
+UpwardApi/obj/*
