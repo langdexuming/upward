@@ -4,3 +4,7 @@ UpwardWebApp/bin/*
 UpwardWebApp/obj/*
 UpwardApi/bin/*
 UpwardApi/obj/*
+DemoProject/Client/obj/*
+DemoProject/Client/bin/*
+DemoProject/Server/obj/*
+DemoProject/Server/bin/*
