@@ -44,3 +44,5 @@ print(('a', 'b'))
 print(tuple("abc"))
 
 print(tuple("def"))
+
+print(tuple("ghi"))
