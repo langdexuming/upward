@@ -11,9 +11,9 @@ namespace Client
         {
             Console.WriteLine("Hello World!");
 
-            // var server = "120.79.0.192";
+            var server = "120.79.0.192";
             //var server = Dns.GetHostName();
-            var server = "127.0.0.1";
+            //var server = "127.0.0.1";
             var port = 5200;
 
             string result = SocketSendReceive(server, port);
