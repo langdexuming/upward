@@ -8,7 +8,7 @@ DemoProject/Client/obj/*
 DemoProject/Client/bin/*
 DemoProject/Server/obj/*
 DemoProject/Server/bin/*
-
+UpwardApi/Migrations/*
 
 # Build results
 [Dd]ebug/
