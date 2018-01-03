@@ -21,3 +21,5 @@ UpwardApi/Migrations/*
 bld/
 [Bb]in/
 [Oo]bj/
+
+*.out
