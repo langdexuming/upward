@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using UpwardApi.Models;
 
 namespace UpwardApi.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        public ValuesController()
+        {
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -27,6 +33,7 @@ namespace UpwardApi.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT api/values/5
