@@ -1,0 +1,751 @@
+     @{
+        ViewData["Title"]="Langdexuming' Blog, welcome to check my resume";
+    }
+    <style>
+        .jumbotron {
+            padding: 0;
+            margin-bottom: 0px;
+        }
+        
+        .summary-description>p {
+            margin-top: 24px;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        
+        .container {
+            background: transparent;
+        }
+        
+        .poster {
+            padding: 20px 0px;
+            height: 340px;
+        }
+        
+        .poster img {
+            position: absolute;
+            float: left;
+            left: 0;
+            top: 0;
+            height: 100%;
+        }
+        
+        .summary-brand .title {
+            font-family: "华文行楷";
+            font-size: 72px;
+            color: #fff;
+        }
+        
+        .summary-brand .subheading {
+            padding: 0px 20px;
+            font-family: "方正姚体";
+            font-size: 24px;
+            color: #fff;
+            display: inline-block;
+        }
+        
+        .summary-brand .subheading .broken-line {
+            width: 100px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .summary-description {
+            font-family: "微软雅黑Light";
+            font-size: 14px;
+            color: #fff;
+        }
+        
+        .section {
+            padding: 20px 0px;
+        }
+        
+        .section .heading {
+            margin-bottom: 20px;
+        }
+        
+        .section .heading h3.title {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .section .heading .title {
+            /*padding-bottom:3px;
+ border-bottom:3px solid #313131;*/
+            font-size: 18px;
+            color: #000;
+            font-family: "微软雅黑";
+            text-align: center;
+        }
+        
+        .section .heading hr {
+            margin-top: 5px;
+        }
+        
+        hr {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .section .heading .line {
+            height: 2px;
+            width: 40px;
+        }
+        
+        .line {
+            color: #313131;
+            background: #313131;
+            width: 100%;
+            height: 1px;
+        }
+        
+        .section .content .title {
+            font-size: 18px;
+            color: #000;
+            font-family: "微软雅黑";
+        }
+        
+        .section .content .dl-horizontal {
+            height: 24px;
+        }
+        
+        .section .content .dl-horizontal dt {
+            font-weight: normal;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            line-height: 24px;
+            color: #000;
+            float: left;
+            width: 100px;
+            padding-right: 12px;
+        }
+        
+        .section .content .dl-horizontal dd {
+            margin-bottom: 0px;
+            height: 24px;
+            float: none;
+            margin-left: 0px;
+        }
+        
+        #skillContent {
+            background: #fff;
+        }
+        
+        #skillContent .content {
+            margin-top: 40px;
+        }
+        
+        #skillContent .progress {
+            border-radius: 4px;
+            background: #e3e3e3;
+        }
+        
+        #skillContent .progress-bar {
+            background: #42445f;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: "微软雅黑Light";
+        }
+        
+        #skillContent .progress-bar span {
+            line-height: 24px;
+        }
+        
+        #experienceContent {
+            background: #f5f5f5;
+        }
+        
+        #experienceContent .time-quantum {
+            font-family: "微软雅黑Light";
+            font-size: 16px;
+            color: #000;
+        }
+        
+        #experienceContent .company {
+            font-family: "微软雅黑";
+            color: #000;
+            font-size: 16px;
+        }
+        
+        #experienceContent>h3 {
+            /* background: #EC6A5C; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #experienceContent .content .row {
+            border: 0 solid transparent;
+        }
+        
+        #experienceContent .content div {
+            height: 100%;
+        }
+        
+        #experienceContent .content .post {
+            font-family: "微软雅黑";
+            font-size: 14px;
+            color: #874c06;
+        }
+        
+        #experienceContent .content hr {
+            width: 1px;
+            background: #828282;
+            border: 0px solid transparent;
+        }
+        
+        #experienceContent .content .circle {
+            height: 12px;
+            width: 12px;
+            border-radius: 6px;
+            border: 1px solid #646969;
+            margin: 0px auto;
+        }
+        
+        #experienceContent .content .description {
+            background: #fff;
+            border-radius: 4px;
+            font-size: 14x;
+            font-family: "微软雅黑Light";
+            color: #000;
+        }
+        
+        #experienceContent .content .description ol {
+            padding-left: 20px;
+        }
+        
+        #sampleReelsContent {
+            background: #fff;
+        }
+        
+        #sampleReelsContent>h3 {
+            /* background: #77AAAD; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #educationalContent {
+            background: #fff;
+        }
+        
+        #educationalContent>h3 {
+            /* background: #4FB0C6; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #educationalContent .content {
+            color: #000;
+            font-size: 14px;
+            font-family: "微软雅黑Light";
+        }
+        
+        #educationalContent .content .school {
+            color: #1fadff;
+            font-size: 18px;
+            font-family: "微软雅黑";
+        }
+        
+        #educationalContent .content .major {
+            color: #000;
+            font-size: 16px;
+            font-family: "微软雅黑";
+        }
+        
+        #educationalContent a {
+            text-decoration-line: none;
+        }
+        /*   #educationalContent img{
+                position: absolute;
+    float: left;
+            height: 320px;
+            margin: 0px auto;
+
+        }*/
+        
+        .bold-text {
+            font-weight: bold;
+        }
+        
+        .carousel-inner {}
+        
+        .carousel-control {}
+        
+        .carousel-control.left {
+            margin-left: 15px;
+        }
+        
+        .carousel-control.right {
+            margin-right: 15px;
+        }
+        
+        .carousel-indicators {
+            opacity: 0.4;
+            background: black;
+            width: 96px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            bottom: 96px!important;
+            padding: 12px 24px;
+            margin: 0;
+            border-radius: 6px;
+        }
+        
+        #rightNavbar {
+            position: fixed;
+            right: 0px;
+            top: 240px;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            text-align: center;
+        }
+        
+        #rightNavbar {
+            background: transparent;
+            /* width: 120px;*/
+            /*  height: 240px;*/
+            width: 60px;
+            border-radius: 6px;
+            border-width: 0px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+        }
+        
+        #rightNavbar .basement-bg {
+            background: #7f7f7f;
+            opacity: 0.6;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            border-width: 0px;
+        }
+        
+        #rightNavbar ul {
+            margin: 0px;
+        }
+        
+        #rightNavbar li {
+            list-style: none;
+            float: none;
+            color: #fff;
+        }
+        
+        #rightNavbar li>a {
+            background: transparent;
+            display: inline-block;
+            font-size: 18px;
+            font-family: "微软雅黑Light";
+            color: inherit;
+        }
+        
+        #rightNavbar li>a .glyphicon {
+            margin-right: 4px;
+        }
+        
+        #rightNavbar li.active {
+            color: #fed57d;
+        }
+        
+        #rightNavbar hr {
+            height: 1px;
+            background: #fefefe;
+            border-width: 0px;
+            opacity: 0.6;
+            min-width: 24px;
+            width: 80%;
+        }
+        
+        #summaryContent .btn-group {
+            /*不起作用*/
+            /* margin: auto;*/
+            margin-left: 30%;
+        }
+        
+        #summaryContent .btn-group img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        #summaryContent .btn-group .btn {
+            padding: 0px;
+            background: transparent;
+            border-width: 0px;
+            float: left;
+            margin-right: 12px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.6;
+        }
+        
+        #summaryContent .btn-group .btn:hover {
+            opacity: 1;
+        }
+        
+        body {
+            background: #fff;
+        }
+    </style>
+
+    <div id="summaryContent" class="poster">
+        <div class=" jumbotron container">
+            <img src="~/images/home/pexels-photo-banner.jpg" class=" img-responsive">
+            <div class="col-md-6 col-md-offset-6">
+                <div class="summary-brand">
+                    <div class="title">YIN Ruimin</div>
+                    <div class="subheading">
+                        <hr class="broken-line"></hr>
+                        <span>来自另一个世界的码农</span>
+                    </div>
+                </div>
+                <div class="summary-description">
+                    <p>擅长于Windows客户端开发，也对Web前端/后端有着浓厚兴趣，从事过诸多领域的软件开发工作(安防对讲类的监控软平台软件、车载设备上位机软件、客户体验类平台软件)
+                    </p>
+                </div>
+                <div class="btn-group">
+                    <a class="btn"><img src="~/images/home/weibo.png" class=" img-responsive" alt="微博"></a>
+                    <a class="btn"><img src="~/images/home/weixin.png" class=" img-responsive" alt="微信"></a>
+                    <a class="btn"><img src="~/images/home/qq.png" class=" img-responsive" alt="QQ"></a>
+                    <a class="btn"><img src="~/images/home/lingying.png" class=" img-responsive" alt="领英"></a>
+                    <a class="btn"><img src="~/images/home/email.png" class=" img-responsive" alt="Email"></a>
+                </div>
+            </div>
+            <!-- <div class="col-md-4 col-md-offset-2">
+                     <img src="~/images/home/section-international-icon.png" class=" img-responsive"></img>
+                </div> -->
+        </div>
+    </div>
+    <div>
+        <!-- 工作技能 -->
+        <div id="skillContent" class="section">
+            <div class="heading">
+                <h3 class="title">工作技能</h3>
+                <hr class="line"></hr>
+            </div>
+            <div class=" content container">
+                <dl id="CSharpContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>C#</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                            <span>80%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="WPFContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>WPF</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            <span>60%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="AspDotNetContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>ASP.NET</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span>20%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="HtmlContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>HTML</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span>20%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="CssContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>CSS</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span>20%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="JavascriptContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>JavaScript</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span>20%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="WinformContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>Winform</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span>20%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="BootstrapContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>Bootstrap</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span>20%</span>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="DotNetCoreContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>.NET Core</dt>
+                    <dd class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>10%</span>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+        <!-- 工作经历 -->
+        <div id="experienceContent" class="section">
+            <div class="heading">
+                <h3 class="title">工作经历</h3>
+                <hr class="line"></hr>
+            </div>
+            <div class="content container">
+                <div class="row">
+                    <div class=" col-md-3">
+                        <h4 class="company">中软国际科技服务有限公司(深圳)</h4>
+                        <h5 class="time-quantum">2016年11月-至今</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <hr style="height:80px"></hr>
+                        <div class="circle"></div>
+                        <hr style="height:80px"></hr>
+                    </div>
+                    <div class="col-md-8 description">
+                        <h5 class="post">WPF(C#)开发工程师</h5>
+                        <p>
+                            从事<a href="http://www.huawei.com/cn/">华为</a>大型客户体验类平台客户端软件开发，工作职责：参与需求调研、项目可行性分析、技术可行性分析和需求分析；熟悉并熟练掌握Windows软件开发的相关软件技术；根据需求分析和系统框架完成系统的详细设计；完成具体代码的编写工作；参与实施项目内技术攻关工作；参与系统联调、并对各个相关模块负责；参与软件系统日后维护工作，并编写相关维护文档。
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-3">
+                        <h4 class="company">深圳市速美特电子科技有限公司</h4>
+                        <h5 class="time-quantum">2016年7月-2016年10月</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <hr style="height:60px"></hr>
+                        <div class="circle"></div>
+                        <hr style="height:60px"></hr>
+                    </div>
+
+                    <div class="col-md-8 description">
+                        <h5 class="post">上位机(C#)开发工程师</h5>
+                        <p>
+                            完全负责一款面向小型汽车数据采集分析和汽车服务的电脑端软件的开发，调试。涉及：C#/.net,WPF界面，MVVM设计模式，Can协议，SqlServer Compact数据库
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-3">
+                        <h4 class="company">珠海嘉德系统集成有限责任公司</h1>
+                            <h5 class="time-quantum">2015年3月-2016年6月</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <hr style="height:80px"></hr>
+                        <div class="circle"></div>
+                        <hr style="height:80px"></hr>
+                    </div>
+                    <div class="col-md-8 description">
+                        <h5 class="post">测试+软件(C#)开发工程师</h5>
+                        <ol>
+                            <li>采用基于Winform界面、C#语言对一款由VB编写的小型安防报警管理软件进行重新开发、调试、测试,涉及：C#/.net,监控对讲，串口通讯，Microsoft Office Access数据库</li>
+                            <li>对公司一款数字产品的上位机管理软件进行功能改进、程序国际化（英语）开发、调试、测试，涉及：Winform界面，C#/.net,数字对讲，UDP通信，Firebird数据库操作（类似Sqlite）</li>
+                            <li>编写相关操作说明书</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 作品集 -->
+        <div id="sampleReelsContent" class="section">
+            <div class="heading">
+                <h3 class="title">作品集</h3>
+                <hr class="line"></hr>
+            </div>
+            <!-- 幻灯片 -->
+            <div id="carousel-example-generic" class="carousel slide content container" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item">
+                        <img src="~/images/job/carousel-1.png" alt="1" class=" img-responsive">
+                        <div class="carousel-caption">
+                            <!-- ... -->
+                        </div>
+                    </div>
+                    <div class="item active">
+                        <img src="~/images/job/carousel-2.png" alt="2" class=" img-responsive">
+                        <div class="carousel-caption">
+                            <!-- ... -->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/images/job/carousel-3.png" alt="3" class=" img-responsive">
+                        <div class="carousel-caption">
+                            <!-- ... -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="icon-prev"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="icon-next"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!-- 教育背景 -->
+            <div id="educationalContent" class="section">
+                <div class="heading">
+                    <h3 class="title">教育背景</h3>
+                    <hr class="line"></hr>
+                </div>
+                <div class="content container">
+                    <a href="http://www.zhbit.com/">
+                        <h4 class="school">北京理工大学珠海学院(本科)</h4>
+                    </a>
+                    <h5 class="major">机械电子工程专业 (2011-2015)</h5>
+                    <p>主修课程：计算机技术，C语言程序设计，单片机程序设计，嵌入式系统linux，控制工程，PLC控制基础，变频器技术，电力电子技术，模拟电子技术基础，电路电子技术等。
+                    </p>
+                    <img src="~/images/job/education-img.jpg" alt="" class=" img-responsive">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 定义一个右侧导航条 -->
+        <nav id="rightNavbar" class="navbar navbar-default">
+            <div class="basement-bg"></div>
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active" data-target="#summaryContent"><a href="#"><span class="glyphicon glyphicon-user" title="个人简介"></span>
+                                    </a>
+                    <hr></hr>
+                </li>
+                <li role="presentation" data-target="#skillContent"><a href="#"><span class="glyphicon glyphicon-wrench" title="工作技能"></span>
+                       </a>
+                    <hr></hr>
+                </li>
+                <li role="presentation" data-target="#experienceContent"><a href="#"><span class="glyphicon glyphicon-fire" title="工作经历"></span></a>
+                    <hr></hr>
+                </li>
+                <li role="presentation" data-target="#sampleReelsContent"><a href="#"><span class="glyphicon glyphicon-picture" title="作品集"></span></a>
+                    <hr></hr>
+                </li>
+                <li role="presentation" data-target="#educationalContent"><a href="#"><span class="glyphicon glyphicon-pencil" title="教育背景"></span></a></li>
+            </ul>
+        </nav>
+
+        @section Scripts 
+{
+    <script lang=”javascript” type="text/javascript">
+        var _isValidScroll = true;
+  var _topNavbarHeight = 65;
+  var _scrollTopOffset = 20;
+
+  /*
+   * 滚动到指定位置
+   *
+   */
+  function ScrollTo(offset) {
+      $("body,html").stop();
+      // $(document).prop("scrollTop", $($(this).data('target')).position().top - _scrollTopOffset);
+      //$(document).scrollTop($($(this).data('target')).position().top - _scrollTopOffset);
+      //$("body,html").animate({ scrollTop: $($(this).data('target')).position().top - _scrollTopOffset });
+      //根据差值算出时间
+      var gap = Math.abs(offset - $('body,html').scrollTop());
+      var msec = 800 * gap / 800;
+      if (msec < 800) {
+          msec = 800;
+      }
+      $("body,html").animate({
+          scrollTop: offset
+      }, 'slow', 'swing', function() {
+          _isValidScroll = true;
+      });
+
+      //$(document).scrollTop(offset);
+  }
+
+  $(function() {
+
+      $("li[role=presentation]").each(function(index) {
+          if ($(this).hasClass('active')) {
+              var scrollTopOffset = _scrollTopOffset;
+              if (index == 0) {
+                  scrollTopOffset = 100;
+              }
+              ScrollTo(GetPositionTop($($(this).data('target'))) - scrollTopOffset);
+          }
+
+          $(this).click(function(event) {
+              $("li[role=presentation]").removeClass('active');
+              $(this).addClass('active');
+
+              //阻止默认事件
+              event.preventDefault();
+
+              _isValidScroll = false;
+              var scrollTopOffset = _scrollTopOffset;
+              if (index == 0) {
+                  scrollTopOffset = 100;
+              }
+              ScrollTo($($(this).data('target')).offset().top - scrollTopOffset);
+          });
+      });
+
+      $(document).scroll(function() {
+
+          // 屏蔽点击标签定位
+          if (!_isValidScroll) {
+
+              return false;
+          }
+
+          // 遍历所有块，找到当前所在块
+          var _previousElement = undefined;
+          var _offsetY;
+          $("li[role=presentation]").each(function(index) {
+              var previousElement = _previousElement;
+              _previousElement = $(this);
+              var targetElement;
+              if (previousElement === undefined) {
+                  _offsetY = _topNavbarHeight;
+                  targetElement = $(this);
+              } else {
+                  _offsetY = $(previousElement.data('target')).height() / 2 + _topNavbarHeight;
+                  targetElement = previousElement;
+              }
+
+              var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+              var target = $($(this).data('target'));
+              var targetTop = target.offset().top;
+              if (docScrollTop > targetTop - _offsetY) {
+                  if (index === $("li[role=presentation]").length - 1) {
+                      targetElement = $(this);
+                  } else {
+                      return true;
+                  }
+
+              }
+              $("li[role=presentation]").removeClass('active');
+              if (!targetElement.hasClass('active')) {
+                  targetElement.addClass('active');
+              }
+              return false;
+          });
+      });
+  });
+    </script>
+}

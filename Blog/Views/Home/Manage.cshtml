@@ -1,0 +1,32 @@
+@using Blog.Models;
+@using System.Collections.Generic;
+@{
+    ViewData["Title"] = "管理";
+    ViewData["IsShowManage"]=true;
+}
+<div class=" container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class=" panel-title">
+                用户列表
+            </h3>
+            </div> 
+            <div class="panel-body">
+    @{
+            var users=(List<User>)ViewData["Users"];
+
+        foreach(var user in users)
+        { 
+          <div class="col-xs-6 col-lg-4">
+            <h2>@user.UserName</h2>
+            <h3>@user.RegisterTime</h3>
+            <h4>@user.Remark</h4>
+            <a class="btn btn-danger" asp-controller="Users" asp-action="Delete" asp-route-userCode="@user.UserCode">删除</a> 
+          </div>
+        }
+    }
+
+    </div>
+
+    </div>
+</div>

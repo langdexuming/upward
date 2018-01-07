@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="-zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css">
+    <link href="./css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" href="./css/plugins/summernote/summernote.css" />
+    <link rel="stylesheet" href="./css/plugins/summernote/summernote-bs3.css" />
+    <script type="text/javascript" src="./lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="./lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="./js/holder.js"></script>
+
+    <title>Langdexuming</title>
+
+    <style>
+        .jumbotron {
+            padding: 0;
+            margin-bottom: 0px;
+        }
+
+        .summary-description>p {
+            margin-top: 24px;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .container {
+            background: transparent;
+        }
+
+        .poster {
+            padding: 20px 0px;
+            height: 340px;
+        }
+
+        .poster img {
+            position: absolute;
+            float: left;
+            left: 0;
+            top: 0;
+            height: 100%;
+        }
+
+        .summary-brand .title {
+            font-family: "华文行楷";
+            font-size: 72px;
+            color: #fff;
+        }
+
+        .summary-brand .subheading {
+            padding: 0px 20px;
+            font-family: "方正姚体";
+            font-size: 24px;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .summary-brand .subheading .broken-line {
+            width: 100px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .summary-description {
+            font-family: "微软雅黑Light";
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .section {
+            padding: 20px 0px;
+        }
+
+        .section .heading {
+            margin-bottom: 20px;
+        }
+
+        .section .heading h3.title {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .section .heading .title {
+            /*padding-bottom:3px;
+ border-bottom:3px solid #313131;*/
+            font-size: 18px;
+            color: #000;
+            font-family: "微软雅黑";
+            text-align: center;
+        }
+
+        .section .heading hr {
+            margin-top: 5px;
+        }
+
+        hr {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .section .heading .line {
+            height: 2px;
+            width: 40px;
+        }
+
+        .line {
+            color: #313131;
+            background: #313131;
+            width: 100%;
+            height: 1px;
+        }
+
+        .section .content .title {
+            font-size: 18px;
+            color: #000;
+            font-family: "微软雅黑";
+        }
+
+        .section .content .dl-horizontal {
+            height: 24px;
+        }
+
+        .section .content .dl-horizontal dt {
+            font-weight: normal;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            line-height: 24px;
+            color: #000;
+            float: left;
+            width: 100px;
+            padding-right: 12px;
+        }
+
+        .section .content .dl-horizontal dd {
+            margin-bottom: 0px;
+            height: 24px;
+            float: none;
+            margin-left: 0px;
+        }
+
+        #skillContent {
+            background: #fff;
+        }
+
+        #skillContent .content {
+            margin-top: 40px;
+        }
+
+        #skillContent .progress {
+            border-radius: 4px;
+            background: #e3e3e3;
+        }
+
+        #skillContent .progress-bar {
+            background: #42445f;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: "微软雅黑Light";
+        }
+
+        #skillContent .progress-bar span {
+            line-height: 24px;
+        }
+
+        #experienceContent {
+            background: #f5f5f5;
+        }
+
+        #experienceContent .time-quantum {
+            font-family: "微软雅黑Light";
+            font-size: 16px;
+            color: #000;
+        }
+
+        #experienceContent .company {
+            font-family: "微软雅黑";
+            color: #000;
+            font-size: 16px;
+        }
+
+        #experienceContent>h3 {
+            /* background: #EC6A5C; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+
+        #experienceContent .content .row {
+            border: 0 solid transparent;
+        }
+
+        #experienceContent .content div {
+            height: 100%;
+        }
+
+        #experienceContent .content .post {
+            font-family: "微软雅黑";
+            font-size: 14px;
+            color: #874c06;
+        }
+
+        #experienceContent .content hr {
+            width: 1px;
+            background: #828282;
+            border: 0px solid transparent;
+        }
+
+        #experienceContent .content .circle {
+            height: 12px;
+            width: 12px;
+            border-radius: 6px;
+            border: 1px solid #646969;
+            margin: 0px auto;
+        }
+
+        #experienceContent .content .description {
+            background: #fff;
+            border-radius: 4px;
+            font-size: 14x;
+            font-family: "微软雅黑Light";
+            color: #000;
+        }
+
+        #experienceContent .content .description ol {
+            padding-left: 20px;
+        }
+
+        #sampleReelsContent {
+            background: #fff;
+        }
+
+        #sampleReelsContent>h3 {
+            /* background: #77AAAD; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+
+        #educationalContent {
+            background: #fff;
+        }
+
+        #educationalContent>h3 {
+            /* background: #4FB0C6; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+
+        #educationalContent .content {
+            color: #000;
+            font-size: 14px;
+            font-family: "微软雅黑Light";
+        }
+
+        #educationalContent .content .school {
+            color: #1fadff;
+            font-size: 18px;
+            font-family: "微软雅黑";
+        }
+
+        #educationalContent .content .major {
+            color: #000;
+            font-size: 16px;
+            font-family: "微软雅黑";
+        }
+
+        #educationalContent a {
+            text-decoration-line: none;
+        }
+        /*   #educationalContent img{
+                position: absolute;
+    float: left;
+            height: 320px;
+            margin: 0px auto;
+
+        }*/
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        .carousel-inner {}
+
+        .carousel-control {}
+
+        .carousel-control.left {
+            margin-left: 15px;
+        }
+
+        .carousel-control.right {
+            margin-right: 15px;
+        }
+
+        .carousel-indicators {
+            opacity: 0.4;
+            background: black;
+            width: 96px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            bottom: 96px!important;
+            padding: 12px 24px;
+            margin: 0;
+            border-radius: 6px;
+        }
+
+        #rightNavbar {
+            position: fixed;
+            right: 0px;
+            top: 240px;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            text-align: center;
+        }
+
+        #rightNavbar {
+            background: transparent;
+            /* width: 120px;*/
+            /*  height: 240px;*/
+            width: 60px;
+            border-radius: 6px;
+            border-width: 0px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+        }
+
+        #rightNavbar .basement-bg {
+            background: #7f7f7f;
+            opacity: 0.6;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            border-width: 0px;
+        }
+
+        #rightNavbar ul {
+            margin: 0px;
+        }
+
+        #rightNavbar li {
+            list-style: none;
+            float: none;
+            color: #fff;
+        }
+
+        #rightNavbar li>a {
+            background: transparent;
+            display: inline-block;
+            font-size: 18px;
+            font-family: "微软雅黑Light";
+            color: inherit;
+        }
+
+        #rightNavbar li>a .glyphicon {
+            margin-right: 4px;
+        }
+
+        #rightNavbar li.active {
+            color: #fed57d;
+        }
+
+        #rightNavbar hr {
+            height: 1px;
+            background: #fefefe;
+            border-width: 0px;
+            opacity: 0.6;
+            min-width: 24px;
+            width: 80%;
+        }
+
+        #summaryContent .btn-group {
+            /*不起作用*/
+            /* margin: auto;*/
+            margin-left: 30%;
+        }
+
+        #summaryContent .btn-group img {
+            width: 32px;
+            height: 32px;
+        }
+
+        #summaryContent .btn-group .btn {
+            padding: 0px;
+            background: transparent;
+            border-width: 0px;
+            float: left;
+            margin-right: 12px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.6;
+        }
+
+        #summaryContent .btn-group .btn:hover {
+            opacity: 1;
+        }
+
+        body {
+            background: #fff;
+        }
+
+        #testA {
+            width: 200px;
+            /* text-align: center; */
+            height: 200px;
+        }
+
+        #test {
+            float: none;
+
+            margin: 0 auto;
+            vertical-align: middle;
+        }
+
+        #test button {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post">
+        <input type="text" name="userName" id="">
+        <input type="text" name="passWord" id="">
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+    <div id="testA">
+        <div id="test">
+            <button class="">123</button>
+            <button class="">123</button>
+            <button class="">123</button>
+        </div>
+    </div>
+
+    <div class="summernote form-control" style="height:480px!important;max-width: 1080px;margin-top:10px;">
+        <h2>H+ 后台主题</h2>
+        <p>H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本，当然，也集成了很多功能强大，用途广泛的国内外jQuery插件及其他组件，她可以用于所有的Web应用程序，如
+            <b>网站管理后台</b>，
+            <b>网站会员中心</b>，
+            <b>CMS</b>，
+            <b>CRM</b>，
+            <b>OA</b>等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>
+        <p>
+            <b>当前版本：</b>v4.1.0
+        </p>
+        <p>
+            <b>定价：</b>
+            <span class="label label-warning">&yen;988（不开发票）</span>
+        </p>
+
+    </div>
+
+</body>
+
+</html>
+<script src="./js/plugins/summernote/summernote.min.js">
+</script>
+<script src="./js/plugins/summernote/summernote-zh-CN.js"></script>
+<script>
+    $(function () {
+        $('.summernote').summernote({
+            lang: 'zh-CN'
+        });
+        $('#test').children().each(function () {
+            $(this);
+        });
+    });
+</script>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="-zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../../wwwroot/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/test.js"></script>
+    <script type="text/javascript" src="../../wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/holder.js"></script>
+    <title>测试</title>
+    <style>
+        .media {
+            margin-bottom: 36px;
+        }
+
+        .media img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .media-heading {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .poster .title {
+            /* animation-duration: 3s;
+            animation-delay: 2s; */
+            animation-iteration-count: 1;
+        }
+
+        .messageArea {
+            color: #262626;
+            border-radius: 2px;
+            background: #fff;
+            margin-bottom: 12px;
+            /* box-shadow: 0 1px 3px rgba(0, 0, 0, .1); */
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+            padding: 12px 12px;
+        }
+
+        .messageArea .header {
+            font-size: 14px;
+            border-radius: 2px;
+            padding: 12px 0px;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .messageArea .header .title {
+            float: left;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .messageArea .header .pull-right {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+
+        .messageArea .header .pull-right>span {
+            vertical-align: middle;
+        }
+
+        .messageArea .header>h2 {}
+
+        .messageArea .header .btn {
+            vertical-align: middle;
+            font-size: 18px;
+            border: 0px solid transparent !important;
+            text-decoration-line: underline;
+            padding: 3px 6px;
+        }
+        /* .messageArea .header .btn:hover {
+            border: 0px solid transparent !important;
+        }
+        
+        .messageArea .header .btn:focus {
+            border: 0px solid transparent !important;
+        }
+        
+        .messageArea .header .btn:active {
+            border: 0px solid transparent !important;
+        } */
+
+        .messageArea .header .glyphicon {
+            vertical-align: middle;
+            color: red;
+            font-size: 20px;
+        }
+
+        .messageArea .content {}
+
+        #loadingCircle {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #loadingCircle .sk-spinner-fading-circle {
+            width: 64px;
+            height: 64px;
+        }
+
+        #loadingCircle p {
+            margin-top: 5px;
+            color: #262626;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav id="indexNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class=" container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Langdexuming's Blog</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li id="liIndex">
+                        <a asp-controller="Home" asp-action="Index">首页</a>
+                    </li>
+                    <li id="liGameLife">
+                        <a asp-controller="Home" asp-action="GameLife">游戏人生</a>
+                    </li>
+                    <li id="liLeaveMessage">
+                        <a asp-controller="Home" asp-action="LeaveMessage">给我留言</a>
+                    </li>
+                    <li id="liResume">
+                        <a asp-controller="Home" asp-action="Resume">个人简历</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="poster">
+        <div>
+            <!-- <img src="~/images/home/pexels-photo-banner-index.jpeg" class=" img-responsive"> -->
+            <div class=" text-center title animated infinite bounce">欢迎来到我的博客，您可以随便逛逛&nbsp;</div>
+            <div class="ibox-content">
+                <div class="spiner-example">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="container">
+        <div id="main-content" class=" col-md-9">
+            @{ if(ViewData["CanCreateInformalEssay"]) {
+            <div class="header">
+                <div class="nav">
+                    <button id="btnInformalEssay" class="btn btn-default">
+                        <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class="Icon Icon--write" aria-hidden="true"
+                            style="height: 16px; width: 16px;">
+                            <title></title>
+                            <g>
+                                <g fill="none" fill-rule="evenodd">
+                                    <path d="M9.595 2.023H4.842c-2.22 0-4.01 1.793-4.01 4.005v7.62c0 2.21 1.796 4.003 4.01 4.003h7.316c2.22 0 4.01-1.792 4.01-4.003v-7.11.51L14.523 8.72v4.253c0 1.66-1.336 3.004-3.01 3.004h-6.03c-1.66 0-3.008-1.338-3.008-3.004V6.7c0-1.657 1.336-3.002 3.01-3.002h2.467L9.595 2.03v-.007z"
+                                        fill="#8590A6"></path>
+                                    <path d="M6.372 11.08c-.185-.915.2-2.238.85-2.888l6.616-6.616c.565-.565 1.472-.567 2.038 0 .56.56.56 1.477 0 2.038L9.258 10.23c-.652.65-1.975 1.034-2.888.85z"
+                                        stroke="#8590A6" stroke-width="1.5"></path>
+                                    <path fill="#8590A6" d="M13.04 2.088l2.324 2.324-.987.986-2.323-2.324z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        </svg>随笔</button>
+                </div>
+            </div>
+            } }
+
+            <div>
+                <ul id="informalEssayList" class="list-group">
+                </ul>
+                <div id="loadingCircle" class="ibox-content">
+                    <div class="spiner-example">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <p class=" text-center">加载中，请稍后...</p>
+                </div>
+                <div id="informalEssay" style="display:none;">
+                    <div>
+                        <h3>添加随笔</h3>
+                    </div>
+                    <form id="informalEssayForm" role="form">
+                        <div class=" form-group">
+                            <label>标题</label>
+                            <input name="title" type="text" class="form-control" style="max-width:1080px;">
+                        </div>
+                        <div class=" form-group">
+                            <label>内容</label>
+                            <div class="content">
+                                <div name="message" class="summernote">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="informalEssaySubmitClick()">发布</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="indexSideBar" class=" col-md-3">
+                <div class="popular-tags">
+                    <h3 class="title">热门话题</h3>
+                    <div class="custom-list">
+                        <div class="tag">C#</div>
+                        <div class="tag">.NET Core</div>
+                        <div class="tag">WPF</div>
+                        <div class="tag">MVVMLight</div>
+                        <div class="tag">JavaScript</div>
+                        <div class="tag">ASP</div>
+                        <div class="tag">HTML</div>
+                        <div class="tag">CSS</div>
+                        <div class="tag">Bootstrap</div>
+                    </div>
+                </div>
+                <div class="Sticky">
+                    <!--Chart -->
+                    <div class="statistical-chart">
+                        <canvas id="myChart" width="250" height="200"></canvas>
+                    </div>
+                    <!-- 作者声明 -->
+                    <div class="statement">
+                        <h4 class="title">作者声明</h4>
+                        <p>1.本网站仅作为个人技能展示，网站内容不作版权申明，请勿肆意传播</p>
+                        <p>2.本网站坚决维护网络健康原则，若内容有违背，请及时联系或留言</p>
+                        <p>3.本网站引用的内容及参考的网站如下：
+                            <ul>
+                                <li>
+                                    <a href="http://glyphicons.com/">http://glyphicons.com/</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.zhihu.com">https://www.zhihu.com</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.pexels.com/">https://www.pexels.com/</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.bootcss.com/">http://www.bootcss.com/</a>
+                                </li>
+                                <li>
+                                    <a href="https://onfleet.com/">https://onfleet.com/</a>
+                                </li>
+                            </ul>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="informalEssay" style="display:none;">
+        <div>
+            <h3>添加随笔</h3>
+        </div>
+        <form id="informalEssayForm" role="form">
+            <div class=" form-group">
+                <label>标题</label>
+                <input id="inputTitle" name="title" type="text" class="form-control" style="max-width:1080px;">
+            </div>
+            <div class=" form-group">
+                <label>内容</label>
+                <div class="content">
+                    <div name="message" class="summernote">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="informalEssaySubmitClick()">发布</button>
+        </form>
+    </div>
+
+
+
+    <script>
+        Holder.addTheme("default", {
+            bg: "white",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-1", {
+            bg: "#e67e22",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-2", {
+            bg: "#3498db",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-3", {
+            bg: "#95a5a6",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+
+
+        var isLeaveMessageLoading = false;
+        var hasMoreLeaveMessages = true;
+        var isShowedIndexNavbar = false;
+
+
+        function btnLoadMoreLeaveMessagesClick() {
+            LeaveMessageLoad();
+        };
+
+        function SubmitLeaveMessageOkClick() {
+
+            var message = $('#inputMessage').val();
+            if (message.IsNullOrEmpty()) {
+                alert("请输入留言内容！");
+                return;
+            }
+
+            var UserName = $('#inputUserName').val();
+            if (UserName.IsNullOrEmpty()) {
+                alert("请输入昵称！");
+                return;
+            }
+
+            $('#btnSubmitLeaveMessage').submit();
+            $('#myModal').modal('hide');
+
+        };
+
+        function SubmitLeaveMessage() {
+            //域内请求
+            var options = {
+                url: 'CreateLeaveMessage',
+                type: 'post',
+                dataType: 'text',
+                data: $("#leaveMessageForm").serialize(),
+                success: function (data) {
+                    if (data.length > 0) {
+                        console.log('请求成功，数据长度为:' + data.length);
+                        //解析Json字符串
+                        var dataObj = eval("(" + data + ")");
+
+                        console.log(dataObj.message);
+                        console.log(dataObj.userName);
+                        console.log(dataObj.createDateTime);
+
+                        var children = $("#leaveMessageList").children();
+
+                        if (children !== null && children.length !== 0) {
+                            $("#leaveMessageList").children().first().before(GenerateLeaveMessageHtml(dataObj));
+                        } else {
+                            $("#leaveMessageList").append(GenerateLeaveMessageHtml(dataObj));
+                        }
+                    }
+                }
+            };
+
+            //跨域请求
+
+            $.ajax(options);
+        };
+
+
+        //问题加载
+        function LeaveMessageLoad() {
+            if (!hasMoreLeaveMessages) {
+                return;
+            }
+            if (isLeaveMessageLoading)
+                return;
+            isLeaveMessageLoading = true;
+            //开启动画
+            $('#loadingCircle').css("display", "block");
+            //域内请求
+            var lastId = -1;
+            var children = $("#leaveMessageList").children();
+            if (children !== null && children.length !== 0) {
+                lastId = children.last().attr('data-id');
+            }
+
+            var options = {
+                url: 'SearchLeaveMessage?lastId=' + lastId,
+                dataType: 'text',
+                success: function (data) {
+                    if (data.length > 0) {
+                        console.log('请求成功，数据长度为:' + data.length);
+                        //解析Json字符串
+                        var dataArray = eval("(" + data + ")");
+                        if (dataArray.length !== 0) {
+                            for (var i = 0; i < dataArray.length; i++) {
+                                var dataObj = dataArray[i];
+                                console.log(dataObj.message);
+                                console.log(dataObj.userName);
+                                console.log(dataObj.createDateTime);
+                                $("#leaveMessageList").append(GenerateLeaveMessageHtml(dataObj));
+                            }
+
+                        } else {
+                            hasMoreLeaveMessages = false;
+                        }
+
+                    } else {
+                        hasMoreLeaveMessages = false;
+                    }
+                },
+                complete: function () {
+                    isLeaveMessageLoading = false;
+                    $('#loadingCircle').css("display", "none");
+                }
+
+            };
+
+            //跨域请求
+
+            $.ajax(options);
+        };
+
+        function GenerateLeaveMessageHtml(leaveMessage) {
+            return "<div class=\"media\" data-id=\"" + leaveMessage.Id +
+                "\">\
+                    <a class=\"pull-left\" href=\"#\">\
+                        <img class=\"media-object img-rounded\" src=\"~/images/home/person-head-portrait-default.jpg\">\
+                    </a>\
+                    <div class=\"media-body\">\
+                        <h4 class=\"media-heading\">" +
+                leaveMessage.userName + "</h4>" + leaveMessage.message + "\
+                    </div>";
+
+        };
+
+        $(function () {
+
+            LeaveMessageLoad();
+
+            $('#btnSubmitLeaveMessage').on('submit', function () {
+                console.log("提交留言！");
+                SubmitLeaveMessage();
+            });
+
+        });
+    </script>
+
+    <script lang=”javascript” type="text/javascript">
+        var _isValidScroll = true;
+        var _topNavbarHeight = 65;
+        var _scrollTopOffset = 65;
+
+        function ScrollTo(offset) {
+            // $(document).prop("scrollTop", $($(this).data('target')).position().top - _scrollTopOffset);
+            //$(document).scrollTop($($(this).data('target')).position().top - _scrollTopOffset);
+            //$("body,html").animate({ scrollTop: $($(this).data('target')).position().top - _scrollTopOffset });
+            $("body,html").animate({
+                scrollTop: offset
+            });
+        }
+
+        //var 
+        $(function () {
+
+            $("li[role=presentation]").each(function () {
+                if ($(this).hasClass('active')) {
+                    ScrollTo($($(this).data('target')).position().top - _scrollTopOffset);
+                }
+
+                $(this).click(function (event) {
+                    $("li[role=presentation]").removeClass('active');
+                    $(this).addClass('active');
+
+                    //阻止默认事件
+                    event.preventDefault();
+
+                    _isValidScroll = false;
+                    ScrollTo($($(this).data('target')).position().top - _scrollTopOffset);
+                });
+            });
+
+            $(document).scroll(function () {
+
+                // 屏蔽点击标签定位
+                if (!_isValidScroll) {
+                    _isValidScroll = true;
+                    return false;
+                }
+
+                // 遍历所有块，找到当前所在块
+                var _previousElement = undefined;
+                var _offsetY;
+                $("li[role=presentation]").each(function (index) {
+                    var previousElement = _previousElement;
+                    _previousElement = $(this);
+                    var targetElement;
+                    if (previousElement === undefined) {
+                        _offsetY = _topNavbarHeight;
+                        targetElement = $(this);
+                    } else {
+                        _offsetY = $(previousElement.data('target')).height() / 2 +
+                            _topNavbarHeight;
+                        targetElement = previousElement;
+                    }
+
+                    var docScrollTop = $(document).scrollTop();
+                    var target = $($(this).data('target'));
+                    var targetTop = target.position().top - docScrollTop;
+                    if (docScrollTop > targetTop - _offsetY) {
+                        if (index === $("li[role=presentation]").length - 1) {
+                            targetElement = $(this);
+                        } else {
+                            return true;
+                        }
+
+                    }
+                    $("li[role=presentation]").removeClass('active');
+                    if (!targetElement.hasClass('active')) {
+                        targetElement.addClass('active');
+                    }
+                    return false;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

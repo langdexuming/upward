@@ -1,0 +1,816 @@
+﻿    @{
+        //注入
+       // @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+        @model Blog.Models.InformalEssay;
+
+        ViewData["Title"]="Langdexuming' Blog";
+    }
+
+        <style>
+        .social-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        #content {
+            color: #262626;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        
+        #main-content {
+            min-height: 480px;
+            /* background: gray; */
+            min-height: 480px;
+            /* max-height: 500px; */
+            padding: 10px 20px 0px 0px;
+        }
+        
+        #main-content .header {
+            color: #262626;
+            height: 64px;
+            border-radius: 2px;
+            background: #fff;
+            margin-bottom: 12px;
+            /* box-shadow: 0 1px 3px rgba(0, 0, 0, .1); */
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            box-sizing: border-box;
+            line-height: 58px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-size: 16px;
+            /* justify-content: space-between; */
+            padding: 3px 6px;
+            overflow: hidden;
+        }
+        
+        #main-content .header .btn {
+            border-width: 0px;
+            padding: 6px 12px;
+            font-size: 16px;
+            line-height: 20px;
+            display: inline-block;
+        }
+        
+        #main-content .header svg {
+            vertical-align: middle;
+            margin: auto 6px 1px 0px;
+        }
+        
+        .Icon {
+            vertical-align: text-bottom;
+            fill: #9fadc7;
+        }
+        
+        ul.list-group {
+            margin: 0;
+            padding: 0;
+            /*box-shadow: 0 1px 12px rgba(0, 0, 0, .1);*/
+            color: #262626;
+            border-radius: 2px;
+            background: transparent;
+        }
+        
+        .list-group-item {
+            /* padding-left: 0px; */
+            margin: 0px 0px 12px 0px;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            background: #fff;
+            border-radius: 2px;
+        }
+        
+        .TopstoryHeader-rightItem {
+            color: #8590a6;
+            -webkit-transition: color .2s ease-in;
+            transition: color .2s ease-in;
+            cursor: pointer;
+            float: right;
+            margin-right: 12px;
+        }
+        
+        .header .nav {
+            float: left;
+        }
+        
+        #indexSideBar {
+            padding: 10px 20px 0px 0px;
+        }
+        
+        #indexSideBar .popular-tags {
+            background: #fff;
+            box-sizing: border-box;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            border-radius: 2px;
+            padding: 3px 6px;
+        }
+        
+        #indexSideBar .popular-tags .title {
+            line-height: 24px;
+        }
+        
+        #indexSideBar .custom-list {
+            display: inline-block;
+        }
+        
+        .tag {
+            font-size: 16px;
+            line-height: 24px;
+            /* margin-top: 14px; */
+            background: #eaeaea;
+            padding: 6px 8px;
+            border-radius: 6px;
+            float: left;
+            max-width: 128px;
+            position: relative;
+            margin: 6px 12px 6px 0px;
+        }
+        
+        .statistical-chart {
+            background: #fff;
+            box-sizing: border-box;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            border-radius: 2px;
+            /* box-sizing: border-box; */
+            padding: 3px 6px;
+            margin-top: 10px;
+        }
+        
+        #myChart {
+            /* background: red; */
+            /* min-height: 200px;
+            width: 250px; */
+        }
+        
+        .statement {
+            background: #fff;
+            box-sizing: border-box;
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            border-radius: 2px;
+            min-height: 200px;
+            /* box-sizing: border-box; */
+            padding: 3px 6px;
+            margin-top: 10px;
+        }
+        
+        .statement .title {
+            line-height: 22px;
+        }
+        
+        .statement p {
+            /* margin-right: -40px; */
+        }
+        
+        .statement ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .statement ul>li {
+            list-style: none;
+            margin-top: 3px;
+        }
+        
+        .list-group-item {
+            min-height: 64px;
+            text-overflow: clip;
+        }
+        
+        .list-group-item .title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            line-height: 22px;
+            cursor: pointer;
+        }
+        
+        .list-group-item .message {
+            white-space: pre-wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            line-height: 20px;
+            max-height: 80px;
+            /* 解决一长串数字、英文字母连在一起时不能自动换行*/
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        .list-group-item .message a{
+            cursor: pointer;
+            margin-left: 3px;
+        }
+        
+        .Sticky.is-fixed {
+            position: fixed;
+            z-index: 2;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+        
+        .poster img {
+            position: absolute;
+            float: left;
+            left: 30%;
+            top: 0;
+            height: 40%;
+        }
+        
+        #loadingCircle {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        #loadingCircle .sk-spinner-fading-circle {
+            width: 64px;
+            height: 64px;
+        }
+        
+        #loadingCircle p {
+            margin-top: 5px;
+            color: #262626;
+        }
+        
+        #indexNavbar {
+            display: none;
+        }
+
+#informalEssay .note-editor .note-toolbar {
+    background-color: #F9F8F8;
+}
+
+#informalEssay .content{
+    background: #fff;
+}
+
+.note-editor {
+    height: auto!important;
+    min-height: 240px;
+    border: solid 1px #e5e6e7;
+}
+.note-editor .note-editable{
+    min-height: 240px;
+}
+    </style>
+        <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+                                <link rel="stylesheet" href="~/css/plugins/summernote/summernote.css" />
+        <link rel="stylesheet" href="~/css/plugins/summernote/summernote-bs3.css" />
+    <nav id="indexNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class=" container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Langdexuming's Blog</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li id="liIndex">
+                        <a asp-controller="Home" asp-action="Index">首页</a>
+                    </li>
+                    <li id="liGameLife">
+                        <a asp-controller="Home" asp-action="GameLife">游戏人生</a>
+                    </li>
+                    <li id="liLeaveMessage">
+                        <a asp-controller="Home" asp-action="LeaveMessage">给我留言</a>
+                    </li>
+                    <li id="liResume">
+                        <a asp-controller="Home" asp-action="Resume">个人简历</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="poster">
+        <div>
+            <!-- <img src="~/images/home/pexels-photo-banner-index.jpeg" class=" img-responsive"> -->
+            <div class=" text-center title animated infinite bounce">欢迎来到我的博客，您可以随便逛逛&nbsp;</div>
+            <div class="ibox-content">
+                <div class="spiner-example">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="container">
+        <div id="main-content" class=" col-md-9">
+            @{
+                if((bool)ViewData["CanCreateInformalEssay"]){
+               <div class="header">
+                <div class="nav">
+                    <button id="btnInformalEssay" class="btn btn-default" click="btnInformalEssayClick()">
+                        <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class="Icon Icon--write" aria-hidden="true"
+                            style="height: 16px; width: 16px;">
+                            <g>
+                                <g fill="none" fill-rule="evenodd">
+                                    <path d="M9.595 2.023H4.842c-2.22 0-4.01 1.793-4.01 4.005v7.62c0 2.21 1.796 4.003 4.01 4.003h7.316c2.22 0 4.01-1.792 4.01-4.003v-7.11.51L14.523 8.72v4.253c0 1.66-1.336 3.004-3.01 3.004h-6.03c-1.66 0-3.008-1.338-3.008-3.004V6.7c0-1.657 1.336-3.002 3.01-3.002h2.467L9.595 2.03v-.007z"
+                                        fill="#8590A6"></path>
+                                    <path d="M6.372 11.08c-.185-.915.2-2.238.85-2.888l6.616-6.616c.565-.565 1.472-.567 2.038 0 .56.56.56 1.477 0 2.038L9.258 10.23c-.652.65-1.975 1.034-2.888.85z"
+                                        stroke="#8590A6" stroke-width="1.5"></path>
+                                    <path fill="#8590A6" d="M13.04 2.088l2.324 2.324-.987.986-2.323-2.324z"></path>
+                                </g>
+                            </g>
+                        </svg>随笔</button>
+                </div>
+                        </div>
+                }
+            }
+                <ul id="informalEssayList" class="list-group">
+                </ul>
+                <div id="loadingCircle" class="ibox-content">
+                    <div class="spiner-example">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <p class=" text-center">加载中，请稍后...</p>
+                </div>
+                <div id="informalEssayFullText">
+
+                </div>
+                @{
+                    if((bool)ViewData["CanCreateInformalEssay"]){
+                <div id="informalEssay" style="display:none;">
+                    <div>
+                        <h3>添加随笔</h3>
+                    </div>
+                    <form id="informalEssayForm" role="form">
+                        <div class=" form-group">
+                            <label>标题</label>
+                            <input id="inputTitle" name="title" type="text" class="form-control" style="max-width:1080px;">
+                        </div>
+                        <div class=" form-group">
+                            <label>内容</label>
+                            <div class="content">
+                                <div name="message" class="summernote">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="informalEssaySubmitClick()">发布</button>
+                    </form>
+                </div>
+                    }
+                }
+            </div>
+
+            <div id="indexSideBar" class=" col-md-3">
+                <div class="popular-tags">
+                    <h3 class="title">热门话题</h3>
+                    <div class="custom-list">
+                        <div class="tag">C#</div>
+                        <div class="tag">.NET Core</div>
+                        <div class="tag">WPF</div>
+                        <div class="tag">MVVMLight</div>
+                        <div class="tag">JavaScript</div>
+                        <div class="tag">ASP</div>
+                        <div class="tag">HTML</div>
+                        <div class="tag">CSS</div>
+                        <div class="tag">Bootstrap</div>
+                    </div>
+                </div>
+                <div class="Sticky">
+                    <!--Chart -->
+                    <div class="statistical-chart">
+                        <canvas id="myChart" width="250" height="200"></canvas>
+                    </div>
+                    <!-- 作者声明 -->
+                    <div class="statement">
+                        <h4 class="title">作者声明</h4>
+                        <p>1.本网站仅作为个人技能展示，网站内容不作版权申明，请勿肆意传播</p>
+                        <p>2.本网站坚决维护网络健康原则，若内容有违背，请及时联系或留言</p>
+                        <p>3.本网站引用的内容及参考的网站如下：
+                            <ul>
+                                <li>
+                                    <a href="http://glyphicons.com/">http://glyphicons.com/</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.zhihu.com">https://www.zhihu.com</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.pexels.com/">https://www.pexels.com/</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.bootcss.com/">http://www.bootcss.com/</a>
+                                </li>
+                                <li>
+                                    <a href="https://onfleet.com/">https://onfleet.com/</a>
+                                </li>
+                            </ul>
+
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts 
+{
+        <script src="~/js/plugins/summernote/summernote.min.js"></script>
+    <script src="~/js/plugins/summernote/summernote-zh-CN.js"></script>
+
+    <script lang=”javascript” type="text/javascript">
+
+//定义界面当前状态(目录/随笔全文)
+ViewStatus={
+    Catalog:"catalog",
+    Details:"details"
+}
+
+CurrentViewStatus=ViewStatus.Catalog;
+
+    /*
+ * 阅读全文
+ *
+ */
+function ReadFullText(self)
+{
+
+    var pElement=self.parentNode;
+    //1级
+    if(!pElement.classList.contains("list-group-item")){
+        //2级
+        pElement=pElement.parentNode;
+    }
+
+    if(!pElement.classList.contains("list-group-item")){
+        return;
+    }
+
+var dataId=$(pElement).attr('data-id');
+
+window.location.href="/Home/InformalEssayDetail?id="+dataId;
+
+    //域内请求
+  /*  var options = {
+        url: '/Home/SearchInformalEssayDetail?id='+dataId,
+        dataType: 'text',
+        success: function(data) {
+            if (data.length > 0) {
+                console.log('请求成功，数据长度为:' + data.length);
+                //解析Json字符串
+                var dataObj = eval("(" + data + ")");
+
+CurrentViewStatus=ViewStatus.Details;
+
+var html=GenerateInformalEssayHtml(dataObj);
+
+$('#main-content .header').css('display','none');
+$('#informalEssayList').css('display','none');
+$('#informalEssayFullText').css('display','block');
+
+$('#informalEssayFullText')[0].innerHTML=html;
+            }
+        },
+        error:function(){
+            console.log('请求错误');
+        }
+    };
+
+    //跨域请求
+    //.....
+
+    $.ajax(options);*/
+
+}
+
+    /*
+ * 点击提问对话框确定
+ *
+ */
+function SubmitInformalEssayOkClick() {
+
+    var title = $('#inputTitle').val();
+    if (title.IsNullOrEmpty()) {
+        alert("请输入随笔标题！");
+        return;
+    }
+
+var element=$("#informalEssayForm .note-editable");
+var content=element["0"].innerHTML;
+    if (content.IsNullOrEmpty()) {
+        alert("请输入随笔内容！");
+        return;
+    }
+
+    //请求
+    SubmitInformalEssay();
+};
+
+/*
+ * 提交问题
+ *
+ */
+function SubmitInformalEssay() {
+
+    //域内请求
+    var options = {
+        url: '/Home/CreateInformalEssay',
+        type: 'post',
+        dataType: 'text',
+        data: $("#informalEssayForm").serialize(),
+        success: function(data) {
+            if (data.length > 0) {
+                console.log('请求成功，数据长度为:' + data.length);
+                //解析Json字符串
+                var dataObj = eval("(" + data + ")");
+
+                // console.log(dataObj.title);
+                // console.log(dataObj.message);
+                // console.log(dataObj.userName);
+                // console.log(dataObj.createDateTime);
+                // console.log(dataObj.sourceType);
+
+                var children = $("#informalEssayList").children();
+                if (children !== null && children.length !== 0) {
+                    $("#informalEssayList").children().first().before(GenerateInformalEssayHtml(dataObj));
+                } else {
+                    $("#informalEssayList").append(GenerateInformalEssayHtml(dataObj));
+                }
+            }
+        },
+        error:function(){
+            console.log('请求错误');
+        }
+    };
+
+    //跨域请求
+    //.....
+
+    $.ajax(options);
+}
+
+/*
+ * 生成问题对应的Html
+ *
+ */
+function GenerateInformalEssayHtml(informalEssay) {
+    var content=informalEssay.message;
+
+    var source = "<p class=\"text-right\" style=\"color:#999;\">" + "posted @@ "+informalEssay.createDateTime+"&nbsp;&nbsp;&nbsp;by&nbsp;&nbsp;<span>"+informalEssay.userName + "</span></p>";
+
+            return "<li class=\"list-group-item\" data-id=\"" + informalEssay.id+"\"><a href=\"javascript:void(0);\" onclick=\"ReadFullText(this)\"><h4 class=\"title\">" + informalEssay.title +
+        "</h4></a><div class=\"message\">" + content + "<a href=\"javascript:void(0);\" onclick=\"ReadFullText(this)\">阅读全文</a></div>" + source +
+        "</li>";
+
+        /*
+if(CurrentViewStatus==ViewStatus.Details){
+    return "<h3 class=\"title\">" + informalEssay.title +
+        "</h3><br><br><div class=\"message\">" + content + "</div><br><br><br>" + source +"";
+}
+else if(CurrentViewStatus==ViewStatus.Catalog){
+    
+content=content.replace(/<img.*>/g,"");
+content=content.replace(/<[^>]*>/g, "").replace(/ /g, "");
+if(content.length>200){
+                content=content.substring(0, 200)+"...";
+                }
+}
+else{
+}*/
+
+}
+
+var isInformalEssayLoading = false;
+var hasMoreInformalEssays = true;
+var isShowedIndexNavbar = false;
+
+/*
+ * 加载随笔
+ *
+ */
+function InformalEssayLoad() {
+    if (!hasMoreInformalEssays) {
+        return;
+    }
+    if (isInformalEssayLoading)
+        return;
+
+    isInformalEssayLoading = true;
+
+    //显示加载动画
+    $('#loadingCircle').css("display", "block");
+
+    //域内请求
+    var lastId = -1;
+    var children = $("#informalEssayList").children();
+    if (children !== null && children.length !== 0) {
+        lastId = children.last().attr('data-id');
+    }
+
+    var options = {
+        url: '/Home/SearchInformalEssay?lastId=' + lastId,
+        dataType: 'text',
+        success: function(data) {
+            if (data.length > 0) {
+                console.log('请求成功，数据长度为:' + data.length);
+                //解析Json字符串
+                var dataArray = eval("(" + data + ")");
+                if (dataArray.length !== 0) {
+                    for (var i = 0; i < dataArray.length; i++) {
+                        var dataObj = dataArray[i];
+                        $("#informalEssayList").append(GenerateInformalEssayHtml(dataObj));
+
+                        // console.log(dataObj.title);
+                        // console.log(dataObj.message);
+                        // console.log(dataObj.userName);
+                        // console.log(dataObj.createDateTime);
+                        // console.log(dataObj.sourceType);
+                    }
+                } else {
+                    hasMoreInformalEssays = false;
+                }
+
+            } else {
+                hasMoreInformalEssays = false;
+            }
+        },
+        complete: function() {
+            isInformalEssayLoading = false;
+            $('#loadingCircle').css("display", "none");
+        }
+    };
+
+    //跨域请求
+    //....
+
+    $.ajax(options);
+}
+
+/*
+ * 是否需要加载问题，由当前页面滚动区域Top位置决定
+ *
+ */
+function IsNeedLoadInformalEssay() {
+    var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    var children = $("#informalEssayList").children();
+    var lastElement=children.last();
+    var targetOffsetTop = lastElement.offset().top;
+    if (targetOffsetTop-docScrollTop < document.documentElement.clientHeight) {
+        return true;
+    }
+    return false;
+}
+
+/*
+ * 随笔发布
+ *
+ */
+function informalEssaySubmitClick(){
+var element=$("#informalEssayForm .note-editable");
+var content=element["0"].innerHTML;
+
+    var title = $('#inputTitle').val();
+    if (title.IsNullOrEmpty()) {
+        alert("请输入随笔标题！");
+        return;
+    }
+
+    if (content.IsNullOrEmpty()) {
+        alert("请输入随笔内容！");
+        return;
+    }
+
+          //域内请求
+    var options = {
+        //随笔
+        url: '/Home/CreateInformalEssay',
+        type: 'post',
+        dataType: 'text',
+        data: "{'title':'"+title+"','message':'"+content+"'}",
+        //data: $("#informalEssayForm").serialize()+"&message="+content,
+        success: function(data) {
+            if (data.length > 0) {
+                console.log('请求成功，数据长度为:' + data.length);
+                //解析Json字符串
+                var dataObj = eval("(" + data + ")");
+
+                // console.log(dataObj.title);
+                // console.log(dataObj.message);
+                // console.log(dataObj.userName);
+                // console.log(dataObj.createDateTime);
+                // console.log(dataObj.sourceType);
+
+                var children = $("#informalEssayList").children();
+                if (children !== null && children.length !== 0) {
+                    $("#informalEssayList").children().first().before(GenerateInformalEssayHtml(dataObj));
+                } else {
+                    $("#informalEssayList").append(GenerateInformalEssayHtml(dataObj));
+                }
+            window.location.href=""; 
+            }
+        }
+    };
+
+    $.ajax(options);
+}
+
+/*
+ * 
+ *
+ */
+$(function() {
+            $('.summernote').summernote({
+                lang: 'zh-CN'
+            });
+
+    $('#indexNavbar').fadeOut();
+
+    $('#btnInformalEssay').click(function(){
+     /*   $("#informalEssayList").css('display','none');
+        $("#informalEssay").css('display','block');
+         $("#loadingCircle").css('display','none')*/
+
+
+           
+   window.location.href="/Home/CreateInformalEssay";
+    });
+
+
+    //加载问题
+    InformalEssayLoad();
+
+    var stickyBar = $('#indexSideBar .Sticky');
+    var stickyBarTop = stickyBar.position().top;
+
+    $(document).scroll(function() {
+        if ($(document).scrollTop() > stickyBarTop + 300) {
+
+            if (!stickyBar.hasClass('is-fixed')) {
+                stickyBar.addClass('is-fixed');
+                stickyBar.css('left', $('#indexSideBar').offset().left);
+                stickyBar.css('top', $('#indexNavbar').css("height"));
+                stickyBar.css('width', $('.popular-tags').css('width'));
+            }
+        } else {
+            if (stickyBar.hasClass('is-fixed')) {
+                stickyBar.removeClass('is-fixed');
+                stickyBar.css('left', 0);
+                stickyBar.css('top', 0);
+            }
+        }
+
+        var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        if (docScrollTop > $('#content').offset().top) {
+            if (!isShowedIndexNavbar) {
+                $('#indexNavbar').stop().fadeIn(1000);
+                isShowedIndexNavbar = true;
+            }
+
+        } else {
+            if (isShowedIndexNavbar) {
+                $('#indexNavbar').stop().fadeOut(1000);
+                isShowedIndexNavbar = false;
+            }
+
+        }
+
+        //是否需要加载
+        if (IsNeedLoadInformalEssay()) {
+            InformalEssayLoad();
+        }
+    });
+
+
+
+    //绘制图表
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "访问量",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        },
+        // Configuration options go here
+        options: {}
+    });
+});
+    </script>
+}
+
+
+

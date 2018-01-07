@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="-zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../../wwwroot/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/test.js"></script>
+    <script type="text/javascript" src="../../wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/holder.js"></script>
+    <title>测试</title>
+    <style>
+        var {
+            font-style: normal;
+        }
+        
+        body {
+            background: #a39c88;
+            /* background: transparent */
+        }
+        
+        .container {
+            margin-top: 10%;
+        }
+        
+        #welcome-header {
+            color: white;
+        }
+        
+        .row {
+            margin-top: 36px;
+        }
+        
+        .div-thumbnail {
+            padding: 1px;
+            opacity: 1;
+        }
+        
+        .div-thumbnail a img {
+            opacity: 0.4;
+            max-height: 40%;
+        }
+        
+        .div-thumbnail a img:hover {
+            opacity: 0.8;
+        }
+        
+        .click-tip-span {
+            position: absolute;
+            left: 35%;
+            top: 35%;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid white;
+            pointer-events: none;
+            color: #f6fbfa;
+            border-radius: 6px;
+        }
+        
+        .entrance-span {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            font-size: 16px;
+            font-weight: normal;
+            pointer-events: none;
+            color: #b3b2b2;
+        }
+        
+        .btn {
+            position: absolute;
+        }
+        
+        #body-bg-img {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="position:absolute; left:0; top:0; width:100%; height:100%"><img id="body-bg-img" src="../../wwwroot/images/entrance/entrance-bg.jpg" width="100%" height="100%"></div>
+    <div class=" container">
+        <div class=" col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+            <div id="welcome-header">
+                <h3>尊敬的先生/女士，
+                    <var id="datetime-var" class=" "></var>好！</h3>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-4 div-thumbnail">
+                    <a href="#">
+                        <img src="../../wwwroot/images/entrance/entrance-1.jpg" width="100% " height="100%" class="img-responsive" alt="社交入口 ">
+                    </a>
+                    <div class="img-caption">
+                        <span class="click-tip-span">点击进入</span>
+                        <span class="entrance-span">社交入口</span>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4 div-thumbnail">
+                    <a href="#">
+                        <img src="../../wwwroot/images/entrance/entrance-2.jpg" width="100% " height="100%" class="img-responsive" alt="企业入口 ">
+                    </a>
+                    <div class="img-caption">
+                        <span class="click-tip-span">点击进入</span>
+                        <span class="entrance-span">企业入口</span>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4 div-thumbnail">
+                    <a href="#">
+                        <img src="../../wwwroot/images/entrance/entrance-3.jpg" width="100% " height="100%" class="img-responsive" alt="暂未开放">
+                    </a>
+                    <div class="img-caption">
+                        <span class="click-tip-span">点击进入</span>
+                        <span class="entrance-span">暂未开放</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        Holder.addTheme("default", {
+            bg: "white",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-1", {
+            bg: "#e67e22",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-2", {
+            bg: "#3498db",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-3", {
+            bg: "#95a5a6",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+    </script>
+
+    <script lang=”javascript” type="text/javascript">
+        $(function() {
+            var hour = new Date().getHours();
+            var element = document.getElementById("datetime-var");
+            if (hour < 6) {
+                element.innerText = "晚上";
+            } else if (hour < 12) {
+                element.innerText = "上午";
+            } else if (hour < 18) {
+                element.innerText = "下午";
+            } else {
+                element.innerText = "晚上";
+            }
+
+            $('.click-tip-span').hide();
+
+            $('img').click(function() {
+                console.log(this.value);
+            })
+            $('.div-thumbnail').hover(function() {
+                var element = $(this).find('.img-caption').find('.click-tip-span')
+                element.show();
+            }, function() {
+                var element = $(this).find('.img-caption').find('.click-tip-span')
+                element.hide();
+            });
+            $('.thumbnail').hover(function() {
+                var element = $(this).next().find('.click-tip-span')
+                element.show();
+            }, function() {
+                var element = $(this).next().find('.click-tip-span')
+                element.hide();
+            });
+        })
+        $.ajax({
+            url: "/index.cshtml",
+            data: {
+                zipcode: 97201
+            },
+            success: function(result) {
+                alert("123");
+                $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+            }
+        })
+    </script>
+</body>
+<script>
+</script>
+
+</html>

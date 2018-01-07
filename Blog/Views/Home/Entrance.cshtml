@@ -1,0 +1,154 @@
+@{
+    Layout="_EmptyLayout";
+    ViewData["Title"]="Langdexuming' Blog";
+}
+ <style>
+        var {
+            font-style: normal;
+        }
+        
+        body {
+            /*background: #a39c88;*/
+            /* background: transparent */
+        }
+        
+        .container {
+            margin-top: 5%;
+        }
+        
+        #welcome-header {
+            color: white;
+        }
+        
+        .row {
+            margin-top: 36px;
+        }
+        
+        .div-thumbnail {
+            /* border: 1px solid transparent; */
+            padding: 1px;
+            opacity: 1;
+        }
+        
+        .div-thumbnail:hover {
+            /* border: 1px
+solid gray; */
+        }
+        
+        .div-thumbnail a img {
+            opacity: 0.4;
+            max-height: 40%;
+        }
+        
+        .div-thumbnail a img:hover {
+            opacity: 0.8;
+        }
+        
+        .click-tip-span {
+            position: absolute;
+            left: 35%;
+            top: 35%;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid white;
+            pointer-events: none;
+            color: #f6fbfa;
+            border-radius: 6px;
+        }
+        
+        .entrance-span {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            font-size: 16px;
+            font-weight: normal;
+            pointer-events: none;
+            color: #b3b2b2;
+        }
+        
+        .btn {
+            position: absolute;
+        }
+        
+        #body-bg-img {
+            opacity: 1;
+        }
+    </style>
+<div style="position:absolute; left:0; top:0; width:100%; height:100%"><img id="body-bg-img" src="~/images/entrance/entrance-bg.jpg" width="100%" height="100%"></div>
+    <div class=" container">
+        <div class=" col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+            <div id="welcome-header">
+                <h3>尊敬的先生/女士，
+                    <var id="datetime-var"></var>好！</h3>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-4 div-thumbnail">
+                    <a asp-controller="Home" asp-action="Select" asp-route-entrance="1">
+                        <img src="~/images/entrance/entrance-1.jpg" width="100% " height="100%" class="img-responsive" alt="社交入口 ">
+                    </a>
+                    <div class="img-caption">
+                        <span class="click-tip-span">点击进入</span>
+                        <span class="entrance-span">社交入口</span>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4 div-thumbnail">
+                    <a asp-controller="Home" asp-action="Select" asp-route-entrance="2">
+                        <img src="~/images/entrance/entrance-2.jpg" width="100% " height="100%" class="img-responsive" alt="企业入口 ">
+                    </a>
+                    <div class="img-caption">
+                        <span class="click-tip-span">点击进入</span>
+                        <span class="entrance-span">企业入口</span>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4 div-thumbnail">
+                    <a href="#">
+                        <img src="~/images/entrance/entrance-3.jpg" width="100% " height="100%" class="img-responsive" alt="暂未开放">
+                    </a>
+                    <div class="img-caption">
+                        <span class="click-tip-span">点击进入</span>
+                        <span class="entrance-span">暂未开放</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts 
+{
+        <script lang=”javascript” type="text/javascript">
+        $(function() {
+            var hour = new Date().getHours();
+            var element = document.getElementById("datetime-var");
+            if (hour < 6) {
+                element.innerText = "晚上";
+            } else if (hour < 12) {
+                element.innerText = "上午";
+            } else if (hour < 18) {
+                element.innerText = "下午";
+            } else {
+                element.innerText = "晚上";
+            }
+
+            $('.click-tip-span').hide();
+
+            $('img').click(function() {
+                console.log(this.value);
+            })
+            $('.div-thumbnail').hover(function() {
+                var element = $(this).find('.img-caption').find('.click-tip-span')
+                element.show();
+            }, function() {
+                var element = $(this).find('.img-caption').find('.click-tip-span')
+                element.hide();
+            });
+            $('.thumbnail').hover(function() {
+                var element = $(this).next().find('.click-tip-span')
+                element.show();
+            }, function() {
+                var element = $(this).next().find('.click-tip-span')
+                element.hide();
+            });
+        })
+    </script>
+}
+ 

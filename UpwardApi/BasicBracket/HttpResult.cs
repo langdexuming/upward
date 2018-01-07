@@ -7,21 +7,21 @@ namespace UpwardApi.BasicBracket
     public class HttpResult
     {
 
-        public string StatusCode { get; set; }
+        public int StatusCode { get; set; }
         public string Message { get; set; }
         public object Data
         { get; set; }
 
-        public HttpResult(string statusCode, string message)
+        public HttpResult(HttpStatusCode statusCode, string message)
         {
-            StatusCode = statusCode;
+            StatusCode = (int)statusCode;
             Message = message;
             Data = null;
         }
 
         public HttpResult(object data)
         {
-            StatusCode = HttpStatusCode.Ok;
+            StatusCode = (int)HttpStatusCode.Ok;
             Message = "OK";
             Data = data;
         }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="-zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../../wwwroot/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/test.js"></script>
+    <script type="text/javascript" src="../../wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/holder.js"></script>
+    <title>测试</title>
+    <style>
+        var {
+            font-style: normal;
+        }
+        
+        body {
+            background: #a39c88;
+            /* background: transparent */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="position:absolute; left:0; top:0; width:100%; height:100%"><img id="body-bg-img" src="../../wwwroot/images/entrance/entrance-bg.jpg" width="100%" height="100%"></div>
+    <div class=" container">
+
+    </div>
+    <script>
+        Holder.addTheme("default", {
+            bg: "white",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-1", {
+            bg: "#e67e22",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-2", {
+            bg: "#3498db",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+        Holder.addTheme("entrance-3", {
+            bg: "#95a5a6",
+            fg: "transparent",
+            size: 11,
+            font: "Monaco",
+            fontweight: "normal"
+        });
+    </script>
+
+    <script lang=”javascript” type="text/javascript">
+        $(function() {
+
+        })
+        $.ajax({
+            url: "/index.cshtml",
+            data: {
+                zipcode: 97201
+            },
+            success: function(result) {
+                alert("123");
+                $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+            }
+        })
+    </script>
+</body>
+
+</html>

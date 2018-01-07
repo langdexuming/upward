@@ -38,6 +38,13 @@ namespace UpwardApi
             // _logger = services.BuildServiceProvider().GetService<ILogger<Startup>>();
 
             // _logger.LogInformation(LoggingEvents.ConfigureServices, "ConfigureServices", "");
+
+            //支持跨域
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSameDomain",
+                builder => builder.WithOrigins("http://localhost:8081").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +60,14 @@ namespace UpwardApi
             }
 
             app.UseMvc();
+
+            // //支持跨域
+            // app.UseCors(builder =>
+            // {
+            //     builder.AllowAnyHeader();
+            //     builder.AllowAnyMethod();
+            //     builder.WithOrigins("http://localhost:8081");
+            // });
         }
     }
 }

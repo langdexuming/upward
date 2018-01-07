@@ -1,0 +1,371 @@
+     @{
+        @model Blog.Models.LeaveMessage;
+        ViewData["Title"]="Langdexuming' Blog, leave a message";
+    }
+
+        <style>
+
+        .poster .title {
+            /* animation-duration: 3s;
+            animation-delay: 2s; */
+            animation-iteration-count: 1;
+        }
+        
+        .messageArea {
+            color: #262626;
+            border-radius: 2px;
+            background: #fff;
+            margin-bottom: 12px;
+            /* box-shadow: 0 1px 3px rgba(0, 0, 0, .1); */
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+            padding: 12px 12px;
+        }
+        
+        .messageArea .header {
+            font-size: 14px;
+            border-radius: 2px;
+            padding: 12px 0px;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .messageArea .header .title {
+            float: left;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .messageArea .header .pull-right {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+        
+        .messageArea .header .pull-right>span {
+            vertical-align: middle;
+        }
+        
+        .messageArea .header>h2 {}
+        
+        .messageArea .header .btn {
+            vertical-align: middle;
+            font-size: 18px;
+            border: 0px solid transparent !important;
+            text-decoration-line: underline;
+            padding: 3px 6px;
+        }
+        /* .messageArea .header .btn:hover {
+            border: 0px solid transparent !important;
+        }
+        
+        .messageArea .header .btn:focus {
+            border: 0px solid transparent !important;
+        }
+        
+        .messageArea .header .btn:active {
+            border: 0px solid transparent !important;
+        } */
+        
+        .messageArea .header .glyphicon {
+            vertical-align: middle;
+            color: red;
+            font-size: 20px;
+        }
+        
+        .messageArea .content {
+            padding-bottom: 20px;
+        }
+        
+        #loadingCircle {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        #loadingCircle .sk-spinner-fading-circle {
+            width: 64px;
+            height: 64px;
+        }
+        
+        #loadingCircle p {
+            margin-top: 5px;
+            color: #262626;
+        }
+
+        #leaveMessageList{
+            margin: 0px 10px;
+        }
+
+        #leaveMessageList .media
+        {
+            text-overflow:clip;
+            padding-bottom: 20px;
+            margin-bottom: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+        }
+        
+        #leaveMessageList .media img{
+            margin-right: 10px;
+            width: 80px;
+            height: 80px;
+        }
+
+          #leaveMessageList .media .media-heading {
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: list-item;
+        }
+
+                #leaveMessageList .media .title{
+            white-space:nowrap;
+            overflow:hidden;
+            max-width: 960px;
+            width: 100%;
+                        text-overflow:ellipsis;
+                        line-height: 22px;
+                        cursor: pointer;
+        }
+
+                #leaveMessageList .media .message{
+            white-space:pre-wrap;
+            overflow:hidden;
+                        text-overflow:ellipsis;
+                        cursor: pointer;
+                        line-height: 20px;
+                        max-height: 80px;
+                        /* 解决一长串数字、英文字母连在一起时不能自动换行*/
+                        word-break:break-all;
+                        word-wrap:break-word;
+        }
+    </style>
+
+    <div class="poster">
+        <div class=" text-center title animated infinite bounce">在这里，可以说你想说的话</div>
+        <div class="ibox-content">
+            <div class="spiner-example">
+                <div class="sk-spinner sk-spinner-double-bounce">
+                    <div class="sk-double-bounce1"></div>
+                    <div class="sk-double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" container">
+        <div class="leaveMessage"></div>
+        <div class="messageArea">
+            <div class="header">
+                <h2 class="title">留言区</h2>
+                <div class="pull-right">
+                    <span>谢谢你这么美，还给我</span>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">留言</button>
+                    <!-- <span class="glyphicon glyphicon-heart"></span> -->
+                </div>
+            </div>
+            <div id="leaveMessageList" class="content">
+            </div>
+            <div class="footer text-center">
+                <button id="btnLoadMoreLeaveMessages" type="button" class="btn btn-default" onclick="btnLoadMoreLeaveMessagesClick()">点击加载更多</button>
+                <p id="noMoreLeaveMessages" style="color:#999;display:none;">没有更多的留言消息了</p>
+                <div id="loadingCircle" class="ibox-content">
+                    <div class="spiner-example">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                        </div>
+                    </div>
+                    <p class=" text-center">加载中，请稍后...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">留言</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="leaveMessageForm" role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputMessage" class="col-sm-3 control-label">内容：</label>
+                            <div class="col-sm-9">
+                                <textarea asp-for="Message" placeholder="请输入你想说的话" class="form-control" id="inputMessage"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputUserName" class="col-sm-3 control-label">你的昵称：</label>
+                            <div class="col-sm-9">
+                                <input asp-for="UserName" type="text" class="form-control" id="inputUserName" placeholder="请输入你的昵称">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="btnSubmitLeaveMessage" type="button" class="btn btn-primary" onclick="SubmitLeaveMessageOkClick()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts 
+{
+        <script lang=”javascript” type="text/javascript">
+
+        var isLeaveMessageLoading = false;
+        var hasMoreLeaveMessages = true;
+        var isShowedIndexNavbar = false;
+
+
+        function btnLoadMoreLeaveMessagesClick() {
+            LeaveMessageLoad();
+        };
+
+        function SubmitLeaveMessageOkClick() {
+
+            var message = $('#inputMessage').val();
+            if (message.IsNullOrEmpty()) {
+                alert("请输入留言内容！");
+                return;
+            }
+
+            var UserName = $('#inputUserName').val();
+            if (UserName.IsNullOrEmpty()) {
+                alert("请输入昵称！");
+                return;
+            }
+
+            $('#btnSubmitLeaveMessage').submit();
+            $('#myModal').modal('hide');
+
+        };
+
+        function SubmitLeaveMessage() {
+            //域内请求
+            var options = {
+                url: 'CreateLeaveMessage',
+                type: 'post',
+                dataType: 'text',
+                data: $("#leaveMessageForm").serialize(),
+                success: function(data) {
+                    if (data.length > 0) {
+                        console.log('请求成功，数据长度为:' + data.length);
+                        //解析Json字符串
+                        var dataObj = eval("(" + data + ")");
+
+                        console.log(dataObj.message);
+                        console.log(dataObj.userName);
+                        console.log(dataObj.createDateTime);
+
+                        var children = $("#leaveMessageList").children();
+
+                        if (children !== null && children.length !== 0) {
+                            $("#leaveMessageList").children().first().before(GenerateLeaveMessageHtml(dataObj));
+                        } else {
+                            $("#leaveMessageList").append(GenerateLeaveMessageHtml(dataObj));
+                        }
+                    }
+                }
+            };
+
+            //跨域请求
+
+            $.ajax(options);
+        };
+
+
+        //问题加载
+        function LeaveMessageLoad() {
+            if (!hasMoreLeaveMessages) {
+                return;
+            }
+            if (isLeaveMessageLoading)
+                return;
+            isLeaveMessageLoading = true;
+            //开启动画
+            $('#loadingCircle').css("display", "block");
+            //域内请求
+            var lastId = -1;
+            var children = $("#leaveMessageList").children();
+            if (children !== null && children.length !== 0) {
+                lastId = children.last().attr('data-id');
+            }
+
+            var options = {
+                url: 'SearchLeaveMessage?lastId=' + lastId,
+                dataType: 'text',
+                success: function(data) {
+                    if (data.length > 0) {
+                        console.log('请求成功，数据长度为:' + data.length);
+                        //解析Json字符串
+                        var dataArray = eval("(" + data + ")");
+                        if (dataArray.length !== 0) {
+                            for (var i = 0; i < dataArray.length; i++) {
+                                var dataObj = dataArray[i];
+                                console.log(dataObj.message);
+                                console.log(dataObj.userName);
+                                console.log(dataObj.createDateTime);
+                                $("#leaveMessageList").append(GenerateLeaveMessageHtml(dataObj));
+                            }
+
+                        } else {
+                            hasMoreLeaveMessages = false;
+                            $("#btnLoadMoreLeaveMessages").css('display','none');
+                            $('#noMoreLeaveMessages').css('display','block');
+                        }
+
+                    } else {
+                        hasMoreLeaveMessages = false;
+                        $("#btnLoadMoreLeaveMessages").css('display','none');
+                        $('#noMoreLeaveMessages').css('display','block');
+                    }
+                },
+                complete: function() {
+                    isLeaveMessageLoading = false;
+                    $('#loadingCircle').css("display", "none");
+                }
+
+            };
+
+            //跨域请求
+
+            $.ajax(options);
+        };
+
+        function GenerateLeaveMessageHtml(leaveMessage) {
+            return "<div class=\"media\" data-id=\"" + leaveMessage.id + "\">\
+                    <a class=\"pull-left\" href=\"#\">\
+                        <img class=\"media-object img-rounded\" src=\"/images/home/person-head-portrait-default.jpg\">\
+                    </a>\
+                    <div class=\"media-body\">\
+                        <h4 class=\"media-heading title\">" + leaveMessage.userName + "</h4><p class=\"message\">" + leaveMessage.message + "\
+                    </p></div>";
+
+        };
+
+        $(function() {
+
+            LeaveMessageLoad();
+
+            $('#btnSubmitLeaveMessage').on('submit', function() {
+                console.log("提交留言！");
+                SubmitLeaveMessage();
+            });
+
+        });
+ </script>
+}
