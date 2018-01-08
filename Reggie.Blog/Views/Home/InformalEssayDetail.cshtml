@@ -1,0 +1,32 @@
+@{
+    Layout="_IndexLayout";
+    @model Reggie.Blog.Models.InformalEssay;
+    ViewData["Title"]="Langdexuming' Reggie.Blog, read the full article";
+}
+<style>
+            #detail {
+            color: #262626;
+            border-radius: 2px;
+            background: #fff;
+            /* box-shadow: 0 1px 3px rgba(0, 0, 0, .1); */
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-size: 16px;
+            /* justify-content: space-between; */
+            padding: 0px 20px;
+            overflow: hidden;
+        }
+</style>
+<div id="detail">
+@{
+var mV=(CSMvvmLightWebApp.Models.InformalEssay)ViewData["InformalEssayDetail"];
+<h3>@mV.Title</h3>
+<br>
+<div>@Html.Raw(@mV.Message)</div>
+<br>
+var str="posted @ "+mV.CreateDateTime+"&nbsp;&nbsp;&nbsp;by&nbsp;&nbsp;"+mV.UserName;
+
+    <p class="text-right" style="color:#999;">@Html.Raw(@str)</p>
+}  
+    </div>

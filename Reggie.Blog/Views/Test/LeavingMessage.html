@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="-zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../../wwwroot/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/test.js"></script>
+    <script type="text/javascript" src="../../wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/holder.js"></script>
+    <link rel="stylesheet" href="../../wwwroot/css/animate.min.css">
+    <title>留言</title>
+    <style>
+        var {
+            font-style: normal;
+        }
+        
+        body {
+            background: #f3f3f3;
+        }
+        
+        body>.container-fluid {
+            /* min-height: 480px; */
+            padding: 0px;
+        }
+        
+        .poster {
+            background: #222528;
+            min-height: 240px;
+            margin-top: -20px;
+            padding: 40px;
+            color: #9d9d9d;
+        }
+        
+        .navbar {
+            border-radius: 0;
+            background: #222528;
+            border: 0 none transparent;
+            border-width: 0px;
+        }
+        
+        .poster .title {
+            /* font-weight: bold; */
+            font-size: 24px;
+        }
+        
+        .poster>.poster-left {
+            /* margin-left: 120px;
+            margin-top: 64px; */
+        }
+        
+        .poster>.poster-left>h2 {
+            margin-top: 0px;
+        }
+        
+        .featureList {
+            width: 30%;
+            margin-left: 20%;
+            margin-top: 5%;
+        }
+        
+        .featureList>h1 {
+            margin-bottom: 20px;
+        }
+        
+        .featureList>ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .featureList>ul>li {
+            margin-bottom: 15px;
+        }
+        
+        .featureList>ul>li.feature-icon {}
+        
+        .featureList>ul>li>.text {
+            font-size: 16px;
+        }
+        
+        .questionList {
+            min-height: 240px;
+            padding: 20px;
+        }
+        
+        .questionList>.header {}
+        
+        footer {
+            margin-top: 3%;
+        }
+        
+        .widget {
+            background-color: gray;
+        }
+        
+        .interestList {
+            padding: 20px;
+        }
+        
+        .div-thumbnail img {
+            /* height: 64px; */
+            max-height: 240px;
+        }
+        
+        .entrance-span {
+            position: absolute;
+            right: 10%;
+            bottom: 5%;
+            font-size: 16px;
+            font-weight: normal;
+            pointer-events: none;
+            color: #b3b2b2;
+            font-weight: bold;
+        }
+        
+        .media {
+            margin-bottom: 36px;
+        }
+        
+        .media img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .media-heading {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        
+        .poster .title {
+            /* animation-duration: 3s;
+            animation-delay: 2s; */
+            animation-iteration-count: 1;
+        }
+        
+        .messageArea {
+            color: #262626;
+            border-radius: 2px;
+            background: #fff;
+            margin-bottom: 12px;
+            /* box-shadow: 0 1px 3px rgba(0, 0, 0, .1); */
+            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+            padding: 12px 12px;
+        }
+        
+        .messageArea .header {
+            height: 40px;
+            font-size: 14px;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+        }
+        
+        .messageArea .content {
+            margin-top: 30px;
+        }
+        
+        .messageArea .header .pull-right {}
+        
+        .messageArea .header>h2 {
+            display: inline;
+            vertical-align: middle;
+        }
+        
+        .messageArea .header .btn {
+            vertical-align: middle;
+            font-size: 18px;
+            border: 0px solid transparent !important;
+            text-decoration-line: underline;
+            padding: 3px 6px;
+        }
+        /* .messageArea .header .btn:hover {
+            border: 0px solid transparent !important;
+        }
+        
+        .messageArea .header .btn:focus {
+            border: 0px solid transparent !important;
+        }
+        
+        .messageArea .header .btn:active {
+            border: 0px solid transparent !important;
+        } */
+        
+        .messageArea .header .glyphicon {
+            vertical-align: middle;
+            color: red;
+            font-size: 20px;
+        }
+        /*
+ *  Usage:
+ *
+ *    <div class="sk-spinner sk-spinner-double-bounce">
+ *      <div class="sk-double-bounce1"></div>
+ *      <div class="sk-double-bounce2"></div>
+ *    </div>
+ *
+ */
+        
+        .sk-spinner-double-bounce.sk-spinner {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .sk-spinner-double-bounce .sk-double-bounce1,
+        .sk-spinner-double-bounce .sk-double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #1ab394;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-doubleBounce 2s infinite ease-in-out;
+            animation: sk-doubleBounce 2s infinite ease-in-out;
+        }
+        
+        .sk-spinner-double-bounce .sk-double-bounce2 {
+            -webkit-animation-delay: -1s;
+            animation-delay: -1s;
+        }
+        
+        @-webkit-keyframes sk-doubleBounce {
+            0%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes sk-doubleBounce {
+            0%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Langdexuming's Reggie.Blog</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="GameLife.html">游戏人生</a></li>
+                    <li><a href="LeavingMessage.html">给我留言</a></li>
+                    <li><a href="JobIndex.html ">个人简历</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class=" container-fluid ">
+        <div class="poster">
+            <div class=" text-center title animated infinite bounce">在这里，可以说你想说的话</div>
+            <div class="ibox-content">
+                <div class="spiner-example">
+                    <div class="sk-spinner sk-spinner-double-bounce">
+                        <div class="sk-double-bounce1"></div>
+                        <div class="sk-double-bounce2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" container">
+        <div class="leaveMessage"></div>
+        <div class="messageArea">
+            <div class="header">
+                <h2 class="title">留言区</h2>
+                <div class="pull-right">
+                    <span>谢谢你这么美，还给我</span>
+                    <button type="button" class="btn btn-default">留言</button>
+                    <!-- <span class="glyphicon glyphicon-heart"></span> -->
+                </div>
+            </div>
+            <div class="content">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="../../wwwroot/images/home/matheus-ferreira-111-small.jpeg" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">快乐的小神仙</h4>
+                        可以使用 C# 和 F# 语言（即将推出 Visual Basic）编写 .NET Core 的应用程序和库。 在 .NET Core 上运行的编译器可以在其运行的任何地方进行 .NET Core 开发。 一般情况下，不会直接使用编译器，但会间接使用 SDK 工具。
+                    </div>
+                </div>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="../../wwwroot/images/home/matheus-ferreira-111-small.jpeg" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">快乐的小神仙</h4>
+                        可以使用 C# 和 F# 语言（即将推出 Visual Basic）编写 .NET Core 的应用程序和库。 在 .NET Core 上运行的编译器可以在其运行的任何地方进行 .NET Core 开发。 一般情况下，不会直接使用编译器，但会间接使用 SDK 工具。
+                    </div>
+                </div>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="../../wwwroot/images/home/matheus-ferreira-111-small.jpeg" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">快乐的小神仙</h4>
+                        可以使用 C# 和 F# 语言（即将推出 Visual Basic）编写 .NET Core 的应用程序和库。 在 .NET Core 上运行的编译器可以在其运行的任何地方进行 .NET Core 开发。 一般情况下，不会直接使用编译器，但会间接使用 SDK 工具。
+                    </div>
+                </div>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="../../wwwroot/images/home/matheus-ferreira-111-small.jpeg" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">快乐的小神仙</h4>
+                        可以使用 C# 和 F# 语言（即将推出 Visual Basic）编写 .NET Core 的应用程序和库。 在 .NET Core 上运行的编译器可以在其运行的任何地方进行 .NET Core 开发。 一般情况下，不会直接使用编译器，但会间接使用 SDK 工具。
+                    </div>
+                </div>
+            </div>
+            <div class="footer text-center">
+                <button type="button" class="btn btn-default">点击加载更多</button>
+            </div>
+
+        </div>
+        <footer>
+            <p class=" text-center">&copy; 2017 - Langdexuming</p>
+            <p class=" text-center ">备案/许可证编号为：粤ICP备17118546号</p>
+        </footer>
+
+        <script>
+            Holder.addTheme("default", {
+                bg: "white",
+                fg: "transparent",
+                size: 11,
+                font: "Monaco",
+                fontweight: "normal"
+            });
+            Holder.addTheme("entrance-1", {
+                bg: "#e67e22",
+                fg: "transparent",
+                size: 11,
+                font: "Monaco",
+                fontweight: "normal"
+            });
+            Holder.addTheme("entrance-2", {
+                bg: "#3498db",
+                fg: "transparent",
+                size: 11,
+                font: "Monaco",
+                fontweight: "normal"
+            });
+            Holder.addTheme("entrance-3", {
+                bg: "#95a5a6",
+                fg: "transparent",
+                size: 11,
+                font: "Monaco",
+                fontweight: "normal"
+            });
+        </script>
+        <script lang=”javascript” type="text/javascript ">
+            $(function() {
+
+            })
+            $.ajax({
+                url: "/index.cshtml ",
+                data: {
+                    zipcode: 97201
+                },
+                success: function(result) {
+                    alert("123 ");
+                    $("#weather-temp ").html("<strong>" + result + "</strong> degrees");
+                }
+            })
+        </script>
+</body>
+
+</html>

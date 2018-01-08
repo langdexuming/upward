@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="-zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="../../wwwroot/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/test.js"></script>
+    <script type="text/javascript" src="../../wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../wwwroot/js/holder.js"></script>
+    <title>Langdexuming</title>
+    <style>
+        var {
+            font-style: normal;
+        }
+        
+        .navbar>ul {
+            margin-top: 3px;
+        }
+        
+        .navbar-right {
+            position: absolute;
+            margin-right: 24px;
+            padding: 10px 15px;
+        }
+        
+        .navbar-right>label {
+            font-weight: normal;
+            float: left;
+        }
+        
+        .navbar-right>a {
+            color: #777777;
+            margin-left: 6px;
+            margin-top: 4px;
+            float: right;
+        }
+        
+        body {
+            background: #f3f3f3;
+        }
+        
+        body>.navbar {
+            background: white;
+            padding: 0px 36px;
+        }
+        
+        body>.container {
+            margin-top: 64px;
+            /* border: 1px solid gray; */
+            /* border-radius: 3px; */
+            /* padding: 0px; */
+        }
+        
+        #summaryContent {
+            max-height: 480px;
+            width: 100%;
+        }
+        
+        #summaryContent>.jumbotron {
+            padding: 0;
+        }
+        
+        #summaryContent>.jumbotron>.jumbotron-bg {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #summaryContent .content-body {
+            position: absolute;
+            margin-top: -360px;
+            margin-left: 48px;
+        }
+        
+        .summary-description {
+            margin-top: 36px;
+        }
+        
+        .summary-description>p {
+            font-size: 16px;
+            line-height: 24px;
+        }
+        
+        #skillContent {
+            /* background: #D8E6E7; */
+        }
+        
+        #skillContent .content-body {
+            /* background: white */
+        }
+        
+        #skillContent .progress-bar {
+            background: #252c41;
+            color: white;
+        }
+        
+        #skillContent>h3 {
+            /* background: #D8E6E7; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #experienceContent>h3 {
+            /* background: #EC6A5C; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #experienceContent .content-body .row {
+            border-top: 1px solid #F0E5DE;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        #experienceContent article {
+            font-size: 14x;
+        }
+        
+        #sampleReelsContent>h3 {
+            /* background: #77AAAD; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #educationalContent {
+            /* background: #4FB0C6;
+            padding: 0 20px 20px 20px; */
+        }
+        
+        #educationalContent>h3 {
+            /* background: #4FB0C6; */
+            padding: 20px 40px;
+            border-radius: 3px;
+        }
+        
+        #educationalContent .content-body {
+            /* background: #4FB0C6; */
+        }
+        
+        #educationalContent .content-body p {
+            /* float: left; */
+        }
+        
+        .bold-text {
+            font-weight: bold;
+        }
+        
+        #carousel-example-generic {}
+        
+        a.carousel-control {
+            /* position: relative; */
+            width: 50%;
+            height: 64px;
+            margin-top: 544px;
+            /* width: 96px; */
+            /* height: 48px;
+            margin-top: auto;
+            margin-bottom: auto;
+            font-size: 16px!important;
+            border-radius: 3px;
+            padding: 0px; */
+            border-radius: 3px;
+        }
+        
+        .carousel-indicators {
+            opacity: 0.4;
+            background: black;
+            width: 96px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            bottom: 96px!important;
+            padding: 12px 24px;
+            margin: 0;
+            border-radius: 6px;
+        }
+        
+        .carousel-indicators>li {
+            /* width: 24px;
+            height: 24px; */
+        }
+        /* .carousel-controls {
+            position: absolute;
+            background-color: #fff;
+            height: 40px;
+            margin-top: 440px;
+            width: 480px;
+            opacity: 1;
+        } */
+        
+        footer {
+            margin-top: 64px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 导航 -->
+    <!-- <nav class="navbar navbar-default navbar-fixed-top">
+        <div class=" navbar-header">
+            <a href="index.html" class=" navbar-brand"><span class=" glyphicon glyphicon-th-large"></span>Langdexuming</a>
+        </div>
+        <ul class="nav nav-pills col-md-6 col-md-offset-3" role="tablist">
+            <li role="presentation" class="active" data-target="#summaryContent"><a href="#">个人简介</a></li>
+            <li role="presentation" data-target="#skillContent"><a href="#">工作技能</a></li>
+            <li role="presentation" data-target="#experienceContent"><a href="#">工作经历</a></li>
+            <li role="presentation" data-target="#sampleReelsContent"><a href="#">作品集</a></li>
+            <li role="presentation" data-target="#educationalContent"><a href="#">教育背景</a></li>
+        </ul>
+        <div class="navbar-right col-md-offset-9">
+            <label for="searchText" style="visibility: hidden;">
+                <input id="searchText" type="text" name="searchText" placeholder="请输入要查找的内容">
+</label>
+            <a href="#" onclick="searchText(document.getElementById('searchText').value)"><span class=" glyphicon glyphicon-search"></span></a>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class=" container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Langdexuming's Reggie.Blog</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="GameLife.html">游戏人生</a></li>
+                    <li><a href="LeavingMessage.html">给我留言</a></li>
+                    <li><a href="JobIndex.html ">个人简历</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class=" container">
+        <!-- 个人简介 -->
+        <div id="summaryContent">
+            <div class=" jumbotron">
+                <div class=" jumbotron-bg">
+                    <img src="../../wwwroot/images/job/summary-bg.jpg" class=" img-responsive img-rounded"></img>
+                </div>
+                <div class="content-body col-md-6">
+                    <div class="summary-brand">
+                        <h2>殷锐民</h2>
+                        <h4>码农(Software Developer)</h4>
+                    </div>
+                    <div class="summary-description">
+                        <p>擅长于Window客户端开发，也对Web前端/后端有着浓厚兴趣，从事过多领域的软件开发工作(安防对讲类的监控软平台软件、车载设备上位机软件、客户体验类平台软件)...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 工作技能 -->
+        <div id="skillContent">
+            <h3 class=" text-center content-title">工作技能</h3>
+            <div class=" content-body container-fluid">
+                <div id="CSharpContent" class=" col-md-4">
+                    <h4>C#</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                            <span>80%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="WPFContent" class=" col-md-4">
+                    <h4>WPF</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            <span>60%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="AspDotNetContent" class=" col-md-4">
+                    <h4>ASP.NET</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="HtmlContent" class=" col-md-4">
+                    <h4>html</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="CssContent" class=" col-md-4">
+                    <h4>css</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="JavascriptContent" class=" col-md-4">
+                    <h4>Javascript</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="WinformContent" class=" col-md-4">
+                    <h4>Winform</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="BootstrapContent" class=" col-md-4">
+                    <h4>Bootstrap</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 工作经历 -->
+        <div id="experienceContent">
+            <h3 class=" text-center content-title">工作经历</h3>
+            <div class="content-body">
+                <div class="row">
+                    <div class=" col-md-4">
+                        <h4>中软国际科技服务有限公司(深圳)</h4>
+                        <h5>2016年11月-2017年9月</h5>
+                    </div>
+                    <!-- <hr class="col-md-1" width="1" size="20"> -->
+                    <div class="col-md-8">
+                        <h5 class=" bold-text">WPF(C#)开发工程师</h5>
+                        <p>
+                            华为大型平台客户端软件开发
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-4">
+                        <h4>深圳市速美特电子科技有限公司</h4>
+                        <h5>2016年7月-2016年10月</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 class=" bold-text">上位机(C#)开发工程师</h5>
+                        <p>
+                            .完全负责一款面向小型汽车数据采集分析和汽车服务的电脑端软件的开发，调试。涉及：C#/.net,WPF界面，MVVM设计模式，Can协议，SqlServer Compact数据库
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-4">
+                        <h4>珠海嘉德系统集成有限责任公司</h1>
+                            <h5>2015年3月-2016年6月</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 class=" bold-text">测试+软件开发工程师</h5>
+                        <p>
+                            1.采用基于Winform界面、C#语言对一款由VB编写的小型安防报警管理软件进行重新开发、调试、测试,涉及：C#/.net,监控对讲，串口通讯，Microsoft Office Access数据库
+                            <br>2.对公司一款数字产品的上位机管理软件进行功能改进、程序国际化（英语）开发、调试、测试，涉及：Winform界面，C#/.net,数字对讲，UDP通信，Firebird数据库操作（类似Sqlite）
+                            <br>3.编写相关操作说明书
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 作品集 -->
+        <div id="sampleReelsContent">
+            <h3 class=" text-center content-title">作品集</h3>
+            <!-- 幻灯片 -->
+            <div id="carousel-example-generic" class="carousel slide content-body" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="../../wwwroot/images/job/carousel-1.png" alt="1" class=" img-responsive img-rounded">
+                        <div class="carousel-caption">
+                            <!-- ... -->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="../../wwwroot/images/job/carousel-2.png" alt="2" class=" img-responsive img-rounded">
+                        <div class="carousel-caption">
+                            <!-- ... -->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="../../wwwroot/images/job/carousel-3.png" alt="3" class=" img-responsive img-rounded">
+                        <div class="carousel-caption">
+                            <!-- ... -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <!-- <div class="carousel-controls">
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div> -->
+                <!-- <div class="carousel-controls">
+                </div> -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <!-- 教育背景 -->
+        <div id="educationalContent">
+            <h3 class=" text-center content-title">教育背景</h3>
+            <div class="content-body">
+                <a href="http://www.zhbit.com/">
+                    <h4 class="bold-text">北京理工大学珠海学院(本科)</h4>
+                </a>
+                <h5 class="bold-text">机械电子工程专业 (2011-2015)</h5>
+
+                <p>主修课程：计算机技术，C语言程序设计，单片机程序设计，嵌入式系统linux，控制工程，PLC控制基础，变频器技术，电力电子技术，模拟电子技术基础，电路电子技术等。
+                </p>
+                <img src="../../wwwroot/images/job/education-img.jpg" alt="" class=" img-responsive">
+            </div>
+        </div>
+
+        <footer>
+            <p style="width:160px;margin-left:auto;margin-right:auto">&copy; 2017 - Langdexuming</p>
+        </footer>
+    </div>
+    <script lang=”javascript” type="text/javascript">
+        var _isValidScroll = true;
+        var _topNavbarHeight = 65;
+        var _scrollTopOffset = 65;
+
+
+        function searchText(text) {
+            //显示搜索框
+            if ($("[for=searchText]").css('visibility') === "hidden") {
+                $("[for=searchText]").css("visibility", "visible");
+            } else {
+                console.log(text);
+
+                //开始查找
+            }
+
+            //阻止默认事件
+            event.preventDefault();
+        }
+
+        //var 
+        $(function() {
+            $("li[role=presentation]").each(function() {
+                if ($(this).hasClass('active')) {
+                    $('body').prop("scrollTop", $($(this).data('target')).position().top - _scrollTopOffset);
+                }
+
+                $(this).click(function(event) {
+                    $("li[role=presentation]").removeClass('active');
+                    $(this).addClass('active');
+
+                    //阻止默认事件
+                    event.preventDefault();
+
+                    _isValidScroll = false;
+                    $('body').prop("scrollTop", $($(this).data('target')).position().top - _scrollTopOffset);
+
+                });
+            });
+            $(document).scroll(function() {
+
+                // 屏蔽点击标签定位
+                if (!_isValidScroll) {
+                    _isValidScroll = true;
+                    return false;
+                }
+
+                // 遍历所有块，找到当前所在块
+                var _previousElement = undefined;
+                var _offsetY;
+                $("li[role=presentation]").each(function(index) {
+                    var previousElement = _previousElement;
+                    _previousElement = $(this);
+                    var targetElement;
+                    if (previousElement === undefined) {
+                        _offsetY = _topNavbarHeight;
+                        targetElement = $(this);
+                    } else {
+                        _offsetY = $(previousElement.data('target')).height() / 2 + _topNavbarHeight;
+                        targetElement = previousElement;
+                    }
+
+                    if ($('body').scrollTop() > $($(this).data('target')).position().top - _offsetY) {
+                        if (index === $("li[role=presentation]").length - 1) {
+                            targetElement = $(this);
+                        } else {
+                            return true;
+                        }
+
+                    }
+                    $("li[role=presentation]").removeClass('active');
+                    if (!targetElement.hasClass('active')) {
+                        targetElement.addClass('active');
+                    }
+                    return false;
+                });
+            });
+        })
+        $.ajax({
+            url: "/index.cshtml",
+            data: {
+                zipcode: 97201
+            },
+            success: function(result) {
+                alert("123");
+                $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+            }
+        })
+    </script>
+</body>
+
+</html>
