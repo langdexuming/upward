@@ -25,9 +25,9 @@ export default {
     loadBrands() {
       let _this = this;
       getBrands().then(res => {
-        let { statusCode, message, data } = res.data;
-        if (statusCode !== 200) {
-          console.log("error");
+        let { status, statusText, data } = res;
+        if (status !== 200) {
+          console.log(status);
         } else {
           for (var i = 0; i < data.length; i++) {
             console.log(data[i].brandName);

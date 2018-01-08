@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +13,7 @@ namespace Reggie.Upward.WebApi.Controllers
 {
     [EnableCors("AllowSameDomain")]
     [Route("api/[controller]")]
-    public class BrandController
+    public class BrandController : Controller
     {
         private readonly CarContext _context;
 
@@ -22,32 +24,29 @@ namespace Reggie.Upward.WebApi.Controllers
             _logger = logger;
         }
 
-        // GET api/values
+        // GET api/brand
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IEnumerable<Brand> Get()
         {
             _logger.LogInformation(LoggingEvents.ListItems, "");
 
-            var list = await _context.Brands.Include(x => x.Serieses).ThenInclude(x => x.Models).AsNoTracking().ToListAsync();
-            var result = new HttpResult(list);
-
-            return new JsonResult(result);
+            return _context.Brands.Include(x => x.Serieses).ThenInclude(x => x.Models).ToList();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        // GET api/brand/5
+        [HttpGet("{id}", Name = "GetBrand")]
+        public IActionResult GetById(int id)
         {
-            _logger.LogInformation(LoggingEvents.GetItem, "");
+            _logger.LogInformation(LoggingEvents.GetItem, $"{id}");
 
-            var item = await _context.Brands.Include(x => x.Serieses).ThenInclude(x => x.Models).SingleOrDefaultAsync(x => x.BrandId == id);
+            var item = _context.Brands.Include(x => x.Serieses).ThenInclude(x => x.Models).FirstOrDefault(x => x.BrandId == id);
 
             if (item == null)
             {
-                return new JsonResult(HttpResult.NoFound);
+                return NotFound();
             }
 
-            return new JsonResult(new HttpResult(item));
+            return new ObjectResult(item);
         }
 
         // POST api/values

@@ -9,6 +9,7 @@ DemoProject/Client/bin/*
 DemoProject/Server/obj/*
 DemoProject/Server/bin/*
 Reggie.Upward.WebApi/Migrations/*
+Reggie.Blog/Migrations/*
 
 # Build results
 [Dd]ebug/

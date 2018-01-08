@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HttpResult.cs" />
-    <Compile Include="HttpStatus.cs" />
     <Compile Include="WebApiUrl.cs" />
     <Compile Include="Modules\Car\Brand.cs" />
     <Compile Include="Modules\Car\BrandService.cs" />
@@ -54,12 +52,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BasicBracket\Reggie.BasicBracket.csproj">
+    <ProjectReference Include="..\Reggie.BasicBracket\Reggie.BasicBracket.csproj">
       <Project>{cf6ff455-379e-48cc-b5ce-0828a0556407}</Project>
       <Name>Reggie.BasicBracket</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

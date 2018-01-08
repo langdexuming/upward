@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
@@ -25,40 +26,40 @@ namespace Reggie.Upward.WebApi.Controllers
             _logger = logger;
         }
 
-        // GET api/values
+        // GET api/car
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IEnumerable<CarItem> GetAll()
         {
             _logger.LogInformation(LoggingEvents.ListItems, "");
 
-            var list = await _context.CarItems.AsNoTracking().ToListAsync();
-            var result = new HttpResult(list);
-
-            return new JsonResult(result);
+            return _context.CarItems.ToList();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        // GET api/car/5
+        [HttpGet("{id}", Name = "GetCarItem")]
+        public IActionResult GetById(int id)
         {
             _logger.LogInformation(LoggingEvents.GetItem, $"{id}");
 
-            var item = await _context.CarItems.FirstOrDefaultAsync(x => x.Id == id);
-
+            var item = _context.CarItems.FirstOrDefault(x => x.Id == id);
             if (item == null)
             {
-                _logger.LogInformation(LoggingEvents.GetItemNotFound, $"{id}");
-                return new JsonResult(HttpResult.NoFound);
+                return NotFound();
             }
 
-            return new JsonResult(new HttpResult(item));
+            return new ObjectResult(item);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]CarItem item)
+        public IActionResult Post([FromBody]CarItem item)
         {
             _logger.LogInformation(LoggingEvents.InsertItem, $"{new JsonResult(item)}");
+
+            if (item == null)
+            {
+                return BadRequest();
+            }
 
             item.RegisterDateTime = DateTime.Now;
 
@@ -71,6 +72,8 @@ namespace Reggie.Upward.WebApi.Controllers
             {
                 _logger.LogInformation(LoggingEvents.InsertItemException, $"{item.Id},eeception message:{ex}");
             }
+
+            return CreatedAtRoute("GetCarItem", new { id = item.Id }, item);
         }
 
         // PUT api/values/5
