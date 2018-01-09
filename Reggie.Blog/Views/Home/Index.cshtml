@@ -1,9 +1,9 @@
-﻿    @{
+﻿    @model Reggie.Blog.ViewModels.IndexViewModel;
+    @{
         //注入
        // @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-        @model Reggie.Blog.Models.InformalEssay;
 
-        ViewData["Title"]="Langdexuming' Reggie.Blog";
+        ViewData["Title"]="Langdexuming' Blog";
     }
 
         <style>
@@ -301,7 +301,7 @@
     <div id="content" class="container">
         <div id="main-content" class=" col-md-9">
             @{
-                if((bool)ViewData["CanCreateInformalEssay"]){
+                if(Model.CanCreateInformalEssay){
                <div class="header">
                 <div class="nav">
                     <button id="btnInformalEssay" class="btn btn-default" click="btnInformalEssayClick()">
@@ -346,7 +346,7 @@
 
                 </div>
                 @{
-                    if((bool)ViewData["CanCreateInformalEssay"]){
+                    if(Model.CanCreateInformalEssay){
                 <div id="informalEssay" style="display:none;">
                     <div>
                         <h3>添加随笔</h3>

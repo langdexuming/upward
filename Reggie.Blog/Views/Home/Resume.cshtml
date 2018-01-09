@@ -416,6 +416,10 @@
         </div>
     </div>
     <div>
+
+@if(Model.Skills?.Count>0)
+{
+
         <!-- 工作技能 -->
         <div id="skillContent" class="section">
             <div class="heading">
@@ -423,81 +427,21 @@
                 <hr class="line"></hr>
             </div>
             <div class=" content container">
-                <dl id="CSharpContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>C#</dt>
+        @foreach (var skill in Model.Skills)
+        {
+                <dl class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
+                    <dt>@skill.Name</dt>
                     <dd class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            <span>80%</span>
+                            <span>@(@skill.Level*10)%</span>
                         </div>
                     </dd>
                 </dl>
-                <dl id="WPFContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>WPF</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            <span>60%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="AspDotNetContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>ASP.NET</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                            <span>20%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="HtmlContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>HTML</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                            <span>20%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="CssContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>CSS</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                            <span>20%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="JavascriptContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>JavaScript</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                            <span>20%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="WinformContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>Winform</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                            <span>20%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="BootstrapContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>Bootstrap</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                            <span>20%</span>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="DotNetCoreContent" class="dl-horizontal col-sm-4 col-md-4 col-lg-4">
-                    <dt>.NET Core</dt>
-                    <dd class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-                            <span>10%</span>
-                        </div>
-                    </dd>
-                </dl>
+        }
             </div>
 
         </div>
+}
         <!-- 工作经历 -->
         <div id="experienceContent" class="section">
             <div class="heading">
