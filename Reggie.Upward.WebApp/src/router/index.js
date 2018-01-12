@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Car from '@/components/Car'
-import Tool from '@/components/Tool'
+import Tool from '@/views/Tool/index'
+import RegExTool from '@/views/Tool/RegEx'
+import LetterShiftTool from '@/views/Tool/LetterShift'
 import Guide from '@/components/Guide'
-import Home from '@/components/Home'
+import Home from '@/views/Home'
 
 Vue.use(Router)
 
@@ -21,11 +23,23 @@ export default new Router({
       name: '',
       hidden: true
     },
+
     {
       path: '/tool',
       component: Tool,
       name: '',
-      hidden: true
+      hidden: true,
+      children: [{
+          path: '/tool/RegEx',
+          component: RegExTool,
+          name: 'RegExTool'
+        },
+        {
+          path: '/tool/LetterShift',
+          component: LetterShiftTool,
+          name: 'LetterShiftTool'
+        }
+      ],
     },
     {
       path: '/helloworld',

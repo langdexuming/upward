@@ -22,14 +22,14 @@
 </template>
 
 <script>
-export default {
-  name: "HelloWorld",
-  data() {
-    return {
-      msg: "Welcome to my App"
-    };
-  }
-};
+// export default {
+//   name: "HelloWorld",
+//   data() {
+//     return {
+//       msg: "Welcome to my App"
+//     };
+//   }
+// };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

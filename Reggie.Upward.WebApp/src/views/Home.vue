@@ -14,7 +14,10 @@
                   </div>
       </form>
         <ul class="search__tags">
-            <li v-for="item in searchTags"><a>{{item}}</a></li>
+           <li v-for="item in searchTags">
+                  <router-link :to="item.link">
+{{item.title}}
+        </router-link></li>
             </ul>
   </section>
 </header>
@@ -25,7 +28,14 @@
 export default {
   data() {
     return {
-      searchTags: ["宝马", "数据", "定位", "监测", "更多"]
+      searchTags: [
+        { link: "/tool", title: "工具" },
+        { link: "/tool", title: "宝马" },
+        { link: "/tool", title: "数据" },
+        { link: "/tool", title: "定位" },
+        { link: "/tool", title: "监测" },
+        { link: "/tool", title: "更多" }
+      ]
     };
   }
 };

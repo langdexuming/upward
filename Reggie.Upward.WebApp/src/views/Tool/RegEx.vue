@@ -1,6 +1,6 @@
 <template>
   <div class=" container text-center">
-    <div class="row" style="max-width:960px;margin-bottom:12px;">
+    <div class="row" style="margin-bottom:12px;">
         <div>
             <label>替换表达式</label>
             <input type="text" v-model="inputTextRegex">
@@ -10,9 +10,13 @@
             <label>全局匹配</label>
         </div>
     </div>
-    <div class="row" style="max-width:960px;">
-        <textarea id="textareaOrigin" class=" col-md-5" v-model="inputText"/>
-        <button type="button" class="btn btn-primary col-md-2" style="max-width:96px;margin:0px 12px;vertical-align:middle;" @click="replaceText">替换</button>
+    <div class="row">
+        <textarea id="textareaOrigin" class=" col-md-5" v-model="inputText"
+        @keyup.enter="replaceText"/>
+    <div class=" col-md-2 btn-group-vertical">
+          <button class="btn btn-primary" @click="replaceText">替换</button>
+          <button class="btn btn-danger" @click="resetText">重置</button>
+    </div>
         <textarea id="textareaNew" class=" col-md-5" v-model="outputText"/>
     </div>
 </div>
@@ -46,6 +50,10 @@ export default {
           this.outputTextRegex
         );
       }
+    },
+    resetText() {
+      this.inputText = "";
+      this.outputText = "";
     }
   }
 };
@@ -54,5 +62,14 @@ export default {
 <style scoped>
 textarea {
   height: 240px;
+}
+
+.btn-group-vertical {
+  padding: 0px;
+}
+
+.btn-group-vertical .btn {
+  border-radius: 0 !important;
+  margin-bottom: 20px;
 }
 </style>

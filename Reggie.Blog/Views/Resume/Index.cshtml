@@ -1,0 +1,43 @@
+@model System.Collections.Generic.List<Reggie.Blog.Models.Skill>
+@{
+    ViewData["Title"]="简历页面修改";
+    Layout="_ManageLayout";
+}
+<div class=" container">
+<h2>工作技能</h2>
+<p>
+    <a asp-action="Create">新建</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index">Name</a>
+            </th>
+            <th>
+                <a asp-action="Index">Level</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+

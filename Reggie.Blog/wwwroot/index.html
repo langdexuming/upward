@@ -12,7 +12,7 @@
     <script type="text/javascript" src="./lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="./lib/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="./js/holder.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <title>Langdexuming</title>
 
     <style>
@@ -450,13 +450,22 @@
         </p>
 
     </div>
-
+    <div id="example-4">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div>
 </body>
 
 </html>
 <script src="./js/plugins/summernote/summernote.min.js">
 </script>
 <script src="./js/plugins/summernote/summernote-zh-CN.js"></script>
+
 <script>
     $(function () {
         $('.summernote').summernote({
@@ -466,4 +475,10 @@
             $(this);
         });
     });
+    new Vue({
+        el: '#example-4',
+        data: {
+            picked: ''
+        }
+    })
 </script>
