@@ -8,6 +8,6 @@ namespace Reggie.Upward.App.Business.Modules.Car
 {
     public interface IBrandService
     {
-        Task<List<Brand>> Get();
+        Task<List<Brand>> GetAll();
     }
 }

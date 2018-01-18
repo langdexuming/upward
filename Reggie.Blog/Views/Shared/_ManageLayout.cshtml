@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-            <link rel="stylesheet" href="~/css/animate.css">
+        <link rel="stylesheet" href="~/css/animate.css">
 
     </environment>
     <environment names="Staging,Production">
@@ -35,9 +35,19 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li id="liIndex"><a asp-controller="Home" asp-action="Manage">首页</a></li>
-                        <li id="liGameLife"><a asp-controller="GameLife" asp-action="Index">游戏人生</a></li>
-                        <li id="liLeaveMessage"><a asp-controller="LeaveMessage" asp-action="Index">给我留言</a></li>
-                        <li id="liResume"><a asp-controller="Resume" asp-action="Index">个人简历</a></li>
+                        <li id="liResume"><div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        个人简历
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+    </ul>
+</div></li>
                     </ul>
                 </div>
             </div>

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Reggie.Blog.Data;
 using Reggie.Blog.Extensions;
 using Reggie.Blog.ViewModels;
+using Reggie.Blog.Constants;
 
 namespace Reggie.Blog.Controllers
 {
@@ -47,10 +48,43 @@ namespace Reggie.Blog.Controllers
 
         public async Task<IActionResult> Resume()
         {
-            var list = await _blogContext.Skills.ToListAsync();
+            var taskList = new List<Task>();
+
+            var querySkillTask = _blogContext.Skills.AsNoTracking().ToListAsync();
+            taskList.Add(querySkillTask);
+
+            var queryJobExperienceTask = _blogContext.JobExperiences.AsNoTracking().ToListAsync();
+            taskList.Add(queryJobExperienceTask);
+
+            var querySampleTask = _blogContext.Samples.AsNoTracking().ToListAsync();
+            taskList.Add(querySampleTask);
+
+            var queryContentFlagTask = _blogContext.ContentFlags.AsNoTracking().ToListAsync();
+            taskList.Add(queryContentFlagTask);
+
+            var querySwtichFlagTask = _blogContext.SwitchFlags.AsNoTracking().ToListAsync();
+            taskList.Add(querySwtichFlagTask);
+
+            await Task.WhenAll(taskList);
+
+            var dictionary = new Dictionary<string, string>();
+            if (queryContentFlagTask.Result?.Count > 0)
+            {
+                foreach (var contentFlag in queryContentFlagTask.Result)
+                {
+                    dictionary.Add(contentFlag.Name, contentFlag.Content);
+                }
+            }
+
+
             return View(new ResumeViewModel
             {
-                Skills = list
+                Skills = querySkillTask.Result,
+                JobExperiences = queryJobExperienceTask.Result,
+                Samples = querySampleTask.Result,
+                ContentFlags = queryContentFlagTask.Result,
+                Motto = dictionary.ContainsKey(AppConstants.Motto) ? dictionary[AppConstants.Motto] : "",
+                PersonalProfile = dictionary.ContainsKey(AppConstants.PersonalProfile) ? dictionary[AppConstants.PersonalProfile] : "",
             });
         }
 
@@ -60,6 +94,11 @@ namespace Reggie.Blog.Controllers
         }
 
         public IActionResult Manage()
+        {
+            return View();
+        }
+
+        public IActionResult CreateInformalEssay()
         {
             return View();
         }

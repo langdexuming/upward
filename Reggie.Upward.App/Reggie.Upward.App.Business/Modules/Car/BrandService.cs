@@ -13,7 +13,7 @@ namespace Reggie.Upward.App.Business.Modules.Car
 
         public Tuple<bool, List<Brand>> BrandsTuple = new Tuple<bool, List<Brand>>(false,null);
 
-        public async Task<List<Brand>> Get()
+        public async Task<List<Brand>> GetAll()
         {
             //如果已经获取，则直接返回已获取的
             if (BrandsTuple.Item1) return BrandsTuple.Item2;

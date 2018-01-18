@@ -56,7 +56,7 @@ namespace Reggie.Upward.App.ViewModel
 
         private async void InitData()
         {
-            Brands = await _brandService.Get();
+            Brands = await _brandService.GetAll();
         }
     }
 }

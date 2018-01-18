@@ -26,7 +26,7 @@ namespace Reggie.Upward.WebApi.Controllers
 
         // GET api/brand
         [HttpGet]
-        public IEnumerable<Brand> Get()
+        public IEnumerable<Brand> GetAll()
         {
             _logger.LogInformation(LoggingEvents.ListItems, "");
 

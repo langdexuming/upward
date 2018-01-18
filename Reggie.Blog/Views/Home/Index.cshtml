@@ -89,17 +89,23 @@
         .header .nav {
             float: left;
         }
+
+        #indexSideBar .title{
+            color: white;
+
+        }
         
         #indexSideBar {
             padding: 10px 20px 0px 0px;
         }
         
         #indexSideBar .popular-tags {
-            background: #fff;
+            background: transparent;
             box-sizing: border-box;
             box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
             border-radius: 2px;
             padding: 3px 6px;
+            opacity: 0.6;
         }
         
         #indexSideBar .popular-tags .title {
@@ -111,7 +117,7 @@
         }
         
         .tag {
-            font-size: 16px;
+            font-size: 14px;
             line-height: 24px;
             /* margin-top: 14px; */
             background: #eaeaea;
@@ -204,13 +210,30 @@
             z-index: 2;
             -webkit-font-smoothing: subpixel-antialiased;
         }
+
+        #navbar {
+            /*background: #fff;*/
+            position: fixed;
+            z-index: 1;
+            margin-top: 20px;
+            background: transparent;
+        }
+        
+        .poster{
+            /*background: #666;*/
+        }
+
+        .poster {
+            padding: 20px 0px;
+            height: 340px;
+        }
         
         .poster img {
             position: absolute;
             float: left;
-            left: 30%;
             top: 0;
-            height: 40%;
+            width: 100%;
+            height: 100%;
         }
         
         #loadingCircle {
@@ -250,7 +273,7 @@
 }
     </style>
         <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-                                <link rel="stylesheet" href="~/css/plugins/summernote/summernote.css" />
+        <link rel="stylesheet" href="~/css/plugins/summernote/summernote.css" />
         <link rel="stylesheet" href="~/css/plugins/summernote/summernote-bs3.css" />
     <nav id="indexNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class=" container">
@@ -283,7 +306,7 @@
     </nav>
     <div class="poster">
         <div>
-            <!-- <img src="~/images/home/pexels-photo-banner-index.jpeg" class=" img-responsive"> -->
+            <img src="~/images/home/pexels-photo-banner-index.jpeg" class=" img-responsive">
             <div class=" text-center title animated infinite bounce">欢迎来到我的博客，您可以随便逛逛&nbsp;</div>
             <div class="ibox-content">
                 <div class="spiner-example">
@@ -301,7 +324,8 @@
     <div id="content" class="container">
         <div id="main-content" class=" col-md-9">
             @{
-                if(Model.CanCreateInformalEssay){
+                //if(Model.CanCreateInformalEssay){
+                    if(true){
                <div class="header">
                 <div class="nav">
                     <button id="btnInformalEssay" class="btn btn-default" click="btnInformalEssayClick()">
@@ -370,9 +394,9 @@
                 }
             </div>
 
-            <div id="indexSideBar" class=" col-md-3">
+            <div id="indexSideBar" class=" col-md-3" >
                 <div class="popular-tags">
-                    <h3 class="title">热门话题</h3>
+                    <h4 class="title">博客话题</h4>
                     <div class="custom-list">
                         <div class="tag">C#</div>
                         <div class="tag">.NET Core</div>
@@ -595,7 +619,8 @@ var isShowedIndexNavbar = false;
  * 加载随笔
  *
  */
-function InformalEssayLoad() {
+function InformalEssayLoad() 
+{
     if (!hasMoreInformalEssays) {
         return;
     }
@@ -614,6 +639,9 @@ function InformalEssayLoad() {
         lastId = children.last().attr('data-id');
     }
 
+// $.getJSON('/Home/SearchInformalEssay?lastId=' + lastId,function(data){
+//     console.log("123");
+// });
     var options = {
         url: '/Home/SearchInformalEssay?lastId=' + lastId,
         dataType: 'text',
@@ -657,7 +685,8 @@ function InformalEssayLoad() {
  * 是否需要加载问题，由当前页面滚动区域Top位置决定
  *
  */
-function IsNeedLoadInformalEssay() {
+function IsNeedLoadInformalEssay()
+ {
     var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
     var children = $("#informalEssayList").children();
     var lastElement=children.last();
@@ -672,7 +701,8 @@ function IsNeedLoadInformalEssay() {
  * 随笔发布
  *
  */
-function informalEssaySubmitClick(){
+function informalEssaySubmitClick()
+{
 var element=$("#informalEssayForm .note-editable");
 var content=element["0"].innerHTML;
 

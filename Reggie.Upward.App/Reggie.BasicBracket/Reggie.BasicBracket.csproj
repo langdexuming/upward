@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\TagAttribute.cs" />
     <Compile Include="Utils\Algorithm\HashUtil.cs" />
     <Compile Include="Utils\File\FileUtil.cs" />
     <Compile Include="Utils\Http\HttpMethodConstants.cs" />

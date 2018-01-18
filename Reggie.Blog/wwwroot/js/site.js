@@ -2,7 +2,7 @@
 /* 添加String内之类的动态方法
  * 判断字符串是否为空
  */
-String.prototype.IsNullOrEmpty = function() {
+String.prototype.IsNullOrEmpty = function () {
     if (this === null || this === undefined || this === '' || this.length === 0) {
         return true;
     }
@@ -23,7 +23,7 @@ function GetPositionTop(element) {
 文档加载--共享页面使用
 
 */
-$(function() {
+$(function () {
     var url = document.URL;
 
     if (url.indexOf("Index") >= 0) {
@@ -38,6 +38,9 @@ $(function() {
         $('#liIndex').addClass('active');
     }
 
+    $('.summernote').summernote({
+        lang: 'zh-CN'
+    });
 });
 
 // $.ajax({
@@ -58,7 +61,7 @@ $(function() {
 
 /****************************index.cshtml start******************************/
 //文档加载时执行
-$(function() {
+$(function () {
 
     // var ajaxRequestUrl = "TestApi";
 

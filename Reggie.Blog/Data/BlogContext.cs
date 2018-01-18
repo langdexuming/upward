@@ -13,5 +13,9 @@ namespace Reggie.Blog.Data
         public DbSet<InformalEssay> InformalEssays { get; set; }
         public DbSet<LeaveMessage> LeaveMessages { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<JobExperience> JobExperiences { get; set; }
+        public DbSet<Sample> Samples { get; set; }
+        public DbSet<ContentFlag> ContentFlags { get; set; }
+        public DbSet<SwitchFlag> SwitchFlags { get; set; }
     }
 }

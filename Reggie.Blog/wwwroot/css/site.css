@@ -114,6 +114,19 @@ textarea {
     height: 20%;
 }*/
 
+a {
+    cursor: pointer;
+}
+
+.weak-text {
+    opacity: 0.9;
+    color: #666;
+}
+
+.text-link {
+    cursor: pointer;
+}
+
 
 /* Hide/rearrange for smaller screens */
 
