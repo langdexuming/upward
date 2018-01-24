@@ -16,5 +16,13 @@ namespace Reggie.Blog.ViewModels
         public string Motto { get; set; }
 
         public string PersonalProfile { get; set; }
+
+        public bool IsShowSkills { get; set; }
+
+        public bool IsShowJobExperiences { get; set; }
+
+        public bool IsShowSamples { get; set; }
+
+        public bool IsShowEducationInformation { get; set; }
     }
 }

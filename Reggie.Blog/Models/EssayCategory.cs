@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Reggie.Blog.Models
@@ -7,13 +8,15 @@ namespace Reggie.Blog.Models
         [Key]
         public int EssayCategoryId { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         public string Title { get; set; }
 
-        [MaxLength(200)]
+        [StringLength(200)]
         public string Description { get; set; }
 
-        [MaxLength(200)]
+        [StringLength(200)]
         public string Remark { get; set; }
+
+        public ICollection<InformalEssay> InformalEssays { get; set; }
     }
 }

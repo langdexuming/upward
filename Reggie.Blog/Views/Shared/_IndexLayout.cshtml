@@ -1,50 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+﻿@{
+    Layout = "_Layout";
+}
+<style>
+    #content {
+        color: #262626;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
 
-   <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/animate.css">
-        <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-        <link rel="stylesheet" href="~/css/plugins/summernote/summernote.css" />
-        <link rel="stylesheet" href="~/css/plugins/summernote/summernote-bs3.css" />
+    #main-content {
+        min-height: 480px;
+        /* background: gray; */
+        min-height: 480px;
+        /* max-height: 500px; */
+        padding: 10px 20px 0px 0px;
+    }
 
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/animate.min.css" asp-append-version="true">
-        <link href="~/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" asp-append-version="true">
-        <link rel="stylesheet" href="~/css/plugins/summernote/summernote.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/plugins/summernote/summernote-bs3.min.css" asp-append-version="true" />
-
-    </environment>
-
-    <style>
-        .social-group {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        #content {
-            color: #262626;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-        
-        #main-content {
-            min-height: 480px;
-            /* background: gray; */
-            min-height: 480px;
-            /* max-height: 500px; */
-            padding: 10px 20px 0px 0px;
-        }
-        
         #main-content .header {
             color: #262626;
             height: 64px;
@@ -61,370 +31,65 @@
             padding: 3px 6px;
             overflow: hidden;
         }
-        
-        #main-content .header .btn {
-            border-width: 0px;
-            padding: 6px 12px;
-            font-size: 16px;
-            line-height: 20px;
-            display: inline-block;
-        }
-        
-        #main-content .header svg {
-            vertical-align: middle;
-            margin: auto 6px 1px 0px;
-        }
-        
-        .Icon {
-            vertical-align: text-bottom;
-            fill: #9fadc7;
-        }
-        
-        ul.list-group {
-            margin: 0;
-            padding: 0;
-            /*box-shadow: 0 1px 12px rgba(0, 0, 0, .1);*/
-            color: #262626;
-            border-radius: 2px;
-            background: transparent;
-        }
-        
-        .list-group-item {
-            /* padding-left: 0px; */
-            margin: 0px 0px 12px 0px;
-            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
-            background: #fff;
-            border-radius: 2px;
-        }
-        
-        .TopstoryHeader-rightItem {
-            color: #8590a6;
-            -webkit-transition: color .2s ease-in;
-            transition: color .2s ease-in;
-            cursor: pointer;
-            float: right;
-            margin-right: 12px;
-        }
-        
-        .header .nav {
-            float: left;
-        }
-        
-        #indexSideBar {
-            padding: 10px 20px 0px 0px;
-        }
-        
-        #indexSideBar .popular-tags {
-            background: #fff;
-            box-sizing: border-box;
-            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
-            border-radius: 2px;
-            padding: 3px 6px;
-        }
-        
-        #indexSideBar .popular-tags .title {
-            line-height: 24px;
-        }
-        
-        #indexSideBar .custom-list {
-            display: inline-block;
-        }
-        
-        .tag {
-            font-size: 16px;
-            line-height: 24px;
-            /* margin-top: 14px; */
-            background: #eaeaea;
-            padding: 6px 8px;
-            border-radius: 6px;
-            float: left;
-            max-width: 128px;
-            position: relative;
-            margin: 6px 12px 6px 0px;
-        }
-        
-        .statistical-chart {
-            background: #fff;
-            box-sizing: border-box;
-            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
-            border-radius: 2px;
-            /* box-sizing: border-box; */
-            padding: 3px 6px;
-            margin-top: 10px;
-        }
-        
-        #myChart {
-            /* background: red; */
-            /* min-height: 200px;
-            width: 250px; */
-        }
-        
-        .statement {
-            background: #fff;
-            box-sizing: border-box;
-            box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
-            border-radius: 2px;
-            min-height: 200px;
-            /* box-sizing: border-box; */
-            padding: 3px 6px;
-            margin-top: 10px;
-        }
-        
-        .statement .title {
-            line-height: 22px;
-        }
-        
-        .statement p {
-            /* margin-right: -40px; */
-        }
-        
-        .statement ul {
-            list-style: none;
-            padding-left: 10px;
-        }
-        
-        .statement ul>li {
-            list-style: none;
-            margin-top: 3px;
-        }
-        
-        .list-group-item {
-            min-height: 64px;
-            text-overflow: clip;
-        }
-        
-        .list-group-item .title {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            line-height: 22px;
-            cursor: pointer;
-        }
-        
-        .list-group-item .message {
-            white-space: pre-wrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            line-height: 20px;
-            max-height: 80px;
-            /* 解决一长串数字、英文字母连在一起时不能自动换行*/
-            word-break: break-all;
-            word-wrap: break-word;
-        }
 
-        .list-group-item .message a{
-            cursor: pointer;
-            margin-left: 3px;
-        }
-        
-        .Sticky.is-fixed {
-            position: fixed;
-            z-index: 2;
-            -webkit-font-smoothing: subpixel-antialiased;
-        }
-        
-        .poster img {
-            position: absolute;
-            float: left;
-            left: 30%;
-            top: 0;
-            height: 40%;
-        }
-        
-        #loadingCircle {
-            margin-top: 20px;
-            display: none;
-        }
-        
-        #loadingCircle .sk-spinner-fading-circle {
-            width: 64px;
-            height: 64px;
-        }
-        
-        #loadingCircle p {
-            margin-top: 5px;
-            color: #262626;
-        }
-        
-        #indexNavbar {
-            display: none;
-        }
+            #main-content .header .btn {
+                border-width: 0px;
+                padding: 6px 12px;
+                font-size: 16px;
+                line-height: 20px;
+                display: inline-block;
+            }
 
-#informalEssay .note-editor .note-toolbar {
-    background-color: #F9F8F8;
-}
+            #main-content .header svg {
+                vertical-align: middle;
+                margin: auto 6px 1px 0px;
+            }
 
-#informalEssay .content{
-    background: #fff;
-}
+    .TopstoryHeader-rightItem {
+        color: #8590a6;
+        -webkit-transition: color .2s ease-in;
+        transition: color .2s ease-in;
+        cursor: pointer;
+        float: right;
+        margin-right: 12px;
+    }
 
-.note-editor {
-    height: auto!important;
-    min-height: 240px;
-    border: solid 1px #e5e6e7;
-}
-.note-editor .note-editable{
-    min-height: 240px;
-}
-    </style>
-</head>
-<body>
-        <nav id="navbar" class="navbar navbar-inverse" role="navigation">
-            <div class=" container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <a asp-area="" asp-controller="" asp-action="Index" class="navbar-brand">Langdexuming's Reggie.Blog</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="liIndex"><a asp-controller="Home" asp-action="Index">首页</a></li>
-                        <li id="liGameLife"><a asp-controller="Home" asp-action="GameLife">游戏人生</a></li>
-                        <li id="liLeaveMessage"><a asp-controller="Home" asp-action="LeaveMessage">给我留言</a></li>
-                        <li id="liResume"><a asp-controller="Home" asp-action="Resume">个人简历</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    <div class="body-content">
-    <nav id="indexNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class=" container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Langdexuming's Reggie.Blog</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li id="liIndex">
-                        <a asp-controller="Home" asp-action="Index">首页</a>
-                    </li>
-                    <li id="liGameLife">
-                        <a asp-controller="Home" asp-action="GameLife">游戏人生</a>
-                    </li>
-                    <li id="liLeaveMessage">
-                        <a asp-controller="Home" asp-action="LeaveMessage">给我留言</a>
-                    </li>
-                    <li id="liResume">
-                        <a asp-controller="Home" asp-action="Resume">个人简历</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="poster">
-        <div>
-            <!-- <img src="~/images/home/pexels-photo-banner-index.jpeg" class=" img-responsive"> -->
-            <div class=" text-center title animated infinite bounce">欢迎来到我的博客，您可以随便逛逛&nbsp;</div>
-            <div class="ibox-content">
-                <div class="spiner-example">
-                    <div class="sk-spinner sk-spinner-wave">
-                        <div class="sk-rect1"></div>
-                        <div class="sk-rect2"></div>
-                        <div class="sk-rect3"></div>
-                        <div class="sk-rect4"></div>
-                        <div class="sk-rect5"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    .header .nav {
+        float: left;
+    }
+
+    #informalEssay .note-editor .note-toolbar {
+        background-color: #F9F8F8;
+    }
+
+    #informalEssay .content {
+        background: #fff;
+    }
+
+    .note-editor {
+        height: auto !important;
+        min-height: 240px;
+        border: solid 1px #e5e6e7;
+        background: #fff;
+    }
+
+        .note-editor .note-editable {
+            min-height: 240px;
+        }
+</style>
+
+@*海报*@
+@Html.Partial("_IndexPosterPartial")
+
+@*用于定位导航条变换位置*@
+<div id="posterBottom"></div>
+
+@*主要内容：新建随笔，博客列表*@
+<div id="content" class="container">
+    <div id="main-content" class=" col-md-9">
+      @RenderBody()
     </div>
-    <div id="content" class="container">
-        <div id="main-content" class=" col-md-9">
-        @RenderBody()
-        </div>
-            <div id="indexSideBar" class=" col-md-3">
-                <div class="popular-tags">
-                    <h3 class="title">热门话题</h3>
-                    <div class="custom-list">
-                        <div class="tag">C#</div>
-                        <div class="tag">.NET Core</div>
-                        <div class="tag">WPF</div>
-                        <div class="tag">MVVMLight</div>
-                        <div class="tag">JavaScript</div>
-                        <div class="tag">ASP</div>
-                        <div class="tag">HTML</div>
-                        <div class="tag">CSS</div>
-                        <div class="tag">Bootstrap</div>
-                    </div>
-                </div>
-                <div class="Sticky">
-                    <!--Chart -->
-                    <div class="statistical-chart">
-                        <canvas id="myChart" width="250" height="200"></canvas>
-                    </div>
-                    <!-- 作者声明 -->
-                    <div class="statement">
-                        <h4 class="title">作者声明</h4>
-                        <p>1.本网站仅作为个人技能展示，网站内容不作版权申明，请勿肆意传播</p>
-                        <p>2.本网站坚决维护网络健康原则，若内容有违背，请及时联系或留言</p>
-                        <p>3.本网站引用的内容及参考的网站如下：
-                            <ul>
-                                <li>
-                                    <a href="http://glyphicons.com/">http://glyphicons.com/</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.zhihu.com">https://www.zhihu.com</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.pexels.com/">https://www.pexels.com/</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.bootcss.com/">http://www.bootcss.com/</a>
-                                </li>
-                                <li>
-                                    <a href="https://onfleet.com/">https://onfleet.com/</a>
-                                </li>
-                            </ul>
 
-                        </p>
-                    </div>
-            </div>
-        </div>
-    </div>
-        <hr />
-        @Html.Partial("_FooterViewPartial")
-    </div>
-    
-   <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <!-- <script src="~/js/holder.js"></script> -->
-        <script src="~/lib/chart/dist/Chart.js"></script>
-        <script src="~/js/plugins/summernote/summernote.js"></script>
-        <script src="~/js/plugins/summernote/summernote-zh-CN.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <!-- <script src="~/js/holder.min.js" asp-append-version="true"></script> -->
-        <script src="~/lib/chart/dist/Chart.min.js" asp-append-version="true"></script>
-        <script src="~/js/plugins/summernote/summernote.min.js" asp-append-version="true"></script>
-        <script src="~/js/plugins/summernote/summernote-zh-CN.js" asp-append-version="true"></script>
-    </environment>
-
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
+    @*侧边栏*@
+    @Html.Partial("_IndexSideBarPartial")
+</div>

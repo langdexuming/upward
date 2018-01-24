@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Reggie.Blog.Models
 {
-    public class LoginModel
+    public class ApplicationUser:IdentityUser
     {
+
     }
 }

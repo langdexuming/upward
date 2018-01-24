@@ -10,6 +10,7 @@ namespace Reggie.Blog.Data
         {
         }
 
+        public DbSet<EssayCategory> EssayCategories { get; set; }
         public DbSet<InformalEssay> InformalEssays { get; set; }
         public DbSet<LeaveMessage> LeaveMessages { get; set; }
         public DbSet<Skill> Skills { get; set; }

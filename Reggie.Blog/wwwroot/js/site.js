@@ -23,6 +23,9 @@ function GetPositionTop(element) {
 文档加载--共享页面使用
 
 */
+
+var isShowednavbar = false;
+
 $(function () {
     var url = document.URL;
 
@@ -38,8 +41,36 @@ $(function () {
         $('#liIndex').addClass('active');
     }
 
-    $('.summernote').summernote({
-        lang: 'zh-CN'
+    //管理页面
+    $("#tableItems .list-group-item").each((index, element) => {
+        var value = element.getAttribute("name");
+        if (url.indexOf(value) >= 0) {
+            $(element).addClass("active");
+        }
+    });
+
+    $(document).scroll(function () {
+        var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        if (docScrollTop > $('#posterBottom').offset().top-50) {
+            if (!isShowednavbar) {
+                //$('#navbar').stop().fadeIn(1000);
+
+                $('#navbar')[0].style.backgroundColor = "#222";
+                $('#navbar')[0].style.opacity = 1;
+
+                isShowednavbar = true;
+            }
+
+        } else {
+            if (isShowednavbar) {
+                //$('#navbar').stop().fadeOut(1000);
+
+                $('#navbar')[0].style.backgroundColor = "transparent";
+                $('#navbar')[0].style.opacity = 1;
+
+                isShowednavbar = false;
+            }
+        }
     });
 });
 

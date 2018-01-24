@@ -6,14 +6,14 @@ namespace Reggie.Blog.Models
     {
         public int Id { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [MaxLength(500)]
+        [StringLength(500)]
         public string Content { get; set; }
 
-        [MaxLength(200)]
+        [StringLength(200)]
         public string Remark { get; set; }
     }
 }

@@ -1,92 +1,83 @@
+@model Reggie.Blog.Models.InformalEssay;
 @{
     Layout="_IndexLayout";
-    @model Reggie.Blog.Models.InformalEssay;
-    ViewData["Title"]="Langdexuming' Reggie.Blog, create the informal essay";
+    ViewData["Title"]="Langdexuming' Blog, create the informal essay";
 }
-    <div id="informalEssay">
-        <div>
-            <h3>添加随笔</h3>
-        </div>
-        <form id="informalEssayForm" role="form">
-            <div class=" form-group">
-                <label>标题</label>
-                <input id="inputTitle" name="title" type="text" class="form-control" style="max-width:1080px;">
+<div>
+    <h3>添加随笔</h3>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="CreateInformalEssay" onsubmit="onsubmitHandler()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EssayCategoryId" class="control-label"></label>
+                <select asp-for="EssayCategoryId" class="form-control" asp-items="ViewBag.EssayCategoryId"></select>
             </div>
-            <div class=" form-group">
-                <label>内容</label>
-                <div class="content">
-                    <div name="message" class="summernote">
-                    </div>
-                </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <button type="button" class="btn btn-primary" onclick="informalEssaySubmitClick()">发布</button>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <input asp-for="Message" class="form-control sr-only" />
+                <div class="summernote form-control"></div>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group sr-only">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" value="langdexuming"/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="CreateDateTime" class="control-label"></label>
+                    <input asp-for="CreateDateTime" class="form-control" />
+                    <span asp-validation-for="CreateDateTime" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <input type="submit" value="发布" class="btn btn-default" />
+            </div>
         </form>
     </div>
+</div>
 
-    @section Scripts 
-{
-    <script lang=”javascript” type="text/javascript">
-/*
- * 随笔发布
- *
- */
-function informalEssaySubmitClick(){
-var element=$("#informalEssayForm .note-editable");
-var content=element["0"].innerHTML;
-
-    var title = $('#inputTitle').val();
-    if (title.IsNullOrEmpty()) {
-        alert("请输入随笔标题！");
-        return;
-    }
-
-    if (content.IsNullOrEmpty()) {
-        alert("请输入随笔内容！");
-        return;
-    }
-
-    var informalEssay={
-    };
-    informalEssay.title=title;
-    informalEssay.message=content;
-
-          //域内请求
-    var options = {
-        //随笔
-        url: '/Home/CreateInformalEssay',
-        type: 'post',
-        //contentType: 'application/json',
-        dataType: 'text',
-        data: informalEssay,
-        //data: $("#informalEssayForm").serialize()+"&message="+content,
-        success: function(data) {
-            if (data.length > 0) {
-                console.log('请求成功，数据长度为:' + data.length);
-                //解析Json字符串
-                var dataObj = eval("(" + data + ")");
-
-                // console.log(dataObj.title);
-                // console.log(dataObj.message);
-                // console.log(dataObj.userName);
-                // console.log(dataObj.createDateTime);
-                // console.log(dataObj.sourceType);
-            window.location.href="/Home/index"; 
-            }
-        }
-    };
-
-    $.ajax(options);
-}
-
-/*
- * 
- *
- */
-$(function() {
-            $('.summernote').summernote({
-                lang: 'zh-CN'
-            });
-    });
-
+<environment names="Development">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"
+            crossorigin="anonymous"
+            integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
     </script>
-}
+</environment>
+
+<script lang="javascript" type="text/javascript">
+
+        /*
+        * 提交前处理
+        *
+        */
+        function onsubmitHandler() {
+            //不管用
+            //var message = $('.summernote').summernote('code');
+
+            var message = $("form .note-editable")[0].innerHTML;
+            $("input[name=Message]").val(message);
+        }
+
+        $(function () {
+            var message = $("input[name=Message]").val();
+            $(".summernote").summernote({
+                lang: 'zh-CN',
+                placeholder: "请输入内容",
+            });
+
+            //不管用
+            //$(".summernote").summernote("code", message);
+
+            $("form .note-editable")[0].innerHTML = message === undefined ? "":message;
+        });
+</script>

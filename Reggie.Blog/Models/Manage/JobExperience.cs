@@ -9,26 +9,26 @@ namespace Reggie.Blog.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string CompanyName { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string Position { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [StringLength(500)]
         public string JobContent { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy年MM月}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy年MM月}", ApplyFormatInEditMode = false)]
         public DateTime StartDate { get; set; }
 
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy年MM月}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy年MM月}", ApplyFormatInEditMode = false)]
         public DateTime? EndDate { get; set; }
 
     }

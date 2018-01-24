@@ -1,9 +1,14 @@
     @model Reggie.Blog.ViewModels.ResumeViewModel;
      @{
-        ViewData["Title"]="Langdexuming' Reggie.Blog, welcome to check my resume";
+        ViewData["Title"]="Langdexuming' Blog, welcome to check my resume";
     }
 
     <style>
+
+        body {
+            background: #fff;
+        }
+
         .jumbotron {
             padding: 0;
             margin-bottom: 0px;
@@ -14,33 +19,7 @@
             font-size: 16px;
             line-height: 24px;
         }
-        
-        .container {
-            background: transparent;
-        }
 
-        #navbar {
-            /*background: #fff;*/
-            position: fixed;
-            z-index: 1;
-            margin-top: 20px;
-            background: transparent;
-        }
-        
-        .poster {
-            padding: 20px 0px;
-            height: 340px;
-        }
-        
-        .poster img {
-            position: absolute;
-            float: left;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-        }
-        
         .summary-brand .title {
             font-family: "华文行楷";
             font-size: 72px;
@@ -229,7 +208,7 @@
         
         #experienceContent .content .description {
             border-radius: 4px;
-            font-size: 14x;
+            font-size: 14px;
             font-family: "微软雅黑Light";
             color: #000;
         }
@@ -382,10 +361,6 @@
             opacity: 1;
         }
         
-        body {
-            background: #fff;
-        }
-
         .repo-icon{
             margin-right:5px;
             float: left;
@@ -393,64 +368,12 @@
             color: #666;
         }
 
-        .opreate-group
-        {
-            position:relative;
-            float: right;
-            margin-top: -60px;
-        }
-
-        .opreate-group .opreate-item
-        {
-            background: transparent;
-        }
-
         .list-group-item{
             vertical-align: middle;
             border: 0px solid transparent;
+            background-color:transparent;
         }
 
-        #skillContent .list-group-item input[type=radio]
-        {
-
-        }
-
-        #skillContent .list-group-item input[type=radio]+dl .glyphicon
-        {
-        display: none;
-        }
-
-        #skillContent .list-group-item input[type=radio]:checked+dl .glyphicon{
-            display:inline;
-        }
-
-        #experienceContent .list-group-item input[type=radio]+.row
-        {
-            border: 1px solid transparent;
-        }
-
-        #experienceContent .list-group-item input[type=radio]:checked+.row
-        {
-            border: 1px solid #666;
-        }
-
-.note-editor .note-toolbar {
-    background-color: #F9F8F8;
-}
-
-.content{
-    background: #fff;
-}
-
-.note-editor {
-    height: auto!important;
-    min-height: 120px;
-    border: solid 1px #e5e6e7;
-}
-
-.note-editor .note-editable{
-    min-height: 120px;
-}
     </style>
 
 <div id="summaryContent" class="poster">
@@ -462,11 +385,12 @@
                     <div class="title">YIN Ruimin</div>
                     <div class="subheading">
                         <hr class="broken-line"></hr>
-                        <span>来自另一个世界的码农</span>
+                        <span>@Model.Motto</span>
                     </div>
                 </div>
                 <div class="summary-description">
-                    <p>擅长于Windows客户端开发，也对Web前端/后端有着浓厚兴趣，从事过诸多领域的软件开发工作(安防对讲类的监控软平台软件、车载设备上位机软件、客户体验类平台软件)
+                    <p>
+                        @Model.PersonalProfile
                     </p>
                 </div>
                 <div class="btn-group">
@@ -491,67 +415,52 @@
                      <img src="~/images/home/section-international-icon.png" class=" img-responsive"></img>
                 </div> -->
         </div>
-    </div>
+</div>
+
+@*用于定位导航条变换位置*@
+<div id="posterBottom"></div>
 
     <!-- 工作技能 -->
+@if (Model.IsShowSkills)
+{
     <div id="skillContent" class="section">
         <div class="heading">
             <h3 class="title">工作技能</h3>
             <hr class="line"></hr>
         </div>
         <div class=" content container">
-            <div class="btn-group opreate-group" role="group" aria-label="...">
-                <button data-toggle="modal" data-target="#skillModal" class="btn text-default opreate-item">
-                    <span class=" glyphicon glyphicon-plus"></span>
-                </button>
-                <button class="btn text-info opreate-item">
-                    <span class=" glyphicon glyphicon-pencil"></span>
-                </button>
-                <button class="btn text-danger opreate-item" onclick="DeleteSkill()">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-            </div>
             <div class="list-group">
                 @if(Model.Skills?.Count>0) { @foreach (var skill in Model.Skills) { var progressValue=skill.Level*10; var styleProgressValue=progressValue>20?progressValue:progressValue*2;
-                <a class=" list-group-item col-sm-4 col-md-4 col-lg-4" data-id="@skill.Id" onclick="SelectSkill(this)">
-                    <input name="skillGroup" type="radio" class=" sr-only">
+                <div class="list-group-item col-sm-4 col-md-4 col-lg-4">
                     <dl class="dl-horizontal">
-                        <dt>
-                            <span class="glyphicon glyphicon-ok"></span> @skill.Name</dt>
+                        <dt>@skill.Name</dt>
                         <dd class="progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: @styleProgressValue%;">
                                 <span>@progressValue%</span>
                             </div>
                         </dd>
                     </dl>
-                </a>
+                </div>
                 } }
             </div>
         </div>
     </div>
-
+}
     <!-- 工作经历 -->
+@if (Model.IsShowJobExperiences)
+{
     <div id="experienceContent" class="section">
         <div class="heading">
             <h3 class="title">工作经历</h3>
             <hr class="line"></hr>
         </div>
         <div class="content container">
-            <div class="btn-group opreate-group" role="group" aria-label="...">
-                <button class="btn text-default opreate-item" onclick="PrepareCreateJobExperience()">
-                    <span class=" glyphicon glyphicon-plus"></span>
-                </button>
-                <button class="btn text-info opreate-item">
-                    <span class=" glyphicon glyphicon-pencil" onclick="EditJobExperience()"></span>
-                </button>
-                <button class="btn text-danger opreate-item" onclick="DeleteJobExperience()">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-            </div>
             <div class="list-group">
-                @if(Model.JobExperiences?.Count>0) { @foreach(var item in Model.JobExperiences) { var isNowJob=item.EndDate==null;
-                <a class="list-group-item" data-id="@item.Id" onclick="SelectJobExperience(this)">
-                    <input name="jobExperienceGroup" type="radio" class=" sr-only">
+                @if (Model.JobExperiences?.Count>0)
+                { @foreach(var item in Model.JobExperiences)
+                {
+                    var isNowJob=item.EndDate==null;
+                <div class="list-group-item">
                     <div class="row ">
                         <div class=" col-md-3">
                             <h4 class="company">@item.CompanyName</h4>
@@ -576,56 +485,50 @@
                             </div>
                         </div>
                     </div>
-                </a>
-                } }
+                </div>
+                }
+                }
             </div>
         </div>
     </div>
+}
 
     <!-- 作品集 -->
+@if (Model.IsShowSamples&& Model.Samples?.Count > 0)
+{
     <div id="sampleReelsContent" class="section">
         <div class="heading">
             <h3 class="title">作品集</h3>
             <hr class="line"></hr>
         </div>
         <div class="content container">
-            <div class="btn-group opreate-group" role="group" aria-label="...">
-                <button class="btn text-default opreate-item">
-                    <span class=" glyphicon glyphicon-plus"></span>
-                </button>
-                <button class="btn text-info opreate-item">
-                    <span class=" glyphicon glyphicon-pencil"></span>
-                </button>
-                <button class="btn text-danger opreate-item">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-            </div>
-
-    @if(Model.Samples?.Count>0)
-    {
-        @foreach (var item in Model.Samples)
-        {
-            <div class="panel panel-default">
-                <div class="panel-heading ">
-                    <a href="@Html.DisplayFor(modelItem => item.ViewUrl)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
+            @foreach (var item in Model.Samples)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <a href="@item.ViewUrl" target="_blank" title="@item.ViewUrl">@Html.DisplayFor(modelItem => item.Title)</a>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Raw(@item.Description)
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" target="_blank">
+                            <span>
+                                <svg aria-hidden="true" class="repo-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12">
+                                    <path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path>
+                                </svg>
+                            </span>@Html.DisplayFor(modelItem => item.SourceUrl)
+                        </a>
+                    </div>
                 </div>
-                <div class="panel-body">
-                   @Html.DisplayFor(modelItem => item.Description)
-                </div>
-                <div class="panel-footer">
-                    <a href="#" target="_blank">
-                        <span>
-                            <svg aria-hidden="true" class="repo-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12">
-                                <path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path>
-                            </svg>
-                        </span>@Html.DisplayFor(modelItem => item.SourceUrl)</a>
-                </div>
-            </div>
-                   }
-               }
+            }
+        </div>
     </div>
+         }
 
     <!-- 教育背景 -->
+@if (Model.IsShowEducationInformation && Model.Samples?.Count > 0)
+{
     <div id="educationalContent" class="section">
         <div class="heading">
             <h3 class="title">教育背景</h3>
@@ -644,6 +547,7 @@
             </div>
         </div>
     </div>
+}
 
     <!-- 定义一个右侧导航条 -->
     <nav id="rightNavbar" class="navbar navbar-default">
@@ -655,377 +559,53 @@
                 </a>
                 <hr></hr>
             </li>
+            @if (Model.IsShowSkills)
+            {
             <li role="presentation" data-target="#skillContent">
                 <a href="#">
                     <span class="glyphicon glyphicon-wrench" title="工作技能"></span>
                 </a>
                 <hr></hr>
             </li>
+            }
+            @if (Model.IsShowJobExperiences)
+            {
             <li role="presentation" data-target="#experienceContent">
                 <a href="#">
                     <span class="glyphicon glyphicon-fire" title="工作经历"></span>
                 </a>
                 <hr></hr>
             </li>
+            }
+            @if (Model.IsShowSamples)
+            {
             <li role="presentation" data-target="#sampleReelsContent">
                 <a href="#">
                     <span class="glyphicon glyphicon-picture" title="作品集"></span>
                 </a>
                 <hr></hr>
             </li>
-            <li role="presentation" data-target="#educationalContent">
-                <a href="#">
-                    <span class="glyphicon glyphicon-pencil" title="教育背景"></span>
-                </a>
-            </li>
+            }
+            @if (Model.IsShowEducationInformation)
+            {
+                <li role="presentation" data-target="#educationalContent">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-pencil" title="教育背景"></span>
+                    </a>
+                </li>
+            }
+
         </ul>
     </nav>
-
-    <!-- 技能 Modal -->
-    <div class="modal fade" id="skillModal" tabindex="-1" role="dialog" aria-labelledby="skillModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">添加技能</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="skillForm" role="form" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">名称：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="name" class="form-control" placeholder="请输入技能名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">熟练度：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="level" class="form-control" placeholder="请输入技能熟练度(1-10)">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="CreateSkill()">确定</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 工作经历 Modal -->
-    <div class="modal fade" id="jobExperienceModal" tabindex="-1" role="dialog" aria-labelledby="skillModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">添加工作经历</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="jobExperienceForm" role="form" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">公司名称：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="companyName" class="form-control" placeholder="请输入公司名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">职位：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="position" class="form-control" placeholder="请输入职位">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">工作内容：</label>
-                            <div class="col-sm-9">
-                                <div class="content">
-                                    <div name="jobContent" class="form-control summernote" placeholder="请输入工作内容">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">开始时间：</label>
-                            <div class="col-sm-9">
-                                <input type="date" name="startDate" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">结束时间</label>
-                            <div class="col-sm-9">
-                                <input type="date" name="endDate" class="form-control">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="JobExperienceOpOk()">确定</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 作品集 Modal -->
-    <div class="modal fade" id="sampleModal" tabindex="-1" role="dialog" aria-labelledby="skillModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">添加作品</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="sampleForm" role="form" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="title" class="col-sm-3 control-label">标题：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="companyName" class="form-control" placeholder="请输入作品标题">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="description" class="col-sm-3 control-label">职位：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="position" class="form-control" placeholder="请输入职位">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">工作内容：</label>
-                            <div class="col-sm-9">
-                                <div class="content">
-                                    <div name="jobContent" class="form-control summernote" placeholder="请输入工作内容">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">开始时间：</label>
-                            <div class="col-sm-9">
-                                <input type="date" name="startDate" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMessage" class="col-sm-3 control-label">结束时间</label>
-                            <div class="col-sm-9">
-                                <input type="date" name="endDate" class="form-control">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="JobExperienceOpOk()">确定</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 @section Scripts 
 {
-        <script lang=”javascript” type="text/javascript">
-
-ModelDialogOpMode=
-{
-    Create:"Create",
-    Edit:"Edit",
-    Delete:"Delete"
-}
-
-var GetSkillsUrl="/Resume/GetSkills";
-var CreateSkillUrl="/Resume/CreateSkill";
-var DeleteSkillUrl="/Resume/DeleteSkill";
-
-var GetJobExperienceUrl="/Resume/GetJobExperience";
-var CreateJobExperienceUrl="/Resume/CreateJobExperience";
-var UpdateJobExperienceUrl="/Resume/UpdateJobExperience";
-var DeleteJobExperienceUrl="/Resume/DeleteJobExperience";
-
-var _currentOpMode;
-    /*
-   * 创建技能
-   *
-   */
-  function CreateSkill()
-  {
-      var data=$('#opreateForm').serialize();
-      $.post(CreateSkillUrl,data,function(result,status,xhr)
-      {
-          if(xhr.status===200)
-          {
-              console.log(result);
-              $('#skillModal').modal('hide');
-              RefreshSkills();
-              return;
-          }
-          alert("添加失败，请重试！");
-      });
-  }
-
-      /*
-   * 创建技能
-   *
-   */
-  function DeleteSkill()
-  {
-      var id=_selectSkillId;
-      var data="?id="+id;
-      $.get(DeleteSkillUrl+data,"",function(result,status,xhr)
-      {
-          if(xhr.status===200)
-          {
-              console.log(result);
-
-              var selector="#skillContent .list-group-item[data-id="+id+"]";
-              $(selector).remove();
-
-              return;
-          }
-      });
-  }
-
-  function RefreshSkills()
-  {
-      $.getJSON(GetSkillsUrl,"",function(result,status,xhr){
-          if(xhr.status===200)
-          {
-              console.log(result);
-
-              var skillsContainter=$('#skillContent .list-group').get(0);
-              window.location.href="/home/resume";
-            //   for(int i=0;i<result.length;i++)}
-            //   {
-                  
-            //   }
-              return;
-          }
-      });
-  }
-
-  function PrepareCreateJobExperience()
-  {
-      _currentOpMode=ModelDialogOpMode.Create;
-      $('#jobExperienceModal .modal-title').innerHTML="添加工作经历";
-      $('#jobExperienceModal').modal('show');
-  }
-
-  function CreateJobExperience(){
-      //var data=$('#jobExperienceForm').serialize();
-      var data={};
-      var elements=$("#jobExperienceForm .note-editable");
-      var content=elements.get(0).innerHTML;
-      data.companyName=$("#jobExperienceForm input[name=companyName]").val();
-      data.position=$("#jobExperienceForm input[name=position]").val();
-      data.jobContent=content;
-      data.startDate=$("#jobExperienceForm input[name=startDate]").val();
-      data.endDate=$("#jobExperienceForm input[name=endDate]").val();
-      $.post(CreateJobExperienceUrl,data,function(result,status,xhr){
-          if(xhr.status===200)
-          {
-              console.log(result);
-              $('#jobExperienceModal').modal('hide');
-              return;
-          }
-          alert("添加失败，请重试！");
-      });
-  }
-
-  function JobExperienceOpOk()
-  {
-      switch(_currentOpMode)
-      {
-        case ModelDialogOpMode.Create:
-            CreateJobExperience();
-            break;
-        case ModelDialogOpMode.Edit:
-            UpdateJobExperience();
-            break;
-        default:
-            break;
-      }
-  }
-
-  function EditJobExperience()
-  {
-       var id=_selectJobExperienceId;
-       if(id!==undefined)
-       {
-                  var id=_selectJobExperienceId;
-                  var data="?id="+id;
-    $.get(GetJobExperienceUrl+data,"",function(result,status,xhr)
-      {
-          if(xhr.status===200)
-          {
-            console.log(result);
-            _currentOpMode=ModelDialogOpMode.Edit;
-            $('#jobExperienceModal .modal-title').innerHTML="编辑工作经历";
-            var elements=$("#jobExperienceForm .note-editable");
-            $("#jobExperienceForm input[name=companyName]").val(result.companyName);
-            $("#jobExperienceForm input[name=position]").val(result.position);
-            elements[0].innerHTML=result.jobContent;
-            $("#jobExperienceForm input[name=startDate]").val(result.startDate.substring(0,10));
-            $("#jobExperienceForm input[name=endDate]").val(result.endDate.substring(0,10));
-            $('#jobExperienceModal').modal('show');
-              return;
-          }
-      });
-       }
-  }
-
-    function UpdateJobExperience(){
-      var data={};
-      data.id=_selectJobExperienceId;
-      var elements=$("#jobExperienceForm .note-editable");
-      var content=elements.get(0).innerHTML;
-      data.companyName=$("#jobExperienceForm input[name=companyName]").val();
-      data.position=$("#jobExperienceForm input[name=position]").val();
-      data.jobContent=content;
-      data.startDate=$("#jobExperienceForm input[name=startDate]").val();
-      data.endDate=$("#jobExperienceForm input[name=endDate]").val();
-      $.post(UpdateJobExperienceUrl,data,function(result,status,xhr)
-      {
-          if(xhr.status===200)
-          {
-              console.log(result);
-              $('#jobExperienceModal').modal('hide');
-              return;
-          }
-      });
-  }
-
-
-
-  function DeleteJobExperience(){
-       var id=_selectJobExperienceId;
-      var data="?id="+id;
-      $.get(DeleteJobExperienceUrl+data,"",function(result,status,xhr)
-      {
-          if(xhr.status===200)
-          {
-              console.log(result);
-
-              var selector="#experienceContent .list-group-item[data-id="+id+"]";
-              $(selector).remove();
-
-              return;
-          }
-      });
-  }
+        <script lang="javascript" type="text/javascript">
 
   var _isValidScroll = true;
   var _topNavbarHeight = 65;
   var _scrollTopOffset = 20;
-  var _selectSkillId=-1;
-  var _selectJobExperienceId=-1;
 
   /*
    * 滚动到指定位置
@@ -1049,24 +629,6 @@ var _currentOpMode;
       });
 
       //$(document).scrollTop(offset);
-  }
-
-  /*
-   * 选择技能
-   *
-   */
-  function SelectSkill(item)
-  {
-      var radio=$(item).children('input[type=radio]').get(0);
-      radio.checked=true;
-      _selectSkillId=$(item).data('id');
-  }
-
-  function SelectJobExperience(item)
-  {
-      var radio=$(item).children('input[type=radio]').get(0);
-      radio.checked=true;
-      _selectJobExperienceId=$(item).data('id');
   }
 
   $(function() {
@@ -1104,38 +666,44 @@ var _currentOpMode;
               return false;
           }
 
-          // 遍历所有块，找到当前所在块
-          var _previousElement = undefined;
-          var _offsetY;
-          $("li[role=presentation]").each(function(index) {
-              var previousElement = _previousElement;
-              _previousElement = $(this);
-              var targetElement;
-              if (previousElement === undefined) {
-                  _offsetY = _topNavbarHeight;
-                  targetElement = $(this);
-              } else {
-                  _offsetY = $(previousElement.data('target')).height() / 2 + _topNavbarHeight;
-                  targetElement = previousElement;
-              }
+            // 遍历所有块，找到当前所在块
+            var _previousElement = undefined;
+            var _offsetY;
 
-              var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-              var target = $($(this).data('target'));
-              var targetTop = target.offset().top;
-              if (docScrollTop > targetTop - _offsetY) {
-                  if (index === $("li[role=presentation]").length - 1) {
-                      targetElement = $(this);
-                  } else {
-                      return true;
-                  }
+            $("li[role=presentation]").each(function (index) {
+                var previousElement = _previousElement;
+                _previousElement = $(this);
 
-              }
-              $("li[role=presentation]").removeClass('active');
-              if (!targetElement.hasClass('active')) {
-                  targetElement.addClass('active');
-              }
-              return false;
-          });
+                var targetElement;
+
+                if (previousElement === undefined) {
+                    _offsetY = _topNavbarHeight;
+                    targetElement = $(this);
+                }
+                else {
+                    _offsetY = $(previousElement.data('target')).height() / 2 + _topNavbarHeight;
+                    targetElement = previousElement;
+                }
+
+                var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                var target = $($(this).data('target'));
+                var targetTop = target.offset().top;
+
+                if (docScrollTop > targetTop - _offsetY) {
+                    if (index === $("li[role=presentation]").length - 1) {
+                        targetElement = $(this);
+                    } else {
+                        return true;
+                    }
+                }
+
+                $("li[role=presentation]").removeClass('active');
+
+                if (!targetElement.hasClass('active')) {
+                    targetElement.addClass('active');
+                }
+                return false;
+            });
 
       });
   });

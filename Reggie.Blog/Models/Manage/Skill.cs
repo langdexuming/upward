@@ -7,17 +7,19 @@ namespace Reggie.Blog.Models
     {
         public int Id { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         [Required]
         public string Name { get; set; }
 
         [Range(1, 10)]
         public int Level { get; set; }
 
-        [DisplayFormat(DataFormatString = "yyyy-MM-dd hh:mm")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateDateTime { get; set; }
 
-        [DisplayFormat(DataFormatString = "yyyy-MM-dd hh:mm")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime LastUpdateDateTime { get; set; }
     }
 }
