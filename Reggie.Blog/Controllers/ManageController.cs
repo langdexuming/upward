@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Reggie.Blog.Controllers.Manage;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Reggie.Blog.Controllers
 {
+    [Authorize]
     public class ManageController:Controller
     {
         public IActionResult Index()

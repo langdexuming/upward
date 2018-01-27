@@ -36,8 +36,10 @@ namespace Reggie.Blog
                 options.Cookie.HttpOnly = true;
             });
 
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<BlogContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             //// Add application services.
@@ -58,9 +60,8 @@ namespace Reggie.Blog
             }
 
             app.UseStaticFiles();
-
-            // 必须在 UseMvc 之前调用
             app.UseSession();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

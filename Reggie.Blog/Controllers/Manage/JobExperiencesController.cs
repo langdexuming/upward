@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Reggie.Blog.Data;
 using Reggie.Blog.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Reggie.Blog.Controllers.Manage
 {
+    [Authorize]
     public class JobExperiencesController : Controller
     {
         private readonly BlogContext _context;

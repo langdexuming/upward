@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Reggie.Blog.Data;
 using Reggie.Blog.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace Reggie.Blog.Controllers.Manage
 {
@@ -15,10 +17,16 @@ namespace Reggie.Blog.Controllers.Manage
     public class InformalEssaysController : Controller
     {
         private readonly BlogContext _context;
+        private readonly ILogger _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public InformalEssaysController(BlogContext context)
+        public InformalEssaysController(BlogContext context, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            _logger = logger;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: InformalEssays
@@ -63,6 +71,11 @@ namespace Reggie.Blog.Controllers.Manage
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(informalEssay.UserName))
+                {
+                    informalEssay.UserName = _userManager.GetUserName(HttpContext.User);
+                }
+
                 if (informalEssay.CreateDateTime == default(DateTime))
                 {
                     informalEssay.CreateDateTime = DateTime.Now;

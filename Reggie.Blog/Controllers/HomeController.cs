@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+using Reggie.Blog.Utils;
 
 namespace Reggie.Blog.Controllers
 {
@@ -24,22 +25,20 @@ namespace Reggie.Blog.Controllers
         private const string Tag = nameof(HomeController);
         private readonly BlogContext _blogContext;
         private readonly ILogger _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        //private readonly IOptions<IdentityCookieOptions> _identityCookieOptions;
 
-        public HomeController(BlogContext context, ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager)
+        public HomeController(BlogContext context, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _blogContext = context;
             _logger = logger;
+            _userManager = userManager;
             _signInManager = signInManager;
         }
         public async Task<IActionResult> Index()
         {
-            var canCreateInformalEssay = HttpContext.Session.Get<bool>(AppConstants.EssaySessionKeyName);
-            var essayCategories = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
-
-            ViewData["CanCreateInformalEssay"] = true;
-            ViewData["EssayCategories"] = essayCategories;
+            ViewData["CanCreateInformalEssay"] = _signInManager.IsSignedIn(HttpContext.User);
+            ViewData["EssayCategories"] = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
 
             return View(new List<InformalEssay>());
         }
@@ -101,7 +100,7 @@ namespace Reggie.Blog.Controllers
                 ContentFlags = queryContentFlagTask.Result,
                 Motto = contentDictionary.ContainsKey(AppConstants.Motto) ? contentDictionary[AppConstants.Motto] : "",
                 PersonalProfile = contentDictionary.ContainsKey(AppConstants.PersonalProfile) ? contentDictionary[AppConstants.PersonalProfile] : "",
-                IsShowSkills = switchDictionary.ContainsKey(AppConstants.IsShowSkills) ? switchDictionary[AppConstants.IsShowSkills]:false,
+                IsShowSkills = switchDictionary.ContainsKey(AppConstants.IsShowSkills) ? switchDictionary[AppConstants.IsShowSkills] : false,
                 IsShowJobExperiences = switchDictionary.ContainsKey(AppConstants.IsShowJobExperiences) ? switchDictionary[AppConstants.IsShowJobExperiences] : false,
                 IsShowSamples = switchDictionary.ContainsKey(AppConstants.IsShowSamples) ? switchDictionary[AppConstants.IsShowSamples] : false,
                 IsShowEducationInformation = switchDictionary.ContainsKey(AppConstants.IsShowEducationInformation) ? switchDictionary[AppConstants.IsShowEducationInformation] : false,
@@ -118,12 +117,12 @@ namespace Reggie.Blog.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> CreateInformalEssay()
         {
-            var essayCategories = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
-            ViewData["EssayCategories"] = essayCategories;
-
+            ViewData["EssayCategories"] = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
             ViewData["EssayCategoryId"] = new SelectList(_blogContext.EssayCategories, "EssayCategoryId", "Title");
+
             return View(new InformalEssay());
         }
 
@@ -132,10 +131,16 @@ namespace Reggie.Blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> CreateInformalEssay([Bind("Id,EssayCategoryId,Title,Message,UserName,CreateDateTime")] InformalEssay informalEssay)
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(informalEssay.UserName))
+                {
+                    informalEssay.UserName = _userManager.GetUserName(HttpContext.User);
+                }
+
                 if (informalEssay.CreateDateTime == default(DateTime))
                 {
                     informalEssay.CreateDateTime = DateTime.Now;
@@ -146,10 +151,9 @@ namespace Reggie.Blog.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var essayCategories = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
-            ViewData["EssayCategories"] = essayCategories;
-
+            ViewData["EssayCategories"] = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
             ViewData["EssayCategoryId"] = new SelectList(_blogContext.EssayCategories, "EssayCategoryId", "Title", informalEssay.EssayCategoryId);
+
             return View(informalEssay);
         }
 
@@ -171,21 +175,7 @@ namespace Reggie.Blog.Controllers
 
             informalEssayList.ForEach(x =>
             {
-                var regex = new Regex("<img.*?>");
-
-                var str = regex.Replace(x.Message, "");
-                regex = new Regex("<[^>]*?>");
-                str = regex.Replace(str, "");
-                regex = new Regex("  *");
-                str = regex.Replace(str, " ");
-                regex = new Regex("\n?");
-                str = regex.Replace(str, "");
-
-                if (str.Length > 200)
-                {
-                    str += "...";
-                }
-                x.Message = str;
+                x.Message = ContentProcessUtil.ConvertSummeryFrom(x.Message, AppConstants.EaasySummaryTextMaxLength);
             }
             );
 
@@ -201,56 +191,10 @@ namespace Reggie.Blog.Controllers
                 return NotFound();
             }
 
-            var essayCategories = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
-            ViewData["EssayCategories"] = essayCategories;
+            ViewData["EssayCategories"] = await _blogContext.EssayCategories.AsNoTracking().ToListAsync();
+
             return View(informalEssay);
         }
 
-        //
-        // GET: /Account/Login
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login(string returnUrl = null)
-        {
-            // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
-
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        //
-        // POST: /Account/Login
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
-            {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning(2, "User account locked out.");
-                    return View("Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
-                }
-            }
-        }
+    }
 }

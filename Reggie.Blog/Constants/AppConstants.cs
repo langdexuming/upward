@@ -9,15 +9,16 @@ namespace Reggie.Blog.Constants
     {
 
         #region 应用独有
+
+        /// <summary>
+        /// 随笔概要文本最大长度
+        /// </summary>
+        public const int EaasySummaryTextMaxLength = 200;
+
         /// <summary>
         /// 默认加载博客的数量
         /// </summary>
         public const int LoadInformalEssayCount = 10;
-
-        /// <summary>
-        /// 随笔Session键名称
-        /// </summary>
-        public const string EssaySessionKeyName = "CanCreateInformalEssay";
 
         #endregion
 
