@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Reggie.Blog.Constants
 {
-    public class AppConstants
+    public static class AppConstants
     {
 
         #region 应用独有
@@ -52,6 +52,11 @@ namespace Reggie.Blog.Constants
         /// 是否显示教育信息
         /// </summary>
         public const string IsShowEducationInformation = "IsShowEducationInformation";
+
+        /// <summary>
+        /// 允许注册
+        /// </summary>
+        public const string AllowRegister = "AllowRegister";
         #endregion
     }
 }

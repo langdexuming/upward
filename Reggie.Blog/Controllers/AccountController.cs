@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Reggie.Blog.Constants;
+using Reggie.Blog.Data;
 using Reggie.Blog.Models;
 using Reggie.Blog.ViewModels;
 using System;
@@ -16,9 +18,11 @@ namespace Reggie.Blog.Controllers
         private readonly ILogger _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly BlogContext _blogContext;
 
-        public AccountController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(BlogContext context, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
+            _blogContext = context;
             _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
@@ -61,6 +65,54 @@ namespace Reggie.Blog.Controllers
             return View(model);
         }
 
+        //
+        // GET: /Account/Register
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl = null)
+        {
+            var allowRegister = _blogContext.SwitchFlags.FirstOrDefault(x => x.Name == AppConstants.AllowRegister)?.IsVaild;
+            if (allowRegister == false)
+                return Forbid();
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        {
+            var allowRegister = _blogContext.SwitchFlags.FirstOrDefault(x => x.Name == AppConstants.AllowRegister)?.IsVaild;
+            if (allowRegister == false)
+                return Forbid();
+
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+                    // Send an email with this link
+                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+                    //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation(3, "User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
 
         private IActionResult RedirectToLocal(string returnUrl)
         {
@@ -71,6 +123,14 @@ namespace Reggie.Blog.Controllers
             else
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
         }
     }

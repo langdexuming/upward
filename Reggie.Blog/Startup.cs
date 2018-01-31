@@ -25,7 +25,17 @@ namespace Reggie.Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BlogContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            if (Configuration.GetValue<bool>("UseMSSQLServer"))
+            {
+                services.AddDbContext<BlogContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            }
+            else
+            {
+                services.AddDbContext<BlogContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddDbContext<ApplicationDbContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            }
 
             services.AddMvc();
 
@@ -35,8 +45,6 @@ namespace Reggie.Blog
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
             });
-
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -53,6 +61,7 @@ namespace Reggie.Blog
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {

@@ -6,7 +6,7 @@
     <style>
 
         body {
-            background: #fff;
+
         }
 
         .jumbotron {
@@ -54,6 +54,7 @@
         .section .heading {
             margin: 10px 0px;
             vertical-align: middle;
+            padding:10px 0px;
         }
         
         .section .heading h3.title {
@@ -62,8 +63,6 @@
         }
         
         .section .heading .title {
-            /*padding-bottom:3px;
-            border-bottom:3px solid #313131;*/
             font-size: 18px;
             color: #000;
             font-family: "微软雅黑";
@@ -71,24 +70,15 @@
         }
         
         .section .heading hr {
-            margin-top: 5px;
-        }
-        
-        hr {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-        
+                margin-top: 5px;
+                margin-bottom: 0px;
+            }
+
         .section .heading .line {
             height: 2px;
             width: 40px;
-        }
-        
-        .line {
             color: #313131;
             background: #313131;
-            width: 100%;
-            height: 1px;
         }
         
         .section .content .title {
@@ -155,9 +145,10 @@
         #skillContent .progress-bar span {
             line-height: 24px;
         }
-        
+
         #experienceContent {
             background: #f5f5f5;
+            box-sizing: border-box;
         }
         
         #experienceContent .time-quantum {
@@ -165,53 +156,82 @@
             font-size: 14px;
             color: #000;
         }
-        
-        #experienceContent .company {
-            font-family: "微软雅黑";
-            color: #000;
-            font-size: 16px;
-        }
+
+            #experienceContent .company-info {
+                padding: 10px 20px;
+                margin: 10px 0px;
+            }
+            #experienceContent .company-info h4 {
+                font-family: "微软雅黑";
+                color: #000;
+                font-size: 16px;
+            }
         
         #experienceContent>h3 {
             /* background: #EC6A5C; */
             padding: 20px 40px;
             border-radius: 3px;
         }
-        
-        #experienceContent .content .row {
-            border: 0 solid transparent;
-            height: 100%;
-        }
+
+            #experienceContent .content .row {
+                border: 0 solid transparent;
+                padding: 0px 0px;
+                margin: 0px;
+            }
         
         #experienceContent .content .post {
-            font-family: "微软雅黑";
-            font-size: 14px;
-            color: #874c06;
-        }
-        
-        #experienceContent .content hr {
-            width: 1px;
-            background: #828282;
-            border: 0px solid transparent;
-            margin: auto;
-            height: 100%;
-        }
-        
-        #experienceContent .content .circle {
-            height: 12px;
-            width: 12px;
-            border-radius: 6px;
-            border: 1px solid #646969;
-            margin: auto 0;
-            display: none;
-        }
-        
-        #experienceContent .content .description {
-            border-radius: 4px;
-            font-size: 14px;
-            font-family: "微软雅黑Light";
-            color: #000;
-        }
+                font-family: "微软雅黑";
+                font-size: 14px;
+                color: #874c06;
+            }
+
+            #experienceContent .content .dividing {
+                height: 100%;
+                margin:0px;
+            }
+
+            #experienceContent .list-group {
+                padding: 0px;
+                border-width:0px;
+            }
+
+            #experienceContent .list-group-item {
+                padding-top: 0px;
+                padding-bottom: 0px;
+                padding: 0px;
+                margin-bottom: 0px;
+            }
+
+            #experienceContent .content .dividing hr {
+                width: 1px;
+                background: #828282;
+                border: 0px solid transparent;
+                margin: 0px auto;
+                height:100%;
+            }
+
+                #experienceContent .content .dividing .circle {
+                    height: 12px;
+                    width: 12px;
+                    border-radius: 6px;
+                    border: 1px solid #646969;
+                    margin: auto 0;
+                    vertical-align: middle;
+                    background: #fff;
+                    text-align: center;
+                    position:absolute;
+                }
+
+            #experienceContent .content .description {
+                background: #fff;
+                border-radius: 4px;
+                font-size: 14px;
+                font-family: "微软雅黑Light";
+                color: #000;
+                padding: 10px 20px;
+                border-width: 0px;
+                margin:10px 0px;
+            }
         
         #experienceContent .content .description ol {
             padding-left: 20px;
@@ -374,6 +394,14 @@
             background-color:transparent;
         }
 
+        #sampleReelsContent .panel{
+            margin-bottom:10px;
+        }
+
+        li hr{
+            margin-top:0px;
+            margin-bottom:0px;
+        }
     </style>
 
 <div id="summaryContent" class="poster">
@@ -460,29 +488,30 @@
                 { @foreach(var item in Model.JobExperiences)
                 {
                     var isNowJob=item.EndDate==null;
-                <div class="list-group-item">
-                    <div class="row ">
-                        <div class=" col-md-3">
-                            <h4 class="company">@item.CompanyName</h4>
-                            @if(isNowJob) {
+                <div class="list-group-item row">
+                    <div class=" col-md-3 company-info">
+                        <h4>@item.CompanyName</h4>
+                        @if (isNowJob)
+                        {
                             <h5 class="time-quantum weak-text">
                                 @Html.DisplayFor(modelItem => item.StartDate)-至今
                             </h5>
-                            } else {
+                        }
+                        else
+                        {
                             <h5 class="time-quantum weak-text">
                                 @Html.DisplayFor(modelItem => item.StartDate)-@Html.DisplayFor(modelItem => item.EndDate)
                             </h5>
-                            }
-                        </div>
-                        <div class="col-md-1">
-                            <!-- <hr class="line"></hr> 
-                     <div class="circle"></div> -->
-                        </div>
-                        <div class="col-md-8 description">
-                            <h5 class="post">@item.Position</h5>
-                            <div>
+                        }
+                    </div>
+                    <div class="col-md-1 dividing">
+                        <hr class="line"/>
+                        <div class="circle"></div>
+                    </div>
+                    <div class="col-md-8 description">
+                        <h5 class="post">@item.Position</h5>
+                        <div>
                             @Html.Raw(@item.JobContent)
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -504,7 +533,7 @@
         <div class="content container">
             @foreach (var item in Model.Samples)
             {
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading ">
                         <a href="@item.ViewUrl" target="_blank" title="@item.ViewUrl">@Html.DisplayFor(modelItem => item.Title)</a>
                     </div>
@@ -603,110 +632,134 @@
 {
         <script lang="javascript" type="text/javascript">
 
-  var _isValidScroll = true;
-  var _topNavbarHeight = 65;
-  var _scrollTopOffset = 20;
+            var _isValidScroll = true;
+            var _topNavbarHeight = 65;
+            var _scrollTopOffset = 20;
 
-  /*
-   * 滚动到指定位置
-   *
-   */
-  function ScrollTo(offset) {
-      $("body,html").stop();
-      // $(document).prop("scrollTop", $($(this).data('target')).position().top - _scrollTopOffset);
-      //$(document).scrollTop($($(this).data('target')).position().top - _scrollTopOffset);
-      //$("body,html").animate({ scrollTop: $($(this).data('target')).position().top - _scrollTopOffset });
-      //根据差值算出时间
-      var gap = Math.abs(offset - $('body,html').scrollTop());
-      var msec = 800 * gap / 800;
-      if (msec < 800) {
-          msec = 800;
-      }
-      $("body,html").animate({
-          scrollTop: offset
-      }, 'slow', 'swing', function() {
-          _isValidScroll = true;
-      });
-
-      //$(document).scrollTop(offset);
-  }
-
-  $(function() {
-      $("li[role=presentation]").each(function(index) {
-          if ($(this).hasClass('active')) {
-              var scrollTopOffset = _scrollTopOffset;
-              if (index == 0) {
-                  scrollTopOffset = 100;
-              }
-              ScrollTo(GetPositionTop($($(this).data('target'))) - scrollTopOffset);
-          }
-
-          $(this).click(function(event) {
-              $("li[role=presentation]").removeClass('active');
-              $(this).addClass('active');
-
-              //阻止默认事件
-              event.preventDefault();
-
-              _isValidScroll = false;
-              var scrollTopOffset = _scrollTopOffset;
-              if (index == 0) {
-                  scrollTopOffset = 100;
-              }
-              ScrollTo($($(this).data('target')).offset().top - scrollTopOffset);
-          });
-      });
-
-      $(document).scroll(function() 
-      {
-
-          // 屏蔽点击标签定位
-          if (!_isValidScroll) {
-
-              return false;
-          }
-
-            // 遍历所有块，找到当前所在块
-            var _previousElement = undefined;
-            var _offsetY;
-
-            $("li[role=presentation]").each(function (index) {
-                var previousElement = _previousElement;
-                _previousElement = $(this);
-
-                var targetElement;
-
-                if (previousElement === undefined) {
-                    _offsetY = _topNavbarHeight;
-                    targetElement = $(this);
+            /*
+             * 滚动到指定位置
+             *
+             */
+            function ScrollTo(offset) {
+                $("body,html").stop();
+                // $(document).prop("scrollTop", $($(this).data('target')).position().top - _scrollTopOffset);
+                //$(document).scrollTop($($(this).data('target')).position().top - _scrollTopOffset);
+                //$("body,html").animate({ scrollTop: $($(this).data('target')).position().top - _scrollTopOffset });
+                //根据差值算出时间
+                var gap = Math.abs(offset - $('body,html').scrollTop());
+                var msec = 800 * gap / 800;
+                if (msec < 800) {
+                    msec = 800;
                 }
-                else {
-                    _offsetY = $(previousElement.data('target')).height() / 2 + _topNavbarHeight;
-                    targetElement = previousElement;
-                }
+                $("body,html").animate({
+                    scrollTop: offset
+                }, 'slow', 'swing', function () {
+                    _isValidScroll = true;
+                });
 
-                var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                var target = $($(this).data('target'));
-                var targetTop = target.offset().top;
+                //$(document).scrollTop(offset);
+            }
 
-                if (docScrollTop > targetTop - _offsetY) {
-                    if (index === $("li[role=presentation]").length - 1) {
-                        targetElement = $(this);
-                    } else {
-                        return true;
+            $(function () {
+
+                $("li[role=presentation]").each(function (index) {
+                    if ($(this).hasClass('active')) {
+                        var scrollTopOffset = _scrollTopOffset;
+                        if (index == 0) {
+                            scrollTopOffset = 100;
+                        }
+                        ScrollTo(GetPositionTop($($(this).data('target'))) - scrollTopOffset);
                     }
-                }
 
-                $("li[role=presentation]").removeClass('active');
+                    $(this).click(function (event) {
+                        $("li[role=presentation]").removeClass('active');
+                        $(this).addClass('active');
 
-                if (!targetElement.hasClass('active')) {
-                    targetElement.addClass('active');
-                }
-                return false;
+                        //阻止默认事件
+                        event.preventDefault();
+
+                        _isValidScroll = false;
+                        var scrollTopOffset = _scrollTopOffset;
+                        if (index == 0) {
+                            scrollTopOffset = 100;
+                        }
+                        ScrollTo($($(this).data('target')).offset().top - scrollTopOffset);
+                    });
+                });
+
+                resizeHandler = function () {
+                    $('#experienceContent .content .list-group-item').each(function (index, element)
+                    {
+                        var leftHeight = $(element).children('.company-info').height();
+                        var rightHeight = $(element).children('.description').height();
+                        var height = leftHeight < rightHeight ? rightHeight : leftHeight;
+
+                        height += 40;
+                        console.log(height);
+                        $(element).height(height);
+
+                        var dividingElement = $(element).children('.dividing');
+                        var circleElement = $(dividingElement).children('.circle');
+
+                        var left = (dividingElement.width() + 30) / 2 - (circleElement.width() + 2) / 2;
+                        //var top = (dividingElement.height()) / 2 - (circleElement.height() + 2) / 2;
+                        var top = (dividingElement.height()) / 3 + 10;
+
+                        circleElement.css("left",left);
+                        circleElement.css("top",top);
+                    });
+
+                };
+                resizeHandler();
+                window.onresize = resizeHandler;
+
+                $(document).scroll(function () {
+                    // 屏蔽点击标签定位
+                    if (!_isValidScroll) {
+
+                        return false;
+                    }
+
+                    // 遍历所有块，找到当前所在块
+                    var _previousElement = undefined;
+                    var _offsetY;
+
+                    $("li[role=presentation]").each(function (index) {
+                        var previousElement = _previousElement;
+                        _previousElement = $(this);
+
+                        var targetElement;
+
+                        if (previousElement === undefined) {
+                            _offsetY = _topNavbarHeight;
+                            targetElement = $(this);
+                        }
+                        else {
+                            _offsetY = $(previousElement.data('target')).height() / 2 + _topNavbarHeight;
+                            targetElement = previousElement;
+                        }
+
+                        var docScrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                        var target = $($(this).data('target'));
+                        var targetTop = target.offset().top;
+
+                        if (docScrollTop > targetTop - _offsetY) {
+                            if (index === $("li[role=presentation]").length - 1) {
+                                targetElement = $(this);
+                            } else {
+                                return true;
+                            }
+                        }
+
+                        $("li[role=presentation]").removeClass('active');
+                        if (!targetElement.hasClass('active')) {
+                            targetElement.addClass('active');
+                        }
+                        return false;
+                    });
+
+                });
             });
-
-      });
-  });
 
     </script>
 }
