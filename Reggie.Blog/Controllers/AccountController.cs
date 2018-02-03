@@ -19,10 +19,12 @@ namespace Reggie.Blog.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly BlogContext _blogContext;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public AccountController(BlogContext context, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(BlogContext context, ApplicationDbContext applicationDbContext, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _blogContext = context;
+            _applicationDbContext = applicationDbContext;
             _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
@@ -109,6 +111,11 @@ namespace Reggie.Blog.Controllers
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
+
+#if DEBUG
+                    var dbPH = _applicationDbContext.Users.FirstOrDefault(x => x.Email == model.Email)?.PasswordHash;
+                    _logger.LogInformation(4, $"PH same:{user.PasswordHash == dbPH},user passwordHash:{user.PasswordHash},db table user passwordHash:{dbPH}");
+#endif
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);

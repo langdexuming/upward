@@ -55,5 +55,10 @@ namespace Reggie.Blog.Controllers
         {
             return RedirectToAction("Index", "Samples");
         }
+
+        public IActionResult ApplicationUsers()
+        {
+            return RedirectToAction("Index", "ApplicationUsers");
+        }
     }
 }
