@@ -57,6 +57,10 @@ namespace Reggie.Blog.Controllers
                     return RedirectToLocal(returnUrl);
                 }
 
+#if DEBUG
+                _logger.LogDebug(LoggingEvents.TestOutput, $"email:{model.Email},password:{model.Password}");
+#endif
+                _logger.LogWarning(LoggingEvents.LoginFail, $"User logged failed,IsLockedOut:{result.IsLockedOut},IsNotAllowed:{result.IsNotAllowed},RequiresTwoFactor:{result.RequiresTwoFactor}");
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
             }
