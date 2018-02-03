@@ -59,9 +59,6 @@ namespace Reggie.Blog.Controllers
                     return RedirectToLocal(returnUrl);
                 }
 
-#if DEBUG
-                _logger.LogDebug(LoggingEvents.TestOutput, $"email:{model.Email},password:{model.Password}");
-#endif
                 _logger.LogWarning(LoggingEvents.LoginFail, $"User logged failed,IsLockedOut:{result.IsLockedOut},IsNotAllowed:{result.IsNotAllowed},RequiresTwoFactor:{result.RequiresTwoFactor}");
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
@@ -111,11 +108,6 @@ namespace Reggie.Blog.Controllers
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-
-#if DEBUG
-                    var dbPH = _applicationDbContext.Users.FirstOrDefault(x => x.Email == model.Email)?.PasswordHash;
-                    _logger.LogInformation(4, $"PH same:{user.PasswordHash == dbPH},user passwordHash:{user.PasswordHash},db table user passwordHash:{dbPH}");
-#endif
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);

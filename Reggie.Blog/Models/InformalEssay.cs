@@ -20,7 +20,8 @@ namespace Reggie.Blog.Models
         [StringLength(50)]
         public string UserName { get; set; }
 
-        [DisplayFormat(DataFormatString = "yyyy-MM-dd hh:mm")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}")]
         public DateTime CreateDateTime { get; set; }
 
         public EssayCategory EssayCategoryItem { get; set; }
