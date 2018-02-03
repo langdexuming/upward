@@ -225,7 +225,14 @@
      */
     function GenerateInformalEssayHtml(informalEssay) {
         var content = informalEssay.message;
-        var createDateTimeStr = informalEssay.createDateTime.substring(0, informalEssay.createDateTime.indexOf('.')).replace("T", " ");
+
+        var createDateTimeStr = informalEssay.createDateTime;
+        var dotIndex = informalEssay.createDateTime.indexOf('.');
+        if (dotIndex > 0)
+        {
+            createDateTimeStr = createDateTimeStr.substring(0, dotIndex);
+        }
+        createDateTimeStr = createDateTimeStr.replace("T", " ");
         var source = "<p class=\"text-right\" style=\"color:#999;\">" + "posted @@ " + createDateTimeStr + "&nbsp;&nbsp;&nbsp;by&nbsp;&nbsp;<span>" + informalEssay.userName + "</span></p>";
 
         return "<li class=\"list-group-item\" data-id=\"" + informalEssay.id + "\"><a href=\"javascript:void(0);\" onclick=\"ReadFullText(this)\"><h4 class=\"title\">" + informalEssay.title +

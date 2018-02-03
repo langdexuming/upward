@@ -21,7 +21,7 @@ namespace Reggie.Blog.Models
         public string UserName { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime CreateDateTime { get; set; }
 
         public EssayCategory EssayCategoryItem { get; set; }
