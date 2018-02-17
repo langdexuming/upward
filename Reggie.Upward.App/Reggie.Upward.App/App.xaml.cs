@@ -1,5 +1,5 @@
-﻿using Reggie.BasicBracket.Extensions;
-using Reggie.BasicBracket.Utils.File;
+﻿using Reggie.Utilities.Extensions;
+using Reggie.Utilities.Utils.File;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

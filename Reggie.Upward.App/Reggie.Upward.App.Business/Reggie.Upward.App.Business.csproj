@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Reggie.BasicBracket\Reggie.BasicBracket.csproj">
+    <ProjectReference Include="..\Reggie.BasicBracket\Reggie.Utilities.csproj">
       <Project>{cf6ff455-379e-48cc-b5ce-0828a0556407}</Project>
-      <Name>Reggie.BasicBracket</Name>
+      <Name>Reggie.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

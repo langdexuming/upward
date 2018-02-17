@@ -122,9 +122,9 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Reggie.BasicBracket\Reggie.BasicBracket.csproj">
+    <ProjectReference Include="..\Reggie.BasicBracket\Reggie.Utilities.csproj">
       <Project>{cf6ff455-379e-48cc-b5ce-0828a0556407}</Project>
-      <Name>Reggie.BasicBracket</Name>
+      <Name>Reggie.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reggie.Upward.App.Business\Reggie.Upward.App.Business.csproj">
       <Project>{97fe1f65-71c7-4c86-8ad3-36af9ce83109}</Project>

@@ -6,7 +6,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reggie.BasicBracket.Utils.File
+namespace Reggie.Utilities.Utils.File
 {
     public class FileUtil
     {

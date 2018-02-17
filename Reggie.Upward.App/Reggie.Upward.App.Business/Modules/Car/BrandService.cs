@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Reggie.BasicBracket.Utils.Http;
-using Reggie.BasicBracket.Extensions;
+using Reggie.Utilities.Utils.Http;
+using Reggie.Utilities.Extensions;
 using Newtonsoft.Json;
 
 namespace Reggie.Upward.App.Business.Modules.Car
@@ -20,6 +20,7 @@ namespace Reggie.Upward.App.Business.Modules.Car
 
             List<Brand> brands=null;
 
+            await HttpUtil.SetBearerToken(WebApiUrl.BaseUrl,"client","secret","api");
             try
             {
                 var httpResult = await HttpUtil.Request(WebApiUrl.GetBrandsUrl);

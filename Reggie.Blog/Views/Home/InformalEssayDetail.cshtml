@@ -27,7 +27,7 @@
         <br>
         <div>@Html.Raw(@Model.Message)</div>
         <br>
-        var str = "posted @ " + @Model.CreateDateTime + "&nbsp;&nbsp;&nbsp;by&nbsp;&nbsp;" + @Model.UserName;
+        var str = "posted @ " + @Model.CreateDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "&nbsp;&nbsp;&nbsp;by&nbsp;&nbsp;" + @Model.UserName;
 
         <p class="text-right" style="color:#999;">@Html.Raw(@str)</p>
     }

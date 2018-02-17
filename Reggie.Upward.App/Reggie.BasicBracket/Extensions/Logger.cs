@@ -7,7 +7,7 @@ using log4net;
 using log4net.Config;
 using System.IO;
 
-namespace Reggie.BasicBracket.Extensions
+namespace Reggie.Utilities.Extensions
 {
     public class Logger
     {

@@ -1,14 +1,16 @@
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Reggie.Upward.WebApi.Models.Car;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Reggie.Upward.WebApi.Models
+namespace Reggie.Upward.WebApi.Areas.Car.Models
 {
     public class Brand
     {
         public int BrandId { get; set; }
 
-        [MaxLength(50)]
+        [StringLength(50)]
         public string BrandName { get; set; }
 
         public ICollection<Series> Serieses { get; set; }

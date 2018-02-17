@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reggie.BasicBracket.Utils.Algorithm
+namespace Reggie.Utilities.Utils.Algorithm
 {
     public static class HashUtil
     {

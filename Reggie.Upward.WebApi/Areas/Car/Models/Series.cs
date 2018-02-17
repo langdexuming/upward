@@ -1,14 +1,17 @@
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Reggie.Upward.WebApi.Models
+namespace Reggie.Upward.WebApi.Areas.Car.Models
 {
     public class Series
     {
         public int SeriesId { get; set; }
 
-        [MaxLength(50)]
+        [StringLength(50)]
         public string SeriesName { get; set; }
 
         public ICollection<Model> Models { get; set; }

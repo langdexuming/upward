@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reggie.BasicBracket.Utils.Http
+namespace Reggie.Utilities.Utils.Http
 {
     [Serializable]
     public class HttpResult

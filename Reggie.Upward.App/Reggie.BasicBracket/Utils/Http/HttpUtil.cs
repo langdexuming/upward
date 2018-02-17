@@ -1,4 +1,5 @@
-﻿using Reggie.BasicBracket.Extensions;
+﻿using IdentityModel.Client;
+using Reggie.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,15 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reggie.BasicBracket.Utils.Http
+namespace Reggie.Utilities.Utils.Http
 {
     public class HttpUtil
     {
         private const string TAG = nameof(HttpUtil);
 
         private static HttpClient _client;
+
+        private static bool _isExistBearerToken;
 
         static HttpUtil()
         {
@@ -22,6 +25,34 @@ namespace Reggie.BasicBracket.Utils.Http
         public void Dispose()
         {
             _client.Dispose();
+        }
+
+        /// <summary>
+        /// discover endpoints from metadata and setHeader
+        /// </summary>
+        public static async Task SetBearerToken(string baseUrl,string cilentId, string secret, string apiName)
+        {
+            if (_isExistBearerToken) return;
+
+            var disco = await DiscoveryClient.GetAsync(baseUrl);
+            if (disco.IsError)
+            {
+                Console.WriteLine(disco.Error);
+                return;
+            }
+
+            // request token
+            var tokenClient = new TokenClient(disco.TokenEndpoint, cilentId, secret,AuthenticationStyle.BasicAuthentication);
+            var tokenResponse = await tokenClient.RequestClientCredentialsAsync(apiName);
+
+            if (tokenResponse.IsError)
+            {
+                Console.WriteLine(tokenResponse.Error);
+                return;
+            }
+
+            _client.SetBearerToken(tokenResponse.AccessToken);
+            _isExistBearerToken = true;
         }
 
         public static async Task<HttpResult> Request(string url, string httpMethodConstants = HttpMethodConstants.Get)

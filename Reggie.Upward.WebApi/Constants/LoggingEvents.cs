@@ -1,4 +1,4 @@
-namespace Reggie.Upward.WebApi.BasicBracket
+namespace Reggie.Upward.WebApi.Constants
 {
     public class LoggingEvents
     {

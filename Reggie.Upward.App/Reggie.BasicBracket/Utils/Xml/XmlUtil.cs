@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Reggie.BasicBracket.Utils.Xml
+namespace Reggie.Utilities.Utils.Xml
 {
     public class XmlUtil
     {

@@ -2,6 +2,7 @@ using Reggie.Upward.App.Business.Modules.Car;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Net.Http;
+using Reggie.Utilities.Utils.Http;
 
 namespace Reggie.Upward.App.ViewModel
 {
