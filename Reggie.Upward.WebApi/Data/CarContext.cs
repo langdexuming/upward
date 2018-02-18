@@ -7,6 +7,7 @@ namespace Reggie.Upward.WebApi.Data
     {
         public CarContext(DbContextOptions<CarContext> options) : base(options)
         {
+
         }
     }
 }

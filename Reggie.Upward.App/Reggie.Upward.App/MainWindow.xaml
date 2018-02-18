@@ -8,8 +8,10 @@
         Title="小车数据采集" Height="350" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
-        <UniformGrid Columns="3" Rows="1" Width="300" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" Width="240">
             <ComboBox x:Name="cbxBrand" ItemsSource="{Binding Brands}" DisplayMemberPath="BrandName" IsSynchronizedWithCurrentItem="True"/>
-        </UniformGrid>
+            <TextBox x:Name="tbxFileUrl"></TextBox>
+            <Button Command="{Binding DownloadCommand}" CommandParameter="{Binding ElementName=tbxFileUrl,Path=Text}">下载</Button>
+        </StackPanel>
     </Grid>
 </Window>

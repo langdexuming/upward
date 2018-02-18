@@ -3,6 +3,11 @@ using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Net.Http;
 using Reggie.Utilities.Utils.Http;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using Reggie.Upward.App.Business.Modules.Common;
+using System;
+using System.IO;
 
 namespace Reggie.Upward.App.ViewModel
 {
@@ -35,11 +40,26 @@ namespace Reggie.Upward.App.ViewModel
         }
 
         private readonly IBrandService _brandService;
+        private readonly IFileService _fileService;
+
+        public ICommand DownloadCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(async(url)=> {
+                    var dir = AppDomain.CurrentDomain.BaseDirectory + "Download";
+                    var filePath = Path.Combine(dir, Path.GetFileName(url));
+
+                    await _fileService.DownloadFile(url, filePath);
+                });
+            }
+            }
+
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IBrandService brandService)
+        public MainViewModel(IBrandService brandService, IFileService fileService)
         {
             ////if (IsInDesignMode)
             ////{
@@ -51,6 +71,7 @@ namespace Reggie.Upward.App.ViewModel
             ////}
 
             _brandService = brandService;
+            _fileService = fileService;
 
             InitData();
         }

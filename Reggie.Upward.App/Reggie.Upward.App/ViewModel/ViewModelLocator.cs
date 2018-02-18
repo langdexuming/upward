@@ -16,6 +16,7 @@ using Reggie.Upward.App.Business.Modules.Car;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Reggie.Upward.App.Business.Modules.Common;
 
 namespace Reggie.Upward.App.ViewModel
 {
@@ -45,6 +46,7 @@ namespace Reggie.Upward.App.ViewModel
 
             //Service
             SimpleIoc.Default.Register<IBrandService, BrandService>();
+            SimpleIoc.Default.Register<IFileService, FileService>();
 
             //ViewModel
             SimpleIoc.Default.Register<MainViewModel>();

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reggie.Utilities.Utils.System
+namespace Reggie.Utilities.Utils.Windows
 {
     public class RegistryKeyUtil
     {

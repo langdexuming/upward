@@ -2,6 +2,7 @@
 using Reggie.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -118,5 +119,59 @@ namespace Reggie.Utilities.Utils.Http
 
         //    return result;
         //}
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        public static async Task<byte[]> DownloadFile(string url)
+        {
+            byte[] result = null;
+            try
+            {
+                //可使用HttpClientHandler,CookieContainer 扩展
+                HttpResponseMessage response = await _client.GetAsync(url);
+
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadAsByteArrayAsync();
+
+                Logger.Info(TAG, content);
+
+                result = content;
+            }
+            catch (HttpRequestException e)
+            {
+                Logger.Error(TAG, "\nException Caught!");
+                Logger.Error(TAG, "Message :{0} ", e.Message);
+            }
+
+            return result;
+
+            //try
+            //{
+            //    System.Net.HttpWebRequest Myrq = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(URL);
+            //    System.Net.HttpWebResponse myrp = (System.Net.HttpWebResponse)Myrq.GetResponse();
+            //    long totalBytes = myrp.ContentLength;
+
+            //    System.IO.Stream st = myrp.GetResponseStream();
+            //    System.IO.Stream so = new System.IO.FileStream(filename, System.IO.FileMode.Create);
+            //    long totalDownloadedByte = 0;
+            //    byte[] by = new byte[1024];
+            //    int osize = st.Read(by, 0, (int)by.Length);
+            //    while (osize > 0)
+            //    {
+            //        totalDownloadedByte = osize + totalDownloadedByte;
+            //        so.Write(by, 0, osize);
+
+            //        osize = st.Read(by, 0, (int)by.Length);
+            //    }
+            //    so.Close();
+            //    st.Close();
+            //}
+            //catch (System.Exception)
+            //{
+            //    throw;
+            //}
+        }
     }
 }

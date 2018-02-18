@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\Common\FileService.cs" />
+    <Compile Include="Modules\Common\IFileService.cs" />
     <Compile Include="WebApiUrl.cs" />
     <Compile Include="Modules\Car\Brand.cs" />
     <Compile Include="Modules\Car\BrandService.cs" />

@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Car from '@/components/Car'
-import Tool from '@/views/Tool/index'
+import Tool from '@/views/Tool/Index'
 import RegExTool from '@/views/Tool/RegEx'
 import LetterShiftTool from '@/views/Tool/LetterShift'
 import Guide from '@/components/Guide'
 import Home from '@/views/Home'
+import PlatformAccountManage from '@/views/PlatformAccountManage/Index'
+import AddPlatformAccount from '@/views/PlatformAccountManage/Add'
 
 Vue.use(Router)
 
@@ -25,6 +27,23 @@ export default new Router({
     },
 
     {
+      path: '/PlatformAccountManage',
+      component: PlatformAccountManage,
+      name: '',
+      hidden: true,
+      children: [{
+          path: '/PlatformAccountManage/Add',
+          component: AddPlatformAccount,
+          name: 'AddPlatformAccount'
+        }
+        // {
+        //   path: '/PlatformAccountManage/LetterShift',
+        //   component: LetterShiftTool,
+        //   name: 'LetterShiftTool'
+        // }
+      ],
+    },
+    {
       path: '/tool',
       component: Tool,
       name: '',
@@ -41,6 +60,7 @@ export default new Router({
         }
       ],
     },
+
     {
       path: '/helloworld',
       component: HelloWorld,

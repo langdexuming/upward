@@ -30,7 +30,7 @@ export default {
     return {
       searchTags: [
         { link: "/tool", title: "工具" },
-        { link: "/tool", title: "宝马" },
+        { link: "/PlatformAccountManage", title: "平台账号管理" },
         { link: "/tool", title: "数据" },
         { link: "/tool", title: "定位" },
         { link: "/tool", title: "监测" },

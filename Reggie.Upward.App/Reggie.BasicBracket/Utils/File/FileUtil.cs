@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reggie.Utilities.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Reggie.Utilities.Utils.File
 {
     public class FileUtil
     {
+        private const string TAG = nameof(FileUtil);
+
         /// <summary>
         /// 创建目录
         /// </summary>
@@ -64,6 +67,29 @@ namespace Reggie.Utilities.Utils.File
             security.AddAccessRule(new FileSystemAccessRule("Users", FileSystemRights.FullControl,
                 AccessControlType.Allow));
             info.SetAccessControl(security); //权限不足
+        }
+
+        /// <summary>
+        /// 创建具有内容的文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        public static void Create(string filePath, byte[] content)
+        {
+            var fs = System.IO.File.Create(filePath);
+            try
+            {
+                fs.Write(content, 0, content.Count());
+                fs.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(TAG, ex);
+            }
+            finally
+            {
+                fs?.Close();
+            }
         }
     }
 }
