@@ -101,7 +101,7 @@ namespace Reggie.Upward.WebApi
 
             app.Use(async (context, next) =>
             {
-                _logger.LogDebug(1,null,"Request Path:"+context.Request.Path);
+                _logger.LogDebug(1, null, "Request Path:" + context.Request.Path + ", IsWebSocketRequest:" + context.WebSockets.IsWebSocketRequest);
                 if (context.WebSockets.IsWebSocketRequest)
                 {
                     var webSocket = await context.WebSockets.AcceptWebSocketAsync();
