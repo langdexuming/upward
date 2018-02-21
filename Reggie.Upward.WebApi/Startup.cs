@@ -21,6 +21,8 @@ namespace Reggie.Upward.WebApi
     public class Startup
     {
         private const string HostAddress= "http://localhost:5001";
+
+        private ILogger _logger;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,11 +37,13 @@ namespace Reggie.Upward.WebApi
             {
                 services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                 services.AddDbContext<Areas.Car.Data.CarContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddDbContext<Areas.PlatformAccount.Data.PlatformAccountContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             }
             else
             {
                 services.AddDbContext<ApplicationDbContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
                 services.AddDbContext<Areas.Car.Data.CarContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddDbContext<Areas.PlatformAccount.Data.PlatformAccountContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             }
 
             services.AddMvc();
@@ -80,6 +84,8 @@ namespace Reggie.Upward.WebApi
                 //
             }
 
+            _logger = loggerFactory.CreateLogger<Startup>();
+
             app.UseIdentityServer();
 
             //支持跨域
@@ -87,7 +93,7 @@ namespace Reggie.Upward.WebApi
             {
                 builder.AllowAnyHeader();
                 builder.AllowAnyMethod();
-                builder.WithOrigins(HostAddress).WithOrigins("http://localhost:8081");
+                builder.WithOrigins(HostAddress);
             });
 
             //支持Websocket通信
@@ -95,6 +101,7 @@ namespace Reggie.Upward.WebApi
 
             app.Use(async (context, next) =>
             {
+                _logger.LogDebug(1,null,"Request Path:"+context.Request.Path);
                 if (context.WebSockets.IsWebSocketRequest)
                 {
                     var webSocket = await context.WebSockets.AcceptWebSocketAsync();

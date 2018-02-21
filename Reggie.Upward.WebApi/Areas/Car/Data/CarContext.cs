@@ -18,6 +18,5 @@ namespace Reggie.Upward.WebApi.Areas.Car.Data
         public DbSet<Series> Serieses { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<CarItem> CarItems { get; set; }
-        public DbSet<Reggie.Upward.WebApi.Areas.PlatformAccount.Models.Account> Account { get; set; }
     }
 }

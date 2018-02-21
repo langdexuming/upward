@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Reggie.Upward.WebApi.Areas.Car.Data;
 using Reggie.Upward.WebApi.Areas.PlatformAccount.Models;
 using Microsoft.AspNetCore.Authorization;
+using Reggie.Upward.WebApi.Areas.PlatformAccount.Data;
 
 namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
 {
@@ -15,20 +16,20 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
     [Produces("application/json")]
     [Route("api/[Area]/[controller]")]
     [Authorize]
-    public class AccountsController : Controller
+    public class PlatformAccountsController : Controller
     {
-        private readonly CarContext _context;
+        private readonly PlatformAccountContext _context;
 
-        public AccountsController(CarContext context)
+        public PlatformAccountsController(PlatformAccountContext context)
         {
             _context = context;
         }
 
         // GET: api/Accounts
         [HttpGet]
-        public IEnumerable<Account> GetAccount()
+        public IEnumerable<Models.PlatformAccount> GetAccount()
         {
-            return _context.Account;
+            return _context.PlatformAccounts;
         }
 
         // GET: api/Accounts/5
@@ -40,7 +41,7 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
                 return BadRequest(ModelState);
             }
 
-            var account = await _context.Account.SingleOrDefaultAsync(m => m.Id == id);
+            var account = await _context.PlatformAccounts.SingleOrDefaultAsync(m => m.Id == id);
 
             if (account == null)
             {
@@ -52,7 +53,7 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
 
         // PUT: api/Accounts/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccount([FromRoute] int id, [FromBody] Account account)
+        public async Task<IActionResult> PutAccount([FromRoute] int id, [FromBody] Models.PlatformAccount account)
         {
             if (!ModelState.IsValid)
             {
@@ -87,14 +88,14 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
 
         // POST: api/Accounts
         [HttpPost]
-        public async Task<IActionResult> PostAccount([FromBody] Account account)
+        public async Task<IActionResult> PostAccount([FromBody] Models.PlatformAccount account)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Account.Add(account);
+            _context.PlatformAccounts.Add(account);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAccount", new { id = account.Id }, account);
@@ -109,13 +110,13 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
                 return BadRequest(ModelState);
             }
 
-            var account = await _context.Account.SingleOrDefaultAsync(m => m.Id == id);
+            var account = await _context.PlatformAccounts.SingleOrDefaultAsync(m => m.Id == id);
             if (account == null)
             {
                 return NotFound();
             }
 
-            _context.Account.Remove(account);
+            _context.PlatformAccounts.Remove(account);
             await _context.SaveChangesAsync();
 
             return Ok(account);
@@ -123,7 +124,7 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
 
         private bool AccountExists(int id)
         {
-            return _context.Account.Any(e => e.Id == id);
+            return _context.PlatformAccounts.Any(e => e.Id == id);
         }
     }
 }
