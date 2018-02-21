@@ -16,7 +16,8 @@ export default {
     return {
       tools: [
         { link: "/tool/RegEx", title: "正则表达式" },
-        { link: "/tool/LetterShift", title: "字母转换" }
+        { link: "/tool/LetterShift", title: "字母转换" },
+        { link: "/tool/WebSocketClient", title: "WebSocket客户端" }
       ]
     };
   }

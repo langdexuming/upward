@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Reggie.BasicBracket\Reggie.Utilities.csproj">
+    <ProjectReference Include="..\Reggie.Utilities\Reggie.Utilities.csproj">
       <Project>{cf6ff455-379e-48cc-b5ce-0828a0556407}</Project>
       <Name>Reggie.Utilities</Name>
     </ProjectReference>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reggie.Upward.App"
         mc:Ignorable="d"
-        Title="小车数据采集" Height="350" Width="525"
+        Title="Upward" Height="350" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Width="240">

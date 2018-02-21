@@ -2,14 +2,15 @@ UpwardWebApp/.vscode/*
 UpwardWebApp/.vscode
 UpwardWebApp/bin/*
 UpwardWebApp/obj/*
-Reggie.Upward.WebApi/bin/*
-Reggie.Upward.WebApi/obj/*
+UpwardApi/bin/*
+UpwardApi/obj/*
+UpwardApp/bin/*
+UpwardApi/obj/*
 DemoProject/Client/obj/*
 DemoProject/Client/bin/*
 DemoProject/Server/obj/*
 DemoProject/Server/bin/*
-Reggie.Upward.WebApi/Migrations/*
-Reggie.Blog/Migrations/*
+UpwardApi/Migrations/*
 
 # Build results
 [Dd]ebug/

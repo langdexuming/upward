@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using Reggie.Upward.App.Business.Modules.Common;
 using System;
 using System.IO;
+using Reggie.Upward.App.Constants;
 
 namespace Reggie.Upward.App.ViewModel
 {
@@ -46,14 +47,13 @@ namespace Reggie.Upward.App.ViewModel
         {
             get
             {
-                return new RelayCommand<string>(async(url)=> {
-                    var dir = AppDomain.CurrentDomain.BaseDirectory + "Download";
-                    var filePath = Path.Combine(dir, Path.GetFileName(url));
-
+                return new RelayCommand<string>(async (url) =>
+                {
+                    var filePath = Path.Combine(AppConstants.GetDownloadDirectory(), Path.GetFileName(url));
                     await _fileService.DownloadFile(url, filePath);
                 });
             }
-            }
+        }
 
 
         /// <summary>

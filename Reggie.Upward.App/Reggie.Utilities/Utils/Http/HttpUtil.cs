@@ -1,10 +1,9 @@
-﻿using IdentityModel.Client;
-using Reggie.Utilities.Extensions;
+﻿using Reggie.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +13,105 @@ namespace Reggie.Utilities.Utils.Http
     {
         private const string TAG = nameof(HttpUtil);
 
-        private static HttpClient _client;
-
         private static bool _isExistBearerToken;
+
+#if NET4_0
+        /// <summary>
+        /// 请求
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="httpMethodConstants"></param>
+        /// <returns></returns>
+        public static HttpResult Request(string url, string httpMethodConstants = HttpMethodConstants.Get)
+        {
+            HttpResult result = new HttpResult();
+            try
+            {
+                var httpWebRequest = CreateRequest(url, httpMethodConstants);
+                var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                var stream = httpWebResponse.GetResponseStream();
+                var reader = new StreamReader(stream, Encoding.UTF8);
+                var content = reader.ReadToEnd();
+
+                Logger.Info(TAG, content);
+
+                result.StatusCode = httpWebResponse.StatusCode;
+                result.Message = httpWebResponse.StatusDescription;
+                result.Data = content;
+
+                stream.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(TAG, "\nException Caught!");
+                Logger.Error(TAG, "Message :{0} ", ex.Message);
+                result = null;
+            }
+            finally
+            {
+
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 创建请求
+        /// </summary>
+        private static HttpWebRequest CreateRequest(string url, string httpMethodConstants)
+        {
+            var httpMehod = httpMethodConstants;
+
+            var httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+            httpWebRequest.Method = httpMehod;
+
+            return httpWebRequest;
+        }
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        public static byte[] DownloadFile(string url)
+        {
+            byte[] result = null;
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+                var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                long totalBytes = httpWebResponse.ContentLength;
+                result = new byte[totalBytes];
+
+                var stream = httpWebResponse.GetResponseStream();
+                long totalDownloadedByte = 0;
+                byte[] buffer = new byte[1024];
+                int osize = stream.Read(buffer, 0, (int)buffer.Length);
+                while (osize > 0)
+                {
+                    if (osize < 1024)
+                    {
+                        buffer.Take(osize).ToArray().CopyTo(result, totalDownloadedByte);
+                    }
+                    else
+                    {
+                        buffer.CopyTo(result, totalDownloadedByte);
+                    }
+
+                    totalDownloadedByte = osize + totalDownloadedByte;
+                    osize = stream.Read(buffer, 0, (int)buffer.Length);
+                }
+
+                stream.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(TAG, "\nException Caught!");
+                Logger.Error(TAG, "Message :{0} ", ex.Message);
+            }
+
+            return result;
+        }
+#else
+        private static HttpClient _client;
 
         static HttpUtil()
         {
@@ -146,32 +241,7 @@ namespace Reggie.Utilities.Utils.Http
             }
 
             return result;
-
-            //try
-            //{
-            //    System.Net.HttpWebRequest Myrq = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(URL);
-            //    System.Net.HttpWebResponse myrp = (System.Net.HttpWebResponse)Myrq.GetResponse();
-            //    long totalBytes = myrp.ContentLength;
-
-            //    System.IO.Stream st = myrp.GetResponseStream();
-            //    System.IO.Stream so = new System.IO.FileStream(filename, System.IO.FileMode.Create);
-            //    long totalDownloadedByte = 0;
-            //    byte[] by = new byte[1024];
-            //    int osize = st.Read(by, 0, (int)by.Length);
-            //    while (osize > 0)
-            //    {
-            //        totalDownloadedByte = osize + totalDownloadedByte;
-            //        so.Write(by, 0, osize);
-
-            //        osize = st.Read(by, 0, (int)by.Length);
-            //    }
-            //    so.Close();
-            //    st.Close();
-            //}
-            //catch (System.Exception)
-            //{
-            //    throw;
-            //}
         }
+#endif
     }
 }

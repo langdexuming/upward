@@ -22,14 +22,22 @@
 </template>
 
 <script>
-// export default {
-//   name: "HelloWorld",
-//   data() {
-//     return {
-//       msg: "Welcome to my App"
-//     };
-//   }
-// };
+import { getValues } from "../api/api";
+
+export default {
+  name: "HelloWorld",
+  data() {
+    return {
+      msg: "Welcome to my App"
+    };
+  },
+  created() {
+    getValues().then(res => {
+      let { status, statusText, data } = res;
+      console.log(res);
+    });
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

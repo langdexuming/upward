@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
 
 namespace Reggie.Upward.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowSameDomain")]
     public class ValuesController : Controller
     {
         public ValuesController()

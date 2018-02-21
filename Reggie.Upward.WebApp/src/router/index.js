@@ -5,6 +5,8 @@ import Car from '@/components/Car'
 import Tool from '@/views/Tool/Index'
 import RegExTool from '@/views/Tool/RegEx'
 import LetterShiftTool from '@/views/Tool/LetterShift'
+import WebSocketClient from '@/views/Tool/WebSocketClient'
+
 import Guide from '@/components/Guide'
 import Home from '@/views/Home'
 import PlatformAccountManage from '@/views/PlatformAccountManage/Index'
@@ -57,10 +59,14 @@ export default new Router({
           path: '/tool/LetterShift',
           component: LetterShiftTool,
           name: 'LetterShiftTool'
+        },
+        {
+          path: '/tool/WebSocketClient',
+          component: WebSocketClient,
+          name: 'WebSocketClient'
         }
       ],
     },
-
     {
       path: '/helloworld',
       component: HelloWorld,
