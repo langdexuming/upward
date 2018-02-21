@@ -14,7 +14,8 @@ export default {
       websocket: null,
       SendText: "",
       ReceiveText: "",
-      WSUrl: "ws://localhost:5001"
+      WSUrl: "ws://localhost:5001",
+      PreviousWSUrl: "ws://localhost:5001"
     };
   },
   methods: {
@@ -27,6 +28,10 @@ export default {
       this.websocket.onclose = this.websocketclose;
     },
     websocketsend() {
+      if (this.WSUrl !== this.PreviousWSUrl) {
+        this.initWebSocket();
+        this.PreviousWSUrl = this.WSUrl;
+      }
       //数据发送
       this.websocket.send(this.SendText);
     },

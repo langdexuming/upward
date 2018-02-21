@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Models
 {
-    public class Account
+    public class PlatformAccount
     {
         public int Id { get; set; }
         [StringLength(20)]
