@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import HelloWorld from '@/components/HelloWorld'
 import Car from '@/components/Car'
+
 import Tool from '@/views/Tool/Index'
 import RegExTool from '@/views/Tool/RegEx'
 import LetterShiftTool from '@/views/Tool/LetterShift'
 import WebSocketClient from '@/views/Tool/WebSocketClient'
 
-import Guide from '@/components/Guide'
 import Home from '@/views/Home'
 import PlatformAccountManage from '@/views/PlatformAccountManage/Index'
 import AddPlatformAccount from '@/views/PlatformAccountManage/Add'
+
+import CarToolSample from '@/views/Samples/CarTool'
 
 Vue.use(Router)
 
@@ -22,10 +25,10 @@ Vue.directive('title', {
 
 export default new Router({
   routes: [{
-      path: '/guide',
-      component: Guide,
+      path: '/Samples/CarTool',
+      component: CarToolSample,
       name: '',
-      hidden: true
+      hidden: true,
     },
 
     {
@@ -34,16 +37,10 @@ export default new Router({
       name: '',
       hidden: true,
       children: [{
-          path: '/PlatformAccountManage/Add',
-          component: AddPlatformAccount,
-          name: 'AddPlatformAccount'
-        }
-        // {
-        //   path: '/PlatformAccountManage/LetterShift',
-        //   component: LetterShiftTool,
-        //   name: 'LetterShiftTool'
-        // }
-      ],
+        path: '/PlatformAccountManage/Add',
+        component: AddPlatformAccount,
+        name: 'AddPlatformAccount'
+      }],
     },
     {
       path: '/tool',
@@ -83,23 +80,7 @@ export default new Router({
       path: '/',
       component: Home,
       name: 'home',
-      children: [
-        // {
-        //   path: '/table',
-        //   component: Table,
-        //   name: 'Table'
-        // },
-        // {
-        //   path: '/form',
-        //   component: Form,
-        //   name: 'Form'
-        // },
-        // {
-        //   path: '/user',
-        //   component: user,
-        //   name: '列表'
-        // },
-      ]
+      children: []
     }
   ]
 })

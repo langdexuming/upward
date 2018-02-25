@@ -7,6 +7,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+#if NET4_0
+#else
+using IdentityModel.Client;
+using System.Net.Http;
+#endif
+
 namespace Reggie.Utilities.Utils.Http
 {
     public class HttpUtil

@@ -17,7 +17,7 @@ namespace Reggie.Blog.Models
         public string Position { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [StringLength(2000)]
         public string JobContent { get; set; }
 
         [Required]

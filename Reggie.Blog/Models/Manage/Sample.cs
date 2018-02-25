@@ -11,7 +11,7 @@ namespace Reggie.Blog.Models
         public string Title { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [MaxLength(500)]
+        [MaxLength(2000)]
         public string Description { get; set; }
 
         [StringLength(200)]
