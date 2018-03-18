@@ -13,3 +13,9 @@ export const getBrands = params => {
     params: params
   });
 };
+
+export const getPlatforms = params => {
+  return axios.get(`${base}/PlatformAccount/Platforms`, {
+    params: params
+  });
+};

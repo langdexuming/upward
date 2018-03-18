@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Reggie.Upward.WebApi.Areas.Car.Data;
 using Reggie.Upward.WebApi.Areas.PlatformAccount.Models;
 using Microsoft.AspNetCore.Authorization;
-using Reggie.Upward.WebApi.Areas.PlatformAccount.Data;
 using Microsoft.AspNetCore.Cors;
 
 namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
@@ -18,56 +17,56 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
     [Route("api/[Area]/[controller]")]
     [EnableCors("AllowSameDomain")]
     //[Authorize]
-    public class PlatformAccountsController : Controller
+    public class PlatformsController : Controller
     {
-        private readonly PlatformAccountContext _context;
+        private readonly CarContext _context;
 
-        public PlatformAccountsController(PlatformAccountContext context)
+        public PlatformsController(CarContext context)
         {
             _context = context;
         }
 
-        // GET: api/Accounts
+        // GET: api/Platforms
         [HttpGet]
-        public IEnumerable<Models.PlatformAccount> GetAccount()
+        public IEnumerable<Platform> GetPlatform()
         {
-            return _context.PlatformAccounts;
+            return _context.Platforms;
         }
 
-        // GET: api/Accounts/5
+        // GET: api/Platforms/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAccount([FromRoute] int id)
+        public async Task<IActionResult> GetPlatform([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var account = await _context.PlatformAccounts.SingleOrDefaultAsync(m => m.Id == id);
+            var platform = await _context.Platforms.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (account == null)
+            if (platform == null)
             {
                 return NotFound();
             }
 
-            return Ok(account);
+            return Ok(platform);
         }
 
-        // PUT: api/Accounts/5
+        // PUT: api/Platforms/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccount([FromRoute] int id, [FromBody] Models.PlatformAccount account)
+        public async Task<IActionResult> PutPlatform([FromRoute] int id, [FromBody] Platform platform)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != account.Id)
+            if (id != platform.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(account).State = EntityState.Modified;
+            _context.Entry(platform).State = EntityState.Modified;
 
             try
             {
@@ -75,7 +74,7 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(id))
+                if (!PlatformExists(id))
                 {
                     return NotFound();
                 }
@@ -88,45 +87,45 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Controllers
             return NoContent();
         }
 
-        // POST: api/Accounts
+        // POST: api/Platforms
         [HttpPost]
-        public async Task<IActionResult> PostAccount([FromBody] Models.PlatformAccount account)
+        public async Task<IActionResult> PostPlatform([FromBody] Platform platform)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.PlatformAccounts.Add(account);
+            _context.Platforms.Add(platform);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAccount", new { id = account.Id }, account);
+            return CreatedAtAction("GetPlatform", new { id = platform.Id }, platform);
         }
 
-        // DELETE: api/Accounts/5
+        // DELETE: api/Platforms/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAccount([FromRoute] int id)
+        public async Task<IActionResult> DeletePlatform([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var account = await _context.PlatformAccounts.SingleOrDefaultAsync(m => m.Id == id);
-            if (account == null)
+            var platform = await _context.Platforms.SingleOrDefaultAsync(m => m.Id == id);
+            if (platform == null)
             {
                 return NotFound();
             }
 
-            _context.PlatformAccounts.Remove(account);
+            _context.Platforms.Remove(platform);
             await _context.SaveChangesAsync();
 
-            return Ok(account);
+            return Ok(platform);
         }
 
-        private bool AccountExists(int id)
+        private bool PlatformExists(int id)
         {
-            return _context.PlatformAccounts.Any(e => e.Id == id);
+            return _context.Platforms.Any(e => e.Id == id);
         }
     }
 }

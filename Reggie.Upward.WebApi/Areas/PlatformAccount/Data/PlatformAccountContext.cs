@@ -14,5 +14,7 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Data
         }
 
         public DbSet<Models.PlatformAccount> PlatformAccounts { get; set; }
+
+        public DbSet<Models.Platform> Platforms { get; set; }
     }
 }

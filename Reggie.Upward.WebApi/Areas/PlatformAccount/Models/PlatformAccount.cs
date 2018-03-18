@@ -15,9 +15,12 @@ namespace Reggie.Upward.WebApi.Areas.PlatformAccount.Models
         public string PasswordHash { get; set; }
         [EmailAddress]
         public string Email { get; set; }
-        [StringLength(20)]
-        public string PlatformName { get; set; }
+
+        public int PlatformId { get; set; }
+
         [StringLength(50)]
         public string Remark { get; set; }
+
+        public Platform PlatformItem { get; set; }
     }
 }

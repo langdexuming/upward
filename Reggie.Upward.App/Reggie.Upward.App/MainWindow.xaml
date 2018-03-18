@@ -12,6 +12,7 @@
             <ComboBox x:Name="cbxBrand" ItemsSource="{Binding Brands}" DisplayMemberPath="BrandName" IsSynchronizedWithCurrentItem="True"/>
             <TextBox x:Name="tbxFileUrl"></TextBox>
             <Button Command="{Binding DownloadCommand}" CommandParameter="{Binding ElementName=tbxFileUrl,Path=Text}">下载</Button>
+            
         </StackPanel>
     </Grid>
 </Window>
