@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reggie.Upward.App.Business.Modules.Car;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,31 @@ namespace Reggie.Upward.App
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private static void Test()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbxBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var obj=this.cbxBrand.SelectedValue;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.cbxBrand.SelectedValue = (this.cbxBrand.ItemsSource as List<Brand>)[1];
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ;
+            Console.WriteLine("123");
         }
     }
 }

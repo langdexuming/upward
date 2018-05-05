@@ -76,7 +76,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\AppConstants.cs" />
+    <Compile Include="Controls\MyPanel.cs" />
     <Compile Include="Controls\TestSelector.cs" />
+    <Compile Include="Models\DataItem.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -122,7 +124,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>

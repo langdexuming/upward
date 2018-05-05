@@ -4,15 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reggie.Upward.App"
+        xmlns:controls="clr-namespace:Reggie.Upward.App.Controls"
         mc:Ignorable="d"
         Title="Upward" Height="350" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Width="240">
-            <ComboBox x:Name="cbxBrand" ItemsSource="{Binding Brands}" DisplayMemberPath="BrandName" IsSynchronizedWithCurrentItem="True"/>
+            <ComboBox x:Name="cbxBrand" ItemsSource="{Binding Brands}" DisplayMemberPath="BrandName" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbxBrand_SelectionChanged"/>
             <TextBox x:Name="tbxFileUrl"></TextBox>
             <Button Command="{Binding DownloadCommand}" CommandParameter="{Binding ElementName=tbxFileUrl,Path=Text}">下载</Button>
-            
+            <ComboBox></ComboBox>
+            <Button Click="Button_Click">测试</Button>
+            <Grid MouseDown="Grid_MouseDown">
+                <Button Content="判断是否有路由"></Button>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
