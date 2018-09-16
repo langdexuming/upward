@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Reggie.Utilities.Utils.Wpf;
 
 namespace Reggie.Upward.App
 {
@@ -24,6 +25,22 @@ namespace Reggie.Upward.App
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Width = this.Width /6;
+
+            this.gdRoot.Height = 600;
+            //this.Height = this.Height / 2;
+            this.Loaded += (s, e) =>
+            {
+                var scale = PresentationUtil.GetScreenScale(this as Visual);
+
+                ;
+                //this.gdRoot.Height = 400;
+
+
+
+            };
+
         }
         private static void Test()
         {
