@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Reggie.WPF.CommonComponents.Controls">
+    <!--基础的按钮样式-->
+    <Style x:Key="BaseButtonBaseStyle" TargetType="{x:Type ButtonBase}">
+        <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--主要按钮样式-->
+    <Style x:Key="PrimaryButtonStyle" BasedOn="{StaticResource BaseButtonBaseStyle}" TargetType="{x:Type Button}">
+        <Setter Property="controls:AttachProperty.MouseOverBackground" Value="{Binding RelativeSource={RelativeSource Self},Path=Background}"></Setter>
+        <Setter Property="controls:AttachProperty.PressedBackground" Value="{Binding RelativeSource={RelativeSource Self},Path=Background}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(controls:AttachProperty.MouseOverBackground)}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(controls:AttachProperty.PressedBackground)}"></Setter>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ImageBrush x:Key="ChromelessButtonNormalBackground" ImageSource="/Reggie.WPF.CommonComponents;component/Resources/icon_ClearInput_Normal.png"></ImageBrush>
+    <ImageBrush x:Key="ChromelessButtonMouseOverBackground" ImageSource="/Reggie.WPF.CommonComponents;component/Resources/icon_ClearInput_Hover.png"></ImageBrush>
+
+    <Style x:Key="ChromelessButtonStyle" BasedOn="{StaticResource PrimaryButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource ChromelessButtonNormalBackground}"></Setter>
+        <Setter Property="controls:AttachProperty.MouseOverBackground" Value="{StaticResource ChromelessButtonMouseOverBackground}"></Setter>
+        <Setter Property="controls:AttachProperty.PressedBackground" Value="{StaticResource ChromelessButtonMouseOverBackground}"></Setter>
+    </Style>
+</ResourceDictionary>

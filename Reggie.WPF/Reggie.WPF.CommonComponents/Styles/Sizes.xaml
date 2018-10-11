@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <CornerRadius x:Key="NormalCornerRadius" BottomLeft="4" BottomRight="4" TopLeft="4" TopRight="4"></CornerRadius>
+    <Thickness x:Key="NormalInputElementPadding">6,2</Thickness>
+</ResourceDictionary>
