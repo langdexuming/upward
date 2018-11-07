@@ -4,15 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         xmlns:local="clr-namespace:DemoApp"
         xmlns:behaviors="clr-namespace:Reggie.WPF.CommonComponents.Behaviors;assembly=Reggie.WPF.CommonComponents"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Canvas>
-            <Border Background="Yellow" Width="60" Height="60">
+        <Canvas x:Name="testCanvas">
+            <Border x:Name="testBorder" Background="Yellow" Width="60" Height="60">
                 <i:Interaction.Behaviors>
-                    <behaviors:DragInCanvasBehavior></behaviors:DragInCanvasBehavior>
+                    <!--<behaviors:DragInCanvasBehavior></behaviors:DragInCanvasBehavior>-->
+                    <ei:MouseDragElementBehavior DragBegun="MouseDragElementBehavior_DragBegun" DragFinished="MouseDragElementBehavior_DragFinished"/>
                 </i:Interaction.Behaviors>
             </Border>
         </Canvas>

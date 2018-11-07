@@ -13,6 +13,7 @@ using System;
 using log4net;
 using log4net.Config;
 using System.IO;
+using log4net.Core;
 
 namespace Reggie.WPF.Utilities.Extensions
 {
@@ -58,6 +59,36 @@ namespace Reggie.WPF.Utilities.Extensions
         public static void SetLogLevel(LogLevel logLevel)
         {
             _logLevel = logLevel;
+
+            ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = ConvertToLevel(logLevel);
+            ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).RaiseConfigurationChanged(EventArgs.Empty);
+        }
+
+        private static Level ConvertToLevel(LogLevel logLevel)
+        {
+            Level level=Level.Debug;
+            switch (logLevel)
+            {
+                case LogLevel.Debug:
+                    level = Level.Debug;
+                    break;
+                case LogLevel.Info:
+                    level = Level.Info;
+                    break;
+                case LogLevel.Warn:
+                    level = Level.Warn;
+                    break;
+                case LogLevel.Error:
+                    level = Level.Error;
+                    break;
+                case LogLevel.Fatal:
+                    level = Level.Fatal;
+                    break;
+                default:
+                    break;
+            }
+
+            return level;
         }
 
         public static void ConfigureAndWatch(FileInfo fileInfo)
@@ -133,6 +164,8 @@ namespace Reggie.WPF.Utilities.Extensions
                 LogManager.GetLogger(tag).Fatal(string.Format(DefaultFormat, msg));
             }
         }
+
+
 
     }
 }

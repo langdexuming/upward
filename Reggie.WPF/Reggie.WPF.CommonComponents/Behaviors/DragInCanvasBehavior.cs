@@ -39,7 +39,7 @@ namespace Reggie.WPF.CommonComponents.Behaviors
             double dx = 0;
             double dy = 0;
 
-            this.AssociatedObject.MouseDown += (s, e) => {
+            this.AssociatedObject.PreviewMouseDown += (s, e) => {
                 isDragging = true;
 
                 var point = e.GetPosition(this.AssociatedObject);
@@ -47,7 +47,7 @@ namespace Reggie.WPF.CommonComponents.Behaviors
                 dy = point.Y;
             };
 
-            this.AssociatedObject.MouseMove += (s, e) => {
+            this.AssociatedObject.PreviewMouseMove += (s, e) => {
                 if (isDragging)
                 {
                     var mousePoint = e.GetPosition(canvas);
@@ -57,7 +57,7 @@ namespace Reggie.WPF.CommonComponents.Behaviors
                 }
             };
 
-            this.AssociatedObject.MouseUp += (s, e) => {
+            this.AssociatedObject.PreviewMouseUp += (s, e) => {
                 isDragging = false;
             };
 

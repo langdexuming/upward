@@ -24,5 +24,16 @@ namespace DemoApp
         {
             InitializeComponent();
         }
+
+        private void MouseDragElementBehavior_DragBegun(object sender, MouseEventArgs e)
+        {
+            ;
+        }
+
+        private void MouseDragElementBehavior_DragFinished(object sender, MouseEventArgs e)
+        {
+            var point = testBorder.TranslatePoint(new Point(),this.testCanvas);
+            ;
+        }
     }
 }
