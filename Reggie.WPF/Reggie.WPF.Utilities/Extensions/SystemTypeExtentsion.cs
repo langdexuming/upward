@@ -72,5 +72,37 @@ namespace Reggie.WPF.Utilities.Extensions
             }
             return result;
         }
+
+        /// <summary>
+        /// 将字节指令字符串，转为字节数组
+        /// </summary>
+        /// <returns></returns>
+        public static byte[] ToByteArray(this string text)
+        {
+            if (string.IsNullOrEmpty(text)) return null;
+
+            //如果是奇数位,前面补0
+            if (text.Length % 2 == 1)
+            {
+                text.Insert(0,"0");
+            }
+
+            var result = new byte[text.Length / 2];
+            for (int i = 0; i < text.Length; i++)
+            {
+                try
+                {
+                    result[i / 2] = Convert.ToByte(text.Substring(i, 2), 16);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn(TAG, $"{text}不符合转化成字节数组的要求");
+                    Logger.Warn(TAG, ex);
+                    break;
+                }
+                i++;
+            }
+            return result;
+        }
     }
 }
