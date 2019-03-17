@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/animate.css">
+        <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/plugins/summernote/summernote.css" />
+        <link rel="stylesheet" href="~/css/plugins/summernote/summernote-bs3.css" />
+
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/animate.min.css" asp-append-version="true">
+        <link href="~/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/plugins/summernote/summernote.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/plugins/summernote/summernote-bs3.min.css" asp-append-version="true" />
+    </environment>
+
+    <style>
+        .body-content-wrapper 
+        {
+            min-height: 260px;
+        }
+        .list-group-item
+        {
+            text-align:center;
+        }
+
+        #navbar {
+            background: #fff;
+            margin-top:0px;
+        }
+        .navbar-brand {
+            font-size: 20px;
+            color: #262626 !important;
+        }
+
+        #tableItems{
+            margin-top:64px;
+        }
+
+        .note-editor {
+            height: auto !important;
+            min-height: 240px;
+            border: solid 1px #e5e6e7;
+            background-color: #fff;
+            min-width: 640px;
+        }
+        
+        .note-editor .note-editable {
+            min-height: 240px;
+
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="navbar navbar-invers navbar-fixed-top " role="navigation">
+        <div class=" container">
+            <div class="navbar-header">
+                <a asp-area="" asp-controller="Manage" asp-action="Index" class="navbar-brand">后台管理</a>
+            </div>
+        </div>
+    </nav>
+    <div id="tableItems" class="list-group container">
+        <a name="EssayCategories" asp-controller="Manage" asp-action="EssayCategories" class="btn-bracketed list-group-item col-sm-3">随笔类别</a>
+        <a name="InformalEssays" asp-controller="Manage" asp-action="InformalEssays" class="btn-bracketed list-group-item col-sm-3">随笔</a>
+        <a name="ContentFlags" asp-controller="Manage" asp-action="ContentFlags" class="btn-bracketed list-group-item col-sm-3">内容字典</a>
+        <a name="SwitchFlags" asp-controller="Manage" asp-action="SwitchFlags" class="btn-bracketed list-group-item col-sm-3">开关字典</a>
+        <a name="Skills" asp-controller="Manage" asp-action="Skills" class="btn-bracketed list-group-item col-sm-3">个人技能</a>
+        <a name="JobExperiences" asp-controller="Manage" asp-action="JobExperiences" class="btn-bracketed list-group-item col-sm-3">工作经历</a>
+        <a name="Samples" asp-controller="Manage" asp-action="Samples" class="btn-bracketed list-group-item col-sm-3">作品集</a>
+        <a name="ApplicationUsers" asp-controller="Manage" asp-action="ApplicationUsers" class="btn-bracketed list-group-item col-sm-3">用户管理</a>
+    </div>
+
+    <div class="body-content container">
+        <div class="body-content-wrapper">
+            @RenderBody()
+        </div>
+        <hr />
+        @Html.Partial("_FooterViewPartial")
+    </div>
+    
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- <script src="~/js/holder.js"></script> -->
+        <script src="~/lib/chart/dist/Chart.js"></script>
+        <script src="~/js/plugins/summernote/summernote.js"></script>
+        <script src="~/js/plugins/summernote/summernote-zh-CN.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <!-- <script src="~/js/holder.min.js" asp-append-version="true"></script> -->
+        <script src="~/lib/chart/dist/Chart.min.js" asp-append-version="true"></script>
+        <script src="~/js/plugins/summernote/summernote.min.js" asp-append-version="true"></script>
+        <script src="~/js/plugins/summernote/summernote-zh-CN.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+﻿<style>
+    #indexSideBar .title {
+    }
+
+    #indexSideBar {
+        padding: 10px 20px 0px 0px;
+    }
+
+    .panel.popular-tags {
+        margin-bottom: 0px;
+    }
+
+    #indexSideBar .popular-tags {
+        background: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+        border-radius: 2px;
+    }
+
+        .tag {
+            font-size: 14px;
+            line-height: 24px;
+            background: #eaeaea;
+            padding: 6px 8px;
+            border-radius: 6px;
+            float: left;
+            max-width: 128px;
+            position: relative;
+            margin: 6px 12px 6px 0px;
+            opacity: 0.8;
+        }
+    
+    .tag:hover {
+            opacity: 1;
+        }
+
+    .statistical-chart {
+        background: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+        border-radius: 2px;
+        /* box-sizing: border-box; */
+        padding: 3px 6px;
+        margin-top: 10px;
+    }
+
+    #myChart {
+        /* background: red; */
+        /* min-height: 200px;
+            width: 250px; */
+    }
+
+    .statement {
+        background: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 1px 12px rgba(0, 0, 0, .1);
+        border-radius: 2px;
+        min-height: 200px;
+        padding: 6px 8px;
+        margin-top: 10px;
+    }
+    
+    .statement .title {
+            line-height: 22px;
+        }
+    
+    .statement ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .statement ul > li {
+                list-style: none;
+                margin-top: 3px;
+            }
+
+            .statement ul li > a {
+                overflow-wrap: break-word;
+            }
+
+    .Sticky.is-fixed {
+        position: fixed;
+        z-index: 2;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+</style>
+
+
+
+
+
+<div id="indexSideBar" class=" col-md-3">
+    <div class="popular-tags panel panel-default">
+        <div class="panel-heading title">博客话题</div>
+        <div class="panel-body custom-list">
+            @if (ViewBag.EssayCategories.Count > 0)
+            {
+                foreach (var item in ViewBag.EssayCategories)
+                {
+                    <div class="tag">@item.Title</div>
+                }
+            }
+        </div>
+    </div>
+    <div class=" Sticky">
+        <!--Chart -->
+        <div class="statistical-chart">
+            <canvas id="myChart" width="250" height="200"></canvas>
+        </div>
+        <!-- 作者声明 -->
+        <div class="statement">
+            <h4 class="title">作者声明</h4>
+            <p>1.本网站仅作为个人技能展示，网站内容不作版权申明，请勿肆意传播</p>
+            <p>2.本网站坚决维护网络健康原则，若内容有违背，请及时联系或留言</p>
+            <p>
+                3.本网站引用的内容及参考的网站如下：
+                <ul>
+                    <li>
+                        <a href="http://glyphicons.com/">http://glyphicons.com/</a>
+                    </li>
+                    <li>
+                        <a href="https://www.zhihu.com">https://www.zhihu.com</a>
+                    </li>
+                    <li>
+                        <a href="https://www.pexels.com/">https://www.pexels.com/</a>
+                    </li>
+                    <li>
+                        <a href="http://www.bootcss.com/">http://www.bootcss.com/</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.microsoft.com/aspnet/core/">https://docs.microsoft.com/aspnet/core/</a>
+                    </li>
+                </ul>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<environment names="Development">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"
+            crossorigin="anonymous"
+            integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+    </script>
+</environment>
+
+<script lang="javascript" type="text/javascript">
+
+    $(function () {
+
+        var indexSideBar = $("#indexSideBar").get(0);
+        var stickyBar = $('#indexSideBar .Sticky');
+        var stickyBarTop = stickyBar.position().top;
+
+        $(document).scroll(function () {
+            if ($(document).scrollTop() > stickyBarTop + 300)
+            {
+                ////判断页面总高度
+               //var height = indexSideBar.top + indexSideBar.getAttribute('height');
+
+                var height = $(indexSideBar).height();
+
+                //判断是否快要到达底部
+                if ((document.body.clientHeight - indexSideBar.scrollTop - height) > 500)
+                {
+                    if (!stickyBar.hasClass('is-fixed')) {
+                        stickyBar.addClass('is-fixed');
+                        stickyBar.css('left', $('#indexSideBar').offset().left);
+                        stickyBar.css('top', $('#navbar').css("height"));
+                        stickyBar.css('width', $('.popular-tags').css('width'));
+                    }
+                }
+            }
+            else {
+                if (stickyBar.hasClass('is-fixed')) {
+                    stickyBar.removeClass('is-fixed');
+                    stickyBar.css('left', 0);
+                    stickyBar.css('top', 0);
+                }
+            }
+
+        });
+
+        //绘制图表
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                datasets: [{
+                    label: "访问量",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+            },
+            // Configuration options go here
+            options: {}
+        });
+    });
+</script>
