@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Reggie.WPF.Utilities.Utils.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +36,19 @@ namespace DemoApp
         {
             var point = testBorder.TranslatePoint(new Point(),this.testCanvas);
             ;
+        }
+
+        private void BtnDeleteRegistryKey_Click(object sender, RoutedEventArgs e)
+        {
+            var text = this.tbxKey.Text;
+            var parentKeyName = text;
+            var msg = string.Empty;
+
+            this.tbTip.Text = "";
+
+            RegistryKeyUtil.DeleteRegistryKey(Registry.LocalMachine, parentKeyName, @"E:\Program Files (x86)\Sunoo\CarTool",out msg);
+
+            this.tbTip.Text = msg;
         }
     }
 }

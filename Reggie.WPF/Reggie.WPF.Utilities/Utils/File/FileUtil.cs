@@ -82,13 +82,17 @@ namespace Reggie.WPF.Utilities.Utils.File
         /// </summary>
         /// <param name="filePath"></param>
         /// <param name="content"></param>
-        public static void Create(string filePath, byte[] content)
+        public static void Create(string filePath, byte[] content = null)
         {
-            var fs = System.IO.File.Create(filePath);
+            FileStream fs = null;
             try
             {
-                fs.Write(content, 0, content.Count());
-                fs.Flush();
+                fs = System.IO.File.Create(filePath);
+                if (content != null)
+                {
+                    fs.Write(content, 0, content.Count());
+                    fs.Flush();
+                }
             }
             catch (Exception ex)
             {
@@ -98,6 +102,33 @@ namespace Reggie.WPF.Utilities.Utils.File
             {
                 fs?.Close();
             }
+        }
+
+        /// <summary>
+        /// 读取具有内容的文件并关闭
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        public static bool Read(string filePath,out string content)
+        {
+            bool result = false;
+
+            try
+            {
+                content = System.IO.File.ReadAllText(filePath);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(TAG, ex);
+                content = string.Empty;
+            }
+            finally
+            {
+              
+            }
+
+            return result;
         }
     }
 }

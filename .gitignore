@@ -25,3 +25,5 @@ bld/
 [Oo]bj/
 
 *.out
+/Reggie.WPF/DemoApp/.vs/DemoApp/v15/Server/sqlite3
+/Reggie.Blog/.vs/Reggie.Blog/v15/Server/sqlite3

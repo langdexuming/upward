@@ -14,4 +14,5 @@
     <Converters:ConditionSelectionMutilConverter x:Key="ConditionSelectionMutilConverter"></Converters:ConditionSelectionMutilConverter>
     <Converters:MultiLogicConverter x:Key="MultiLogicConverter"></Converters:MultiLogicConverter>
     <Converters:StringIsNullOrEmptyConverter x:Key="StringIsNullOrEmptyConverter"></Converters:StringIsNullOrEmptyConverter>
+    <Converters:ValueEqualParamToVisiblityConverter x:Key="ValueEqualParamToVisiblityConverter"></Converters:ValueEqualParamToVisiblityConverter>
 </ResourceDictionary>

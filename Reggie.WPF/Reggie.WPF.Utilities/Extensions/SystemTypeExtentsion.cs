@@ -104,5 +104,25 @@ namespace Reggie.WPF.Utilities.Extensions
             }
             return result;
         }
+
+        /// <summary>
+        /// 拷贝数组
+        /// </summary>
+        /// <returns></returns>
+        public static byte[] Copy(this byte[] arrays)
+        {
+            if (arrays == null)
+            {
+                return null;
+            }
+
+            var result = new byte[arrays.Length];
+            for (int i = 0; i < arrays.Length; i++)
+            {
+                result[i] = arrays[i];
+            }
+
+            return result;
+        }
     }
 }
