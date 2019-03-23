@@ -22,9 +22,9 @@ using System.Threading.Tasks;
 
 namespace Reggie.WPF.Utilities.Extensions
 {
-    public static class SystemTypeExtentsion
+    public static class SystemTypeExtension
     {
-        private const string TAG = nameof(SystemTypeExtentsion);
+        private const string TAG = nameof(SystemTypeExtension);
 
         /// <summary>
         /// 将字节类型数组转成可读字符串
@@ -37,6 +37,27 @@ namespace Reggie.WPF.Utilities.Extensions
             var str = string.Empty;
             var lastIndex = bytes.Length - 1;
             for (int i = 0; i < bytes.Length; i++)
+            {
+                str += string.Format("{0:X2}", bytes[i]) + " ";
+                if ((i % 8 == 7) || i == lastIndex)
+                {
+                    str = str.TrimEnd() + "\n";
+                }
+            }
+            return str.TrimEnd(' ');
+        }
+
+        /// <summary>
+        /// 将字节类型数组转成可读字符串
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string ToString(this List<byte> bytes)
+        {
+            if (bytes == null || bytes.Count == 0) return string.Empty;
+            var str = string.Empty;
+            var lastIndex = bytes.Count - 1;
+            for (int i = 0; i < bytes.Count; i++)
             {
                 str += string.Format("{0:X2}", bytes[i]) + " ";
                 if ((i % 8 == 7) || i == lastIndex)

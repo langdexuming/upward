@@ -89,7 +89,7 @@
     <Compile Include="Extensions\IEnumerableExtension.cs" />
     <Compile Include="Extensions\Logger.cs" />
     <Compile Include="Extensions\PathExtension.cs" />
-    <Compile Include="Extensions\SystemTypeExtentsion.cs" />
+    <Compile Include="Extensions\SystemTypeExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Algorithm\HashUtil.cs" />
     <Compile Include="Utils\App\AppConfigurationUtil.cs" />

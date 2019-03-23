@@ -21,6 +21,11 @@ namespace Reggie.Blog.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>().Property(x => x.TwoFactorEnabled).HasColumnType("bit(1)");
+            builder.Entity<ApplicationUser>().Property(x => x.PhoneNumberConfirmed).HasColumnType("bit(1)");
+            builder.Entity<ApplicationUser>().Property(x => x.EmailConfirmed).HasColumnType("bit(1)");
+            builder.Entity<ApplicationUser>().Property(x => x.LockoutEnabled).HasColumnType("bit(1)");
         }
     }
 }
