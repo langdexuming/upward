@@ -10,16 +10,13 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Viewbox Stretch="Uniform">
         <Grid Width="525" x:Name="gdRoot">
-            <StackPanel HorizontalAlignment="Center" Width="240">
-                <ComboBox x:Name="cbxBrand" ItemsSource="{Binding Brands}" DisplayMemberPath="BrandName" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbxBrand_SelectionChanged"/>
-                <TextBox x:Name="tbxFileUrl"></TextBox>
-                <Button Command="{Binding DownloadCommand}" CommandParameter="{Binding ElementName=tbxFileUrl,Path=Text}">下载</Button>
-                <ComboBox></ComboBox>
-                <Button Click="Button_Click" FontSize="24">测试</Button>
-                <Grid MouseDown="Grid_MouseDown">
-                    <Button Content="判断是否有路由"></Button>
-                </Grid>
-            </StackPanel>
+            <WebBrowser x:Name="webBrowser"></WebBrowser>
+
+            <WindowsFormsHost x:Name="windowsFormsHost">
+                
+            </WindowsFormsHost>
+
+
         </Grid>
     </Viewbox>
 </Window>

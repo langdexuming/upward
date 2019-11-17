@@ -1,0 +1,1 @@
+vbc.exe /main:Form1 /target:winexe /imports:Microsoft.VisualBasic,System,System.Collections,System.Data,System.Diagnostics,System.Drawing,System.IO,System.Net,System.Text,System.Windows.Forms /r:System.dll,System.Data.dll,System.Drawing.dll,System.Windows.Forms.dll,Sybase.Data.AseClient.dll /out:Advanced.exe Form1.vb

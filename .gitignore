@@ -27,3 +27,9 @@ bld/
 *.out
 /Reggie.WPF/DemoApp/.vs/DemoApp/v15/Server/sqlite3
 /Reggie.Blog/.vs/Reggie.Blog/v15/Server/sqlite3
+Reggie.Upward.Blockchain/.vs/Reggie.Upward.Blockchain/v15/Server/sqlite3/db.lock
+Reggie.Upward.Blockchain/.vs/Reggie.Upward.Blockchain/v15/Server/sqlite3/storage.ide
+Reggie.Upward.Blockchain/.vs/Reggie.Upward.Blockchain/v15/Server/sqlite3/storage.ide-shm
+Reggie.Upward.Blockchain/.vs/Reggie.Upward.Blockchain/v15/Server/sqlite3/storage.ide-shm
+Reggie.Upward.Blockchain/.vs/Reggie.Upward.Blockchain/v15/Server/sqlite3/storage.ide-wal
+Reggie.Upward.Blockchain/.vs/Reggie.Upward.Blockchain/DesignTimeBuild/.dtbcache

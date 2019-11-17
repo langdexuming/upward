@@ -1,0 +1,1 @@
+vbc.exe /main:TableViewer /target:winexe /imports:Microsoft.VisualBasic,System,System.Collections,System.Data,System.Diagnostics,System.Drawing,System.Net,System.Windows.Forms,System.Xml /r:System.dll,System.Data.dll,System.Drawing.dll,System.Windows.Forms.dll,System.XML.dll,Sybase.Data.AseClient.dll /out:TableViewer.exe TableViewer.vb

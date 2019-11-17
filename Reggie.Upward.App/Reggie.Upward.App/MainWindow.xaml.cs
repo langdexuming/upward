@@ -36,9 +36,13 @@ namespace Reggie.Upward.App
 
                 ;
                 //this.gdRoot.Height = 400;
+                var path = "d:/044001800111_82056336.pdf";
+
+                // this.webBrowser.Navigate(new Uri(path));
 
 
-
+                AdobePDFUserControl pdfCtl = new AdobePDFUserControl();
+                windowsFormsHost.Child = pdfCtl;
             };
 
         }
@@ -54,12 +58,12 @@ namespace Reggie.Upward.App
         /// <param name="e"></param>
         private void cbxBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var obj=this.cbxBrand.SelectedValue;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.cbxBrand.SelectedValue = (this.cbxBrand.ItemsSource as List<Brand>)[1];
+
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

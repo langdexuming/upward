@@ -76,6 +76,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -95,6 +97,7 @@
     <Compile Include="Utils\App\AppConfigurationUtil.cs" />
     <Compile Include="Utils\Environmental\EnvironmentalUtil.cs" />
     <Compile Include="Utils\File\FileUtil.cs" />
+    <Compile Include="Utils\File\ZipUtil.cs" />
     <Compile Include="Utils\Http\HttpMethodConstants.cs" />
     <Compile Include="Utils\Http\HttpResult.cs" />
     <Compile Include="Utils\Http\HttpUtil.cs" />

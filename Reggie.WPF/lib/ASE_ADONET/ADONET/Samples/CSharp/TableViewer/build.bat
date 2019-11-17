@@ -1,0 +1,1 @@
+csc /r:"Sybase.Data.AseClient.dll" /out:TableViewer.exe TableViewer.cs
